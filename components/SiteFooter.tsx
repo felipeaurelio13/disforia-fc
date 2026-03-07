@@ -12,7 +12,7 @@ export function SiteFooter({ lang }: { lang: Locale }) {
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
           <div>
             <p className="font-display text-xl font-bold tracking-[-0.01em] text-brand-sky">{t.common.clubName}</p>
-            <p className="mt-2 text-sm font-medium tracking-[0.04em] text-brand-softWhite/65">v0.3.0</p>
+            <p className="mt-2 text-sm font-medium tracking-[0.04em] text-brand-softWhite/65">v0.4.0</p>
           </div>
           <div className="space-y-2 text-sm">
             {t.nav.map((item) => (
@@ -27,11 +27,6 @@ export function SiteFooter({ lang }: { lang: Locale }) {
             <a href={externalLinks.instagram} target="_blank" className="text-brand-softWhite/80 hover:text-brand-sky" rel="noreferrer">
               Instagram
             </a>
-            <p>
-              <a href={externalLinks.email} className="text-brand-softWhite/80 hover:text-brand-sky">
-                Email
-              </a>
-            </p>
           </div>
           <div>
             <a href={externalLinks.gofundme} target="_blank" rel="noreferrer" className="inline-flex rounded-full border border-brand-magenta/65 bg-brand-magenta px-5 py-2.5 font-display text-sm font-semibold text-white hover:-translate-y-0.5 hover:bg-[#a63c69]">
