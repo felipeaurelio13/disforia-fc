@@ -55,3 +55,6 @@ No se requieren secrets adicionales para este flujo.
 - Se agregó prueba unitaria base para cálculo de avance de Valencia 2026.
 - Se dejó listo el pipeline de GitHub Actions para desplegar en GitHub Pages.
 - Se agregó validación unitaria para la resolución de `basePath`/`assetPrefix` según entorno.
+
+- Se corrigió el workflow de GitHub Pages para usar `npm ci` y se versionó `package-lock.json`, evitando fallos por lockfile ausente en Actions.
+- Se añadió `.gitignore` base para excluir `node_modules` y artefactos de build/tests del repositorio.
