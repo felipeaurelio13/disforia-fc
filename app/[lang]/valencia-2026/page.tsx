@@ -1,13 +1,14 @@
 import { Section } from '@/components/ui';
 import { copy } from '@/content/copy';
 import { externalLinks, Locale, locales, valenciaFunding } from '@/content/site';
+import { getValenciaProgress } from '@/lib/valencia';
 import { notFound } from 'next/navigation';
 
 export default function ValenciaPage({ params }: { params: { lang: string } }) {
   if (!locales.includes(params.lang as Locale)) notFound();
   const lang = params.lang as Locale;
   const t = copy[lang].valencia;
-  const progress = Math.round((valenciaFunding.raised / valenciaFunding.target) * 100);
+  const { percentage: progress } = getValenciaProgress();
 
   return (
     <>

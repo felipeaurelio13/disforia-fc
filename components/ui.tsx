@@ -1,30 +1,40 @@
 import Link from 'next/link';
 import { PropsWithChildren } from 'react';
 
-export function Container({ children }: PropsWithChildren) {
-  return <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">{children}</div>;
+type SectionProps = PropsWithChildren<{ title?: string; eyebrow?: string; description?: string; narrow?: boolean; className?: string }>;
+
+type ButtonVariant = 'primary' | 'secondary' | 'text';
+
+export function Container({ children, narrow = false }: PropsWithChildren<{ narrow?: boolean }>) {
+  return <div className={`mx-auto w-full px-5 md:px-7 lg:px-10 ${narrow ? 'max-w-narrow' : 'max-w-container'}`}>{children}</div>;
 }
 
-export function Section({ title, children }: PropsWithChildren<{ title?: string }>) {
+export function Section({ title, eyebrow, description, children, narrow, className = '' }: SectionProps) {
   return (
-    <section className="py-12 sm:py-16">
-      <Container>
-        {title ? <h2 className="mb-6 text-2xl font-semibold sm:text-3xl">{title}</h2> : null}
-        {children}
+    <section className={`section-shell ${className}`.trim()}>
+      <Container narrow={narrow}>
+        {eyebrow ? <p className="font-display text-xs uppercase tracking-[0.18em] text-brand-sky">{eyebrow}</p> : null}
+        {title ? <h2 className="mt-2 max-w-3xl font-display text-3xl font-bold leading-[1.02] tracking-[-0.02em] text-brand-softWhite md:text-5xl">{title}</h2> : null}
+        {description ? <p className="mt-5 max-w-3xl text-base leading-relaxed text-brand-softWhite/80 md:text-lg">{description}</p> : null}
+        <div className="mt-8 md:mt-10">{children}</div>
       </Container>
     </section>
   );
 }
 
-export function ButtonLink({ href, children, secondary }: PropsWithChildren<{ href: string; secondary?: boolean }>) {
+const buttonStyles: Record<ButtonVariant, string> = {
+  primary:
+    'rounded-full border border-brand-magenta/70 bg-brand-magenta px-6 py-3 font-display text-sm font-semibold text-brand-softWhite hover:-translate-y-0.5 hover:bg-[#a63c69] active:translate-y-0',
+  secondary:
+    'rounded-full border border-brand-softWhite/24 bg-brand-softWhite/5 px-6 py-3 font-display text-sm font-semibold text-brand-softWhite hover:-translate-y-0.5 hover:border-brand-sky/55 hover:bg-brand-sky/12 active:translate-y-0',
+  text: 'group inline-flex items-center gap-2 font-display text-sm font-semibold text-brand-sky hover:text-brand-softWhite',
+};
+
+export function ButtonLink({ href, children, variant = 'primary' }: PropsWithChildren<{ href: string; variant?: ButtonVariant }>) {
   return (
-    <Link
-      href={href}
-      className={`inline-flex items-center rounded-full px-5 py-2.5 text-sm font-semibold ${
-        secondary ? 'bg-white/10 text-brand-softWhite hover:bg-white/20' : 'bg-brand-magenta text-white hover:bg-brand-lavender'
-      }`}
-    >
+    <Link href={href} className={buttonStyles[variant]}>
       {children}
+      {variant === 'text' ? <span aria-hidden="true" className="translate-x-0 transition-transform duration-200 ease-smooth group-hover:translate-x-1">→</span> : null}
     </Link>
   );
 }

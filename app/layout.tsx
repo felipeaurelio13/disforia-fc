@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Archivo, Inter } from 'next/font/google';
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
+const archivo = Archivo({ subsets: ['latin'], variable: '--font-archivo' });
 
 export const metadata: Metadata = {
   title: 'Disforia FC',
@@ -21,7 +22,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es">
-      <body className={inter.variable}>{children}</body>
+      <body className={`${inter.variable} ${archivo.variable}`}>{children}</body>
     </html>
   );
 }

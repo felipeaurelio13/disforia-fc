@@ -58,3 +58,9 @@ No se requieren secrets adicionales para este flujo.
 
 - Se corrigió el workflow de GitHub Pages para usar `npm ci` y se versionó `package-lock.json`, evitando fallos por lockfile ausente en Actions.
 - Se añadió `.gitignore` base para excluir `node_modules` y artefactos de build/tests del repositorio.
+
+- Se implementó un upgrade visual integral de la home y de la capa global de UI (tipografía Archivo + Inter, ritmo editorial, jerarquías premium, CTAs refinados y microinteracciones con reveal progresivo).
+- Se centralizaron tokens visuales (contenedores, spacing, radios, bordes, overlays y timing de motion) en `app/globals.css` y `tailwind.config.ts`.
+- Se introdujo el componente `Reveal` con IntersectionObserver y respeto por `prefers-reduced-motion`, para motion suave sin dependencias externas pesadas.
+- Se robusteció `getValenciaProgress` para acotar el porcentaje a 0–100 y se extendieron pruebas unitarias de Valencia para cubrir el caso de sobre-financiamiento.
+- Se actualizó la versión visible del sitio en footer a `v0.3.0`.

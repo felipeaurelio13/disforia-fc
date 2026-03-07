@@ -20,6 +20,18 @@ const config: Config = {
       },
       fontFamily: {
         sans: ['var(--font-inter)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        display: ['var(--font-archivo)', 'var(--font-inter)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+      },
+      maxWidth: {
+        container: '1280px',
+        narrow: '820px',
+      },
+      boxShadow: {
+        surface: '0 10px 30px rgba(0, 0, 0, 0.14)',
+        soft: '0 6px 20px rgba(0, 0, 0, 0.12)',
+      },
+      transitionTimingFunction: {
+        smooth: 'cubic-bezier(0.22, 1, 0.36, 1)',
       },
     },
   },
