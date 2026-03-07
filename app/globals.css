@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-sky: #87c2e3;
+  --color-magenta: #b34173;
+  --color-lavender: #84719d;
+  --color-charcoal: #111111;
+  --color-soft-white: #f5f5f5;
+  --color-soft-gray: #dad6d9;
+}
+
+body {
+  @apply bg-brand-charcoal text-brand-softWhite antialiased;
+}
+
+a {
+  @apply transition-colors duration-150;
+}
