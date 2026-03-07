@@ -12,7 +12,7 @@ export function SiteFooter({ lang }: { lang: Locale }) {
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           <div>
             <p className="font-semibold text-brand-sky">{t.common.clubName}</p>
-            <p className="mt-2 text-sm text-brand-softWhite/70">v0.2.0</p>
+            <p className="mt-2 text-sm text-brand-softWhite/70">v0.2.1</p>
           </div>
           <div className="text-sm">
             {t.nav.map((item) => (
