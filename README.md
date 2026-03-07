@@ -64,3 +64,9 @@ No se requieren secrets adicionales para este flujo.
 - Se introdujo el componente `Reveal` con IntersectionObserver y respeto por `prefers-reduced-motion`, para motion suave sin dependencias externas pesadas.
 - Se robusteció `getValenciaProgress` para acotar el porcentaje a 0–100 y se extendieron pruebas unitarias de Valencia para cubrir el caso de sobre-financiamiento.
 - Se actualizó la versión visible del sitio en footer a `v0.3.0`.
+
+
+- Se reemplazó el uso de contacto inventado por rutas internas y mensajes de “por confirmar”, evitando correos/formularios no oficiales.
+- Se actualizaron placeholders de personas en ES/EN para mantener contenido editable sin nombres no aprobados.
+- Se ajustó la lógica de avance de Valencia 2026 para soportar datos no configurados (`null`) y mostrar estado pendiente de actualización manual.
+- Se actualizó la versión visible del sitio en footer a `v0.4.0`.

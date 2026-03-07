@@ -16,3 +16,7 @@
 
 - Para upgrades visuales grandes, centralizar tokens en `app/globals.css` + `tailwind.config.ts` y mantener componentes de estructura en `components/ui.tsx` evita drift de estilos.
 - Motion recomendado: `IntersectionObserver` + clases CSS `opacity/transform` con fallback por `prefers-reduced-motion`, sin sumar librerías de animación cuando no son necesarias.
+
+
+- Si aún no hay canal oficial de contacto validado por el club, evitar `mailto` y formularios funcionales; usar CTAs internos y texto “por confirmar”.
+- Para el tracker de campañas, soportar valores `null` en contenido y representar “pendiente” en UI para mantener edición manual sin scraping.

@@ -1,6 +1,6 @@
 import { Section } from '@/components/ui';
 import { copy } from '@/content/copy';
-import { externalLinks, Locale, locales } from '@/content/site';
+import { Locale, locales } from '@/content/site';
 import { notFound } from 'next/navigation';
 
 export default function JoinPage({ params }: { params: { lang: string } }) {
@@ -17,11 +17,9 @@ export default function JoinPage({ params }: { params: { lang: string } }) {
             <article key={card.title} className="rounded-xl border border-white/10 bg-white/5 p-5">
               <h3 className="text-lg font-semibold">{card.title}</h3>
               <p className="mt-2 text-sm text-brand-softWhite/80">{card.text}</p>
-              <form className="mt-4 space-y-2" action={externalLinks.email}>
-                <input className="w-full rounded-lg border border-white/20 bg-black/20 px-3 py-2 text-sm" type="text" placeholder={lang === 'es' ? 'Nombre' : 'Name'} required />
-                <input className="w-full rounded-lg border border-white/20 bg-black/20 px-3 py-2 text-sm" type="email" placeholder="Email" required />
-                <button className="rounded-full bg-brand-magenta px-4 py-2 text-sm font-semibold" type="submit">{card.cta}</button>
-              </form>
+              <p className="mt-4 inline-flex rounded-full border border-white/20 bg-black/20 px-4 py-2 text-sm font-semibold text-brand-softWhite/85">
+                {card.cta}
+              </p>
             </article>
           ))}
         </div>

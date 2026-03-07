@@ -75,19 +75,28 @@ export function HomeSections({ lang }: { lang: Locale }) {
                   <a href={externalLinks.gofundme} target="_blank" rel="noreferrer" className="inline-flex rounded-full border border-brand-magenta/65 bg-brand-magenta px-6 py-3 font-display text-sm font-semibold text-white hover:-translate-y-0.5">
                     {t.home.valencia.donate}
                   </a>
-                  <a href={externalLinks.email} className="inline-flex rounded-full border border-white/30 bg-white/10 px-6 py-3 font-display text-sm font-semibold hover:-translate-y-0.5">
+                  <ButtonLink href={`/${lang}/apoya`} variant="secondary">
                     {t.home.valencia.sponsor}
-                  </a>
+                  </ButtonLink>
                 </div>
               </div>
               <div className="rounded-[20px] border border-white/12 bg-black/20 p-5">
                 <p className="font-display text-xs uppercase tracking-[0.16em] text-brand-softWhite/65">{lang === 'es' ? 'Avance' : 'Progress'}</p>
-                <p className="mt-3 font-display text-4xl font-bold tracking-[-0.02em]">{percentage}%</p>
-                <p className="mt-2 text-sm text-brand-softWhite/75">{format.format(valenciaFunding.raised)} / {format.format(valenciaFunding.target)}</p>
+                <p className="mt-3 font-display text-4xl font-bold tracking-[-0.02em]">{percentage == null ? '—' : `${percentage}%`}</p>
+                <p className="mt-2 text-sm text-brand-softWhite/75">
+                  {valenciaFunding.raised == null || valenciaFunding.target == null
+                    ? lang === 'es'
+                      ? 'Actualización manual pendiente'
+                      : 'Manual update pending'
+                    : `${format.format(valenciaFunding.raised)} / ${format.format(valenciaFunding.target)}`}
+                </p>
                 <div className="mt-4 h-2.5 overflow-hidden rounded-full bg-white/15">
-                  <div className="h-full rounded-full bg-brand-sky transition-all duration-500 ease-smooth" style={{ width: `${percentage}%` }} />
+                  <div className="h-full rounded-full bg-brand-sky transition-all duration-500 ease-smooth" style={{ width: `${percentage ?? 0}%` }} />
                 </div>
-                <p className="mt-3 text-sm text-brand-softWhite/80">{lang === 'es' ? 'Faltan por financiar:' : 'Still to fund:'} <span className="font-display font-semibold">{format.format(remaining)}</span></p>
+                <p className="mt-3 text-sm text-brand-softWhite/80">
+                  {lang === 'es' ? 'Faltan por financiar:' : 'Still to fund:'}{' '}
+                  <span className="font-display font-semibold">{remaining == null ? (lang === 'es' ? 'por confirmar' : 'to be confirmed') : format.format(remaining)}</span>
+                </p>
               </div>
             </div>
           </div>

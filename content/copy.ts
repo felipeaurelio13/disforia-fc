@@ -10,7 +10,7 @@ type Copy = {
     clubName: string;
     switchTo: string;
     supportCTA: string;
-    contactEmail: string;
+    contactEmail: string | null;
   };
   home: {
     hero: { title: string; subtitle: string; primary: string; secondary: string };
@@ -54,7 +54,7 @@ export const copy: Record<Locale, Copy> = {
       clubName: 'Disforia FC',
       switchTo: 'EN',
       supportCTA: 'Apoyar campaña',
-      contactEmail: externalLinks.email,
+      contactEmail: null,
     },
     home: {
       hero: {
@@ -77,9 +77,9 @@ export const copy: Record<Locale, Copy> = {
       people: {
         title: 'Rostros del club',
         list: [
-          { name: 'Alex', role: 'Fútbol', quote: 'Entrenar acá me devolvió la confianza en la cancha.' },
-          { name: 'Vale', role: 'Básquet', quote: 'Encontré equipo, ritmo y pertenencia en un mismo lugar.' },
-          { name: 'Nico', role: 'Vóley', quote: 'Competir sin esconder quién soy cambió mi relación con el deporte.' },
+          { name: 'Nombre por confirmar', role: 'Integrante del club', quote: 'Frase breve por confirmar.' },
+          { name: 'Nombre por confirmar', role: 'Integrante del club', quote: 'Frase breve por confirmar.' },
+          { name: 'Nombre por confirmar', role: 'Integrante del club', quote: 'Frase breve por confirmar.' },
         ],
       },
       press: { title: 'Prensa y reconocimiento', links: [{ title: 'The Clinic', href: 'https://www.theclinic.cl/2021/09/10/disforia-futbol-club-un-espacio-deportivo-seguro-para-personas-trans-y-no-binarias/' }, { title: 'Galio', href: 'https://galio.cl/2024/06/28/disforia-club-el-1-equipo-deportivo-para-personas-trans-y-no-binarias-de-chile/' }, { title: 'Distintas Latitudes', href: 'https://distintaslatitudes.net/historias/reportaje/disforia-fc-futbol-trans' }] },
@@ -104,7 +104,7 @@ export const copy: Record<Locale, Copy> = {
       why: 'Disforia participa para competir, representar a su comunidad y consolidar su proyecto deportivo en un escenario global.',
       needs: ['Inscripciones', 'Pasajes', 'Alojamiento', 'Operación'],
       donate: 'Donar en GoFundMe',
-      sponsor: 'Contactar para auspicio',
+      sponsor: 'Ver opciones de auspicio',
     },
     supportPage: {
       intro: 'Hay distintas formas de sostener el proyecto deportivo del club.',
@@ -118,7 +118,7 @@ export const copy: Record<Locale, Copy> = {
     joinPage: {
       intro: 'Si quieres ser parte, este es el punto de entrada.',
       cards: [
-        { title: 'Quiero jugar / entrenar', text: 'Completa el formulario para sumarte a una rama activa.', cta: 'Escribir al club' },
+        { title: 'Quiero jugar / entrenar', text: 'Conecta luego con formulario oficial o canal validado por el club.', cta: 'Canal por confirmar' },
         { title: 'Quiero colaborar', text: 'Puedes apoyar en producción, gestión o comunicación.', cta: 'Ofrecer colaboración' },
         { title: 'Quiero invitar a Disforia', text: 'Para actividades, partidos o encuentros comunitarios.', cta: 'Enviar invitación' },
       ],
@@ -132,7 +132,7 @@ export const copy: Record<Locale, Copy> = {
       { href: '/en/apoya', label: 'Support' },
       { href: '/en/sumate', label: 'Join' },
     ],
-    common: { clubName: 'Disforia FC', switchTo: 'ES', supportCTA: 'Support campaign', contactEmail: externalLinks.email },
+    common: { clubName: 'Disforia FC', switchTo: 'ES', supportCTA: 'Support campaign', contactEmail: null },
     home: {
       hero: {
         title: 'trans and non-binary sports club from chile',
@@ -154,9 +154,9 @@ export const copy: Record<Locale, Copy> = {
       people: {
         title: 'People of the club',
         list: [
-          { name: 'Alex', role: 'Football', quote: 'Training here gave me confidence back on the pitch.' },
-          { name: 'Vale', role: 'Basketball', quote: 'I found team spirit, rhythm, and belonging in one place.' },
-          { name: 'Nico', role: 'Volleyball', quote: 'Competing without hiding who I am changed my relation with sport.' },
+          { name: 'Name to be confirmed', role: 'Club member', quote: 'Short quote to be confirmed.' },
+          { name: 'Name to be confirmed', role: 'Club member', quote: 'Short quote to be confirmed.' },
+          { name: 'Name to be confirmed', role: 'Club member', quote: 'Short quote to be confirmed.' },
         ],
       },
       press: { title: 'Press and recognition', links: [{ title: 'The Clinic', href: 'https://www.theclinic.cl/2021/09/10/disforia-futbol-club-un-espacio-deportivo-seguro-para-personas-trans-y-no-binarias/' }, { title: 'Galio', href: 'https://galio.cl/2024/06/28/disforia-club-el-1-equipo-deportivo-para-personas-trans-y-no-binarias-de-chile/' }, { title: 'Distintas Latitudes', href: 'https://distintaslatitudes.net/historias/reportaje/disforia-fc-futbol-trans' }] },
@@ -181,7 +181,7 @@ export const copy: Record<Locale, Copy> = {
       why: 'Disforia participates to compete, represent its community, and consolidate its sports project on a global stage.',
       needs: ['Registration', 'Flights', 'Accommodation', 'Operations'],
       donate: 'Donate on GoFundMe',
-      sponsor: 'Contact for sponsorship',
+      sponsor: 'View sponsorship options',
     },
     supportPage: {
       intro: 'There are multiple ways to sustain the club’s sports project.',
@@ -195,7 +195,7 @@ export const copy: Record<Locale, Copy> = {
     joinPage: {
       intro: 'If you want to be part of Disforia, start here.',
       cards: [
-        { title: 'I want to play / train', text: 'Complete the form to join an active branch.', cta: 'Write to the club' },
+        { title: 'I want to play / train', text: 'Connect later to an official form or validated club contact channel.', cta: 'Channel to be confirmed' },
         { title: 'I want to collaborate', text: 'Support in production, operations, or communication.', cta: 'Offer collaboration' },
         { title: 'I want to invite Disforia', text: 'For activities, matches, and community events.', cta: 'Send invitation' },
       ],
