@@ -38,8 +38,20 @@ Editar `valenciaFunding` en `content/site.ts`:
 ## Build estático (GitHub Pages)
 `next.config.mjs` usa `output: 'export'` + `images.unoptimized` para compatibilidad de despliegue estático.
 
+Además, el sitio ajusta automáticamente `basePath` y `assetPrefix` en GitHub Actions a partir de `GITHUB_REPOSITORY`, y activa `trailingSlash` para mejorar compatibilidad en hosting estático.
+
+## Deploy automático con GitHub Actions
+1. Ir a **Settings → Pages** en GitHub.
+2. En **Source**, seleccionar **GitHub Actions**.
+3. Hacer push a `main`.
+4. El workflow `.github/workflows/deploy-pages.yml` instalará dependencias, ejecutará tests, hará build (`next build`) y publicará `out/` en GitHub Pages.
+
+No se requieren secrets adicionales para este flujo.
+
 ## Sesión actual (registro)
 - Se creó una primera versión completa del sitio bilingüe con las páginas solicitadas.
 - Se centralizó contenido editable en archivos TS.
 - Se implementó estructura visual sobria, deportiva y editorial.
 - Se agregó prueba unitaria base para cálculo de avance de Valencia 2026.
+- Se dejó listo el pipeline de GitHub Actions para desplegar en GitHub Pages.
+- Se agregó validación unitaria para la resolución de `basePath`/`assetPrefix` según entorno.
