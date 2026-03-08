@@ -85,3 +85,5 @@ También se mantienen hechos oficiales editables en `officialFacts`.
 ## Registro de cambios recientes
 - Upgrade visual mobile-first: footer editorial con release visible, CTA reforzado de Valencia 2026 y tipografía display serif local para mejorar legibilidad sin depender de descargas externas.
 - Se agregaron SVG locales de ramas (fútbol, básquet, vóley) para cubrir imágenes faltantes con placeholders controlados.
+
+- Se incorpora `docs/ux-auditoria-disforia-fc.md` con auditoría integral de contenido, IA, tono, accesibilidad y propuesta de estructura/copy para reforzar conversión de la campaña Valencia 2026.
