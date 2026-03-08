@@ -38,3 +38,6 @@
 - Paridad de slugs bilingües: navegación y CTAs ahora usan `lib/routes.ts` con keys compartidas; EN usa `/support` y `/join` sin ramas paralelas de contenido.
 
 - Para solicitudes estratégicas no-code, dejar entregable versionado en `docs/` (auditoría + copy listo) facilita revisión editorial y continuidad entre sesiones.
+
+- Cuando el entorno bloquea `npm install` (403), implementar componentes con API compatible local (estilo shadcn) permite evolucionar UI sin romper CI ni static export.
+- Para tests de componentes Next/React con TS en este repo, configurar `jest.config.js` con transformación `tsx` (`jsx: react-jsx`) evita errores de parseo en imports de componentes.

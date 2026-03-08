@@ -83,6 +83,8 @@ También se mantienen hechos oficiales editables en `officialFacts`.
 
 
 ## Registro de cambios recientes
+- Header actualizado con `components/ui/navigation-menu.tsx` (API estilo shadcn) para navegación desktop más modular, manteniendo menú móvil existente y compatibilidad con export estático en GitHub Pages.
+- Se agrega cobertura de pruebas para `SiteHeader` (render de enlaces + toggle de menú móvil) y ajuste de `jest.config.js` para transformar archivos `tsx` en tests de componentes.
 - Refactor visual integral al nuevo design system (magenta/azul, superficies claras, tipografía Inter, hero con gradiente y microinteracciones de 220ms) aplicado en layout, header, home y bloques reutilizables.
 - Implementación completa de checklist UX: nueva IA con páginas dedicadas de Fútbol, Básquetbol, Documentales y prensa, Contacto y redes, además de reforzar Home y Valencia 2026 con narrativa, impacto, transparencia, testimonios y FAQ.
 - Navegación bilingüe ampliada en `lib/routes.ts` con slugs localizados para nuevas secciones y CTA persistente de donación en header (mobile + desktop).
