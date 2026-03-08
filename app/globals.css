@@ -3,6 +3,8 @@
 @tailwind utilities;
 
 :root {
+  --font-inter: 'Inter', 'Avenir Next', 'Segoe UI', sans-serif;
+  --font-archivo: 'Archivo', 'Franklin Gothic Medium', 'Arial Narrow', sans-serif;
   --color-sky: #87c2e3;
   --color-magenta: #b34173;
   --color-lavender: #84719d;
@@ -31,12 +33,16 @@
 
 @media (min-width: 768px) {
   :root {
+  --font-inter: 'Inter', 'Avenir Next', 'Segoe UI', sans-serif;
+  --font-archivo: 'Archivo', 'Franklin Gothic Medium', 'Arial Narrow', sans-serif;
     --space-section: 82px;
   }
 }
 
 @media (min-width: 1024px) {
   :root {
+  --font-inter: 'Inter', 'Avenir Next', 'Segoe UI', sans-serif;
+  --font-archivo: 'Archivo', 'Franklin Gothic Medium', 'Arial Narrow', sans-serif;
     --space-section: 108px;
   }
 }

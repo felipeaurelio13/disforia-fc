@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import { copy } from '@/content/copy';
@@ -15,9 +16,7 @@ export function SiteHeader({ lang }: { lang: Locale }) {
     <header className="sticky top-0 z-40 border-b border-white/10 bg-brand-charcoal/90 backdrop-blur-md">
       <Container>
         <div className="flex items-center justify-between py-3">
-          <Link href={`/${lang}`} className="min-h-12 min-w-12 content-center font-display text-base font-bold tracking-[-0.01em] text-brand-sky sm:text-lg md:text-xl" onClick={() => setMenuOpen(false)}>
-            {t.common.clubName}
-          </Link>
+          <Link href={`/${lang}`} className="inline-flex min-h-12 items-center gap-2 pr-2" onClick={() => setMenuOpen(false)}><Image src="/images/disforia-logo.svg" alt="Disforia FC" width={38} height={38} className="h-9 w-9 rounded-full border border-white/15 bg-white/5" priority /><span className="font-display text-sm font-bold tracking-[-0.01em] text-brand-sky sm:text-base md:text-lg">{t.common.clubName}</span></Link>
 
           <nav className="hidden items-center gap-5 md:flex">
             {t.nav.map((item) => (

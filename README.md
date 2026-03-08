@@ -75,3 +75,8 @@ No se requieren secrets adicionales para este flujo.
 - Se integraron citas editoriales en Home, Valencia 2026 y Súmate sin sobrecargar la narrativa.
 - Se añadieron imágenes locales editables para rostros visibles usando `next/image` con `sizes` para mejor rendimiento móvil.
 - Se actualizó la versión visible del sitio en footer a `v0.5.0`.
+
+- Se ejecutó una limpieza mobile-first de la home (espaciados, jerarquía, tarjetas y CTAs), reduciendo ruido visual y reforzando legibilidad táctil.
+- Se integró un logo SVG local de Disforia FC en header y hero para mejorar reconocimiento de marca en móvil.
+- Se incorporaron citas editoriales por cada persona visible en la sección de rostros.
+- Se actualizó la versión visible del sitio en footer a `v0.6.0`.

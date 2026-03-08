@@ -107,7 +107,7 @@ export function HomeSections({ lang }: { lang: Locale }) {
       </Section>
 
       <Section title={t.home.people.title} description={t.home.people.intro}>
-        <div className="grid gap-4 md:grid-cols-3">
+        <div className="grid gap-4 sm:gap-5 md:grid-cols-3">
           {t.home.people.list.map((person, index) => (
             <Reveal key={person.name} delayMs={index * 70}>
               <article className={`rounded-[20px] border p-4 sm:p-5 ${person.featured ? 'border-brand-sky/45 bg-brand-sky/10' : 'border-white/10 bg-white/[0.03]'}`}>
@@ -116,6 +116,9 @@ export function HomeSections({ lang }: { lang: Locale }) {
                 </div>
                 <p className="font-display text-xl font-bold tracking-[-0.02em] sm:text-2xl">{person.shortName ? `${person.name} (${person.shortName})` : person.name}</p>
                 <p className="mt-2 text-sm leading-relaxed text-brand-softWhite/84">{person.role}</p>
+                <blockquote className="mt-3 border-l-2 border-brand-magenta/70 pl-3 text-sm italic leading-relaxed text-brand-softWhite/85">
+                  “{person.quote}”
+                </blockquote>
               </article>
             </Reveal>
           ))}
@@ -137,7 +140,7 @@ export function HomeSections({ lang }: { lang: Locale }) {
 
       <Section>
         <Reveal>
-          <div className="grid gap-5 rounded-[24px] border border-white/12 bg-white/[0.03] p-5 sm:p-6 md:p-8 lg:grid-cols-2">
+          <div className="grid gap-5 rounded-[24px] border border-white/12 bg-white/[0.03] p-5 sm:p-6 lg:grid-cols-2">
             <article>
               <h3 className="font-display text-2xl font-bold tracking-[-0.02em]">{t.home.support.title}</h3>
               <ul className="mt-4 space-y-2 text-sm text-brand-softWhite/82 sm:text-base">{t.home.support.paths.map((path) => <li key={path}>• {path}</li>)}</ul>
