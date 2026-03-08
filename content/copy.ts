@@ -6,7 +6,7 @@ type Person = {
   name: string;
   shortName?: string;
   role: string;
-  quote?: string;
+  quote: string;
   image: { src: string; alt: string };
   featured?: boolean;
 };
@@ -101,18 +101,21 @@ export const copy: Record<Locale, Copy> = {
             name: 'Christopher Erlandsen',
             shortName: 'Chris',
             role: 'Fundador de Disforia, rostro público histórico y organizador de la campaña a Valencia 2026.',
+            quote: 'Es una familia, es un espacio seguro para jugar a la pelota.',
             image: { src: '/images/chris-erlandsen.svg', alt: 'Retrato editorial de Christopher Erlandsen' },
             featured: true,
           },
           {
             name: 'Aaron Domke',
             role: 'Figura relevante en la expansión del club y en el levantamiento de la rama de básquet.',
+            quote: 'Disforia me abrió una cancha donde competir sin esconder quién soy.',
             image: { src: '/images/aaron-domke.svg', alt: 'Retrato editorial de Aaron Domke' },
           },
           {
             name: 'Christofer Waldo Robledo Alfaro',
             shortName: 'Waldo',
             role: 'Miembro visible del club y vocería pública en medios.',
+            quote: 'Cuando jugamos en equipo, también cuidamos a quien llega por primera vez.',
             image: { src: '/images/waldo-robledo.svg', alt: 'Retrato editorial de Christofer Waldo Robledo Alfaro' },
           },
         ],
@@ -206,18 +209,21 @@ export const copy: Record<Locale, Copy> = {
             name: 'Christopher Erlandsen',
             shortName: 'Chris',
             role: 'Disforia founder, long-time public face, and organizer of the Valencia 2026 campaign.',
+            quote: 'It is a family, a safe space to play football.',
             image: { src: '/images/chris-erlandsen.svg', alt: 'Editorial portrait of Christopher Erlandsen' },
             featured: true,
           },
           {
             name: 'Aaron Domke',
             role: 'Relevant figure in the club’s expansion and in building Disforia’s basketball branch.',
+            quote: 'Disforia gave me a court where I can compete without hiding who I am.',
             image: { src: '/images/aaron-domke.svg', alt: 'Editorial portrait of Aaron Domke' },
           },
           {
             name: 'Christofer Waldo Robledo Alfaro',
             shortName: 'Waldo',
             role: 'Visible club member and public voice in media.',
+            quote: 'When we play as a team, we also protect everyone arriving for the first time.',
             image: { src: '/images/waldo-robledo.svg', alt: 'Editorial portrait of Christofer Waldo Robledo Alfaro' },
           },
         ],

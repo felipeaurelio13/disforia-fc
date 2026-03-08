@@ -24,3 +24,6 @@
 - Upgrade mobile-first: priorizar navegación táctil con menú móvil explícito, `min-h-12` en acciones y copy más corto por bloque mejora uso en 320–414px.
 - Para contenido humano real, centralizar liderazgos/quotes/estructura formal en `content/copy.ts` evita hardcode en componentes y permite edición editorial segura.
 - Cuando se usen retratos temporales, preferir assets locales ligeros (SVG) + `next/image` con `sizes` para evitar CLS y mantener control de performance.
+
+- Mobile-first refinado: mostrar marca (logo) en header + hero y mover citas individuales al bloque de personas mejora identidad y reduce elementos decorativos sin valor.
+- Para retratos o logos no oficiales listos, usar SVG local transparente evita problemas de fondo blanco y mantiene control visual en GitHub Pages.
