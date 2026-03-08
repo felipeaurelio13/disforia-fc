@@ -36,3 +36,5 @@
 - Valencia 2026 ahora usa modelo explícito `campaignMode: narrative | tracked`; en modo narrative se oculta todo tracker numérico sin depender de `null` públicos.
 
 - Paridad de slugs bilingües: navegación y CTAs ahora usan `lib/routes.ts` con keys compartidas; EN usa `/support` y `/join` sin ramas paralelas de contenido.
+
+- Para solicitudes estratégicas no-code, dejar entregable versionado en `docs/` (auditoría + copy listo) facilita revisión editorial y continuidad entre sesiones.
