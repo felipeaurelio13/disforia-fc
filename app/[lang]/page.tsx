@@ -14,32 +14,30 @@ export default function Home({ params }: { params: { lang: string } }) {
 
   return (
     <>
-      <Section className="pt-2 sm:pt-4 md:pt-6">
-        <div className="grid gap-4 lg:grid-cols-[1.12fr_0.88fr] lg:items-end">
-          <Reveal>
-            <p className="font-display text-xs uppercase tracking-[0.16em] text-brand-sky">{t.home.hero.kicker}</p>
-            <h1 className="mt-2.5 max-w-3xl text-balance font-display text-[1.9rem] font-extrabold uppercase leading-[0.95] tracking-[-0.03em] sm:text-[2.35rem] md:text-[3.1rem] lg:text-[4.2rem]">
-              {t.home.hero.title}
-            </h1>
-            <p className="mt-3 max-w-xl text-sm leading-relaxed text-brand-softWhite/82 sm:text-base md:text-lg">{t.home.hero.subtitle}</p>
-            <div className="mt-5 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap">
-              <ButtonLink href={localizedPath(lang, 'club')}>{t.home.hero.primary}</ButtonLink>
-              <ButtonLink href={localizedPath(lang, 'valencia')} variant="secondary">{t.home.hero.secondary}</ButtonLink>
-            </div>
-          </Reveal>
-          <Reveal delayMs={120}>
-            <div className="relative overflow-hidden rounded-[24px] border border-white/10 bg-[linear-gradient(160deg,#141414_10%,#1f2f3a_55%,#87C2E34f_100%)] p-5 shadow-surface md:min-h-[330px]">
-              <div className="relative flex h-full min-h-52 flex-col justify-between sm:min-h-64">
-                <div className="inline-flex w-fit items-center gap-3 rounded-full border border-white/15 bg-black/25 px-3 py-2">
+      <Section className="pt-4 sm:pt-6 md:pt-8">
+        <div className="overflow-hidden rounded-[24px] bg-[linear-gradient(125deg,#d4005a_0%,#003366_85%)] px-5 py-8 text-white shadow-lift sm:px-8 sm:py-10 md:px-12 md:py-14">
+          <div className="mx-auto grid max-w-5xl gap-6 text-center lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:text-left">
+            <Reveal>
+              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/75">{t.home.hero.kicker}</p>
+              <h1 className="mt-3 text-balance">{t.home.hero.title}</h1>
+              <p className="mx-auto mt-4 max-w-2xl text-white/88 lg:mx-0">{t.home.hero.subtitle}</p>
+              <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center lg:justify-start">
+                <ButtonLink href={localizedPath(lang, 'club')}>{t.home.hero.primary}</ButtonLink>
+                <ButtonLink href={localizedPath(lang, 'valencia')} variant="secondary">{t.home.hero.secondary}</ButtonLink>
+              </div>
+            </Reveal>
+            <Reveal delayMs={120}>
+              <div className="mx-auto w-full max-w-sm rounded-[20px] border border-white/30 bg-white/10 p-5 backdrop-blur-sm">
+                <div className="inline-flex w-fit items-center gap-3 rounded-full border border-white/30 bg-white/15 px-3 py-2">
                   <SafeImage src="/images/disforia-logo.svg" alt="Disforia FC logo" width={36} height={36} className="h-9 w-9 object-contain" fallbackLabel="Disforia FC" priority />
-                  <span className="font-display text-[11px] uppercase tracking-[0.12em] text-brand-softWhite/80">Disforia FC</span>
+                  <span className="text-[11px] uppercase tracking-[0.12em] text-white/90">Disforia FC</span>
                 </div>
-                <p className="max-w-sm font-display text-lg font-semibold leading-tight sm:text-xl md:text-2xl">
+                <p className="mt-5 text-lg font-semibold leading-tight sm:text-xl">
                   {lang === 'es' ? 'Entrenar, competir y construir comunidad desde el deporte.' : 'Train, compete, and build community through sport.'}
                 </p>
               </div>
-            </div>
-          </Reveal>
+            </Reveal>
+          </div>
         </div>
       </Section>
       <HomeSections lang={lang} />

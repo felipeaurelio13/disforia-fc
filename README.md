@@ -83,6 +83,7 @@ También se mantienen hechos oficiales editables en `officialFacts`.
 
 
 ## Registro de cambios recientes
+- Refactor visual integral al nuevo design system (magenta/azul, superficies claras, tipografía Inter, hero con gradiente y microinteracciones de 220ms) aplicado en layout, header, home y bloques reutilizables.
 - Implementación completa de checklist UX: nueva IA con páginas dedicadas de Fútbol, Básquetbol, Documentales y prensa, Contacto y redes, además de reforzar Home y Valencia 2026 con narrativa, impacto, transparencia, testimonios y FAQ.
 - Navegación bilingüe ampliada en `lib/routes.ts` con slugs localizados para nuevas secciones y CTA persistente de donación en header (mobile + desktop).
 - Mejoras de accesibilidad y usabilidad: `skip to content`, enlaces más descriptivos y estructura de conversión más clara por página.

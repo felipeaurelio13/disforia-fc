@@ -43,11 +43,11 @@ export function SafeImage(props: SafeImageProps) {
   if (hasError) {
     return (
       <div
-        className={`flex h-full w-full items-center justify-center bg-[linear-gradient(140deg,rgba(135,194,227,0.2),rgba(179,65,115,0.16))] text-brand-softWhite/82 ${props.className ?? ''}`.trim()}
+        className={`flex h-full w-full items-center justify-center bg-[linear-gradient(140deg,rgba(0,180,216,0.18),rgba(212,0,90,0.18))] text-brand-secondary/82 ${props.className ?? ''}`.trim()}
         role="img"
         aria-label={props.alt}
       >
-        <span className="rounded-full border border-white/20 bg-black/30 px-3 py-1.5 font-display text-xs font-semibold tracking-[0.12em]">
+        <span className="rounded-full border border-brand-secondary/20 bg-brand-surface/70 px-3 py-1.5 font-display text-xs font-semibold tracking-[0.12em]">
           {initials}
         </span>
       </div>
