@@ -15,7 +15,7 @@
   --container-main: 1280px;
   --container-narrow: 820px;
 
-  --space-section: 64px;
+  --space-section: 44px;
   --space-block-sm: 24px;
   --space-block-md: 32px;
   --space-block-lg: 48px;
@@ -35,7 +35,7 @@
   :root {
   --font-inter: 'Inter', 'Avenir Next', 'Segoe UI', sans-serif;
   --font-archivo: 'Archivo', 'Franklin Gothic Medium', 'Arial Narrow', sans-serif;
-    --space-section: 82px;
+    --space-section: 56px;
   }
 }
 
@@ -43,7 +43,7 @@
   :root {
   --font-inter: 'Inter', 'Avenir Next', 'Segoe UI', sans-serif;
   --font-archivo: 'Archivo', 'Franklin Gothic Medium', 'Arial Narrow', sans-serif;
-    --space-section: 108px;
+    --space-section: 72px;
   }
 }
 

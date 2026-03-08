@@ -13,7 +13,7 @@ export default function Home({ params }: { params: { lang: string } }) {
 
   return (
     <>
-      <Section className="pt-5 sm:pt-8 md:pt-12">
+      <Section className="pt-3 sm:pt-5 md:pt-8">
         <div className="grid gap-5 lg:grid-cols-[1.12fr_0.88fr] lg:items-end">
           <Reveal>
             <p className="font-display text-xs uppercase tracking-[0.16em] text-brand-sky">{t.home.hero.kicker}</p>

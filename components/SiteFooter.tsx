@@ -7,7 +7,7 @@ export function SiteFooter({ lang }: { lang: Locale }) {
   const t = copy[lang];
 
   return (
-    <footer className="mt-14 border-t border-white/10 py-10 md:mt-20 md:py-14">
+    <footer className="mt-10 border-t border-white/10 py-8 md:mt-14 md:py-10">
       <Container>
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           <div>
