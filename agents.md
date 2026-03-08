@@ -46,3 +46,5 @@
 - Para arquitectura bilingüe escalable, agregar route keys nuevas en `lib/routes.ts` evita hardcode de slugs y mantiene paridad ES/EN en header/footer.
 - Incluir `skip to content` en header + `id` en `<main>` entrega mejora accesible transversal sin afectar diseño visual.
 - Para campañas, página Valencia debe incluir transparencia de uso + testimonios + FAQ junto al CTA principal para reforzar conversión.
+
+- Nuevo design system base: tokens actualizados (primary/secondary/bg/surface/text/accent), `card-surface` reutilizable y navbar con subrayado animado para mantener consistencia visual sin duplicación de estilos.

@@ -8,17 +8,17 @@ export function BranchPageContent({ lang, branch }: { lang: Locale; branch: 'foo
   return (
     <>
       <Section title={t.title}>
-        <p className="max-w-3xl text-brand-softWhite/85">{t.intro}</p>
+        <p className="max-w-3xl text-brand-text/85">{t.intro}</p>
       </Section>
       <Section>
         <div className="grid gap-3 md:grid-cols-3">
-          <article className="rounded-xl border border-white/10 bg-white/5 p-4"><h3 className="font-display text-lg font-bold">{lang === 'es' ? 'Cómo entrenamos' : 'How we train'}</h3><p className="mt-2 text-sm text-brand-softWhite/80">{t.training}</p></article>
-          <article className="rounded-xl border border-white/10 bg-white/5 p-4"><h3 className="font-display text-lg font-bold">{lang === 'es' ? 'Para quién' : 'Who it is for'}</h3><p className="mt-2 text-sm text-brand-softWhite/80">{t.audience}</p></article>
-          <article className="rounded-xl border border-white/10 bg-white/5 p-4"><h3 className="font-display text-lg font-bold">{lang === 'es' ? 'Qué esperar' : 'What to expect'}</h3><p className="mt-2 text-sm text-brand-softWhite/80">{t.join}</p></article>
+          <article className="rounded-xl border card-surface p-5"><h3 className="font-display text-lg font-bold">{lang === 'es' ? 'Cómo entrenamos' : 'How we train'}</h3><p className="mt-2 text-sm text-brand-text/80">{t.training}</p></article>
+          <article className="rounded-xl border card-surface p-5"><h3 className="font-display text-lg font-bold">{lang === 'es' ? 'Para quién' : 'Who it is for'}</h3><p className="mt-2 text-sm text-brand-text/80">{t.audience}</p></article>
+          <article className="rounded-xl border card-surface p-5"><h3 className="font-display text-lg font-bold">{lang === 'es' ? 'Qué esperar' : 'What to expect'}</h3><p className="mt-2 text-sm text-brand-text/80">{t.join}</p></article>
         </div>
       </Section>
       <Section>
-        <a href={externalLinks.instagram} target="_blank" rel="noreferrer" className="inline-flex min-h-12 items-center justify-center rounded-full bg-brand-magenta px-5 py-2.5 text-sm font-semibold">{t.cta}</a>
+        <a href={externalLinks.instagram} target="_blank" rel="noreferrer" className="inline-flex min-h-12 items-center justify-center rounded-full bg-brand-primary px-5 py-2.5 text-sm font-semibold">{t.cta}</a>
       </Section>
     </>
   );
