@@ -80,3 +80,8 @@ También se mantienen hechos oficiales editables en `officialFacts`.
 ## Scripts
 - `npm test`
 - `npm run build`
+
+
+## Registro de cambios recientes
+- Upgrade visual mobile-first: footer editorial con release visible, CTA reforzado de Valencia 2026 y tipografía display serif local para mejorar legibilidad sin depender de descargas externas.
+- Se agregaron SVG locales de ramas (fútbol, básquet, vóley) para cubrir imágenes faltantes con placeholders controlados.

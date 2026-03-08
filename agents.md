@@ -37,3 +37,8 @@
 - Valencia 2026 ahora usa modelo explícito `campaignMode: narrative | tracked`; en modo narrative se oculta todo tracker numérico sin depender de `null` públicos.
 
 - Paridad de slugs bilingües: navegación y CTAs ahora usan `lib/routes.ts` con keys compartidas; EN usa `/support` y `/join` sin ramas paralelas de contenido.
+
+- Footer actualizado con bloque editorial + release visible mejora percepción premium y trazabilidad de entrega sin romper GitHub Pages.
+- Para reforzar tipografía en entornos restringidos, preferir stacks locales (`font-display` serif) antes de depender de fuentes remotas en build.
+- Para imágenes faltantes, crear SVG locales temáticos y reutilizarlos por índice/asset map evita placeholders rotos y mantiene consistencia visual.
+- En Valencia 2026, priorizar copy de acción directa (“donar ahora”) y ubicar GoFundMe como CTA principal en home + página dedicada.

@@ -28,6 +28,14 @@ describe('editorial content', () => {
     expect(aaronEn?.quote).toBeUndefined();
   });
 
+
+  it('reinforces first-club positioning and direct donation message', () => {
+    expect(copy.es.home.credibility[0]?.title).toContain('Primer club');
+    expect(copy.en.home.credibility[0]?.title).toContain('First trans and non-binary sports club');
+    expect(copy.es.home.valencia.text).toContain('Tu aporte hoy');
+    expect(copy.en.home.valencia.text).toContain('Donate today');
+  });
+
   it('keeps required quotes in their intended sections', () => {
     expect(copy.es.home.about.quote).toBe('Es una familia, es un espacio seguro para jugar a la pelota.');
     expect(copy.en.valencia.quote).toBe('football became an embrace, support, community, and family.');
