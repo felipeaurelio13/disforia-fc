@@ -3,8 +3,6 @@
 @tailwind utilities;
 
 :root {
-  --font-inter: 'Inter', 'Avenir Next', 'Segoe UI', sans-serif;
-  --font-archivo: 'Archivo', 'Franklin Gothic Medium', 'Arial Narrow', sans-serif;
   --color-sky: #87c2e3;
   --color-magenta: #b34173;
   --color-lavender: #84719d;
@@ -15,10 +13,10 @@
   --container-main: 1280px;
   --container-narrow: 820px;
 
-  --space-section: 44px;
-  --space-block-sm: 24px;
-  --space-block-md: 32px;
-  --space-block-lg: 48px;
+  --space-section: 36px;
+  --space-block-sm: 20px;
+  --space-block-md: 28px;
+  --space-block-lg: 40px;
 
   --radius-card: 20px;
   --radius-media: 24px;
@@ -33,17 +31,13 @@
 
 @media (min-width: 768px) {
   :root {
-  --font-inter: 'Inter', 'Avenir Next', 'Segoe UI', sans-serif;
-  --font-archivo: 'Archivo', 'Franklin Gothic Medium', 'Arial Narrow', sans-serif;
-    --space-section: 56px;
+    --space-section: 48px;
   }
 }
 
 @media (min-width: 1024px) {
   :root {
-  --font-inter: 'Inter', 'Avenir Next', 'Segoe UI', sans-serif;
-  --font-archivo: 'Archivo', 'Franklin Gothic Medium', 'Arial Narrow', sans-serif;
-    --space-section: 72px;
+    --space-section: 62px;
   }
 }
 

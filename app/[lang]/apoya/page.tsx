@@ -14,16 +14,16 @@ export default function SupportPage({ params }: { params: { lang: string } }) {
         <p className="max-w-3xl text-brand-softWhite/85">{t.intro}</p>
       </Section>
       <Section>
-        <div className="grid gap-4 sm:grid-cols-2">
-          {t.cards.map((card) => (
-            <article key={card.title} className="rounded-xl border border-white/10 bg-white/5 p-5">
+        <div className="grid gap-3 sm:grid-cols-2">
+          {t.cards.map((card, index) => (
+            <article key={card.title} className={`rounded-xl border p-4 ${index === 0 ? 'border-brand-magenta/45 bg-brand-magenta/10' : 'border-white/10 bg-white/5'}`}>
               <h3 className="text-lg font-semibold">{card.title}</h3>
-              <p className="mt-2 text-sm text-brand-softWhite/80">{card.text}</p>
+              <p className="mt-1.5 text-sm text-brand-softWhite/80">{card.text}</p>
               <a
                 href={card.href}
                 target={card.external ? '_blank' : undefined}
                 rel={card.external ? 'noreferrer' : undefined}
-                className="mt-4 inline-flex min-h-12 items-center rounded-full border border-white/20 bg-black/20 px-4 py-2 text-sm font-semibold text-brand-softWhite/90"
+                className="mt-3 inline-flex min-h-12 items-center rounded-full border border-white/20 bg-black/20 px-4 py-2 text-sm font-semibold text-brand-softWhite/90"
               >
                 {card.cta}
               </a>
@@ -31,17 +31,12 @@ export default function SupportPage({ params }: { params: { lang: string } }) {
           ))}
         </div>
       </Section>
-      <Section title={lang === 'es' ? 'Contacto activo' : 'Active contact'}>
-        <p className="max-w-3xl text-sm leading-relaxed text-brand-softWhite/82 sm:text-base">
-          {lang === 'es'
-            ? 'Mientras no exista un correo oficial confirmado, el canal principal de contacto es Instagram. GoFundMe queda como acción directa de apoyo.'
-            : 'Until an official email is confirmed, Instagram is the primary contact channel. GoFundMe stays as the direct support action.'}
-        </p>
+      <Section title={lang === 'es' ? 'Canal activo' : 'Active channel'}>
         <div className="flex flex-wrap gap-3">
           <a href={externalLinks.instagram} target="_blank" rel="noreferrer" className="inline-flex min-h-12 items-center rounded-full border border-brand-magenta/65 bg-brand-magenta px-5 py-2.5 text-sm font-semibold text-white">
-            {lang === 'es' ? 'Escribir por Instagram' : 'Message us on Instagram'}
+            {lang === 'es' ? 'Escríbenos por Instagram' : 'Message us on Instagram'}
           </a>
-          <a href={externalLinks.gofundme} target="_blank" rel="noreferrer" className="inline-flex min-h-12 items-center rounded-full border border-brand-magenta/65 bg-brand-magenta px-5 py-2.5 text-sm font-semibold">
+          <a href={externalLinks.gofundme} target="_blank" rel="noreferrer" className="inline-flex min-h-12 items-center rounded-full border border-white/20 bg-white/5 px-5 py-2.5 text-sm font-semibold text-brand-softWhite">
             GoFundMe
           </a>
         </div>

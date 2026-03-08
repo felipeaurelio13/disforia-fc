@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import { SafeImage } from '@/components/ui/SafeImage';
 import { Section } from '@/components/ui';
 import { copy } from '@/content/copy';
 import { externalLinks, Locale, locales } from '@/content/site';
@@ -42,7 +42,14 @@ export default function ClubPage({ params }: { params: { lang: string } }) {
             </a>
           </article>
           <div className="relative min-h-52 overflow-hidden rounded-xl border border-white/15 bg-black/25">
-            <Image src="/images/chris-erlandsen.svg" alt={lang === 'es' ? 'Still editorial del documental Disforia Fútbol Club' : 'Editorial still for the Disforia Fútbol Club documentary'} fill className="object-cover" sizes="(max-width: 767px) 92vw, 340px" />
+            <SafeImage
+              src="/images/chris-erlandsen.svg"
+              alt={lang === 'es' ? 'Still editorial del documental Disforia Fútbol Club' : 'Editorial still for the Disforia Fútbol Club documentary'}
+              fill
+              className="object-cover"
+              sizes="(max-width: 767px) 92vw, 340px"
+              fallbackLabel="Chris"
+            />
             <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-3 text-xs font-medium text-brand-softWhite/90">
               {lang === 'es' ? 'Documental · Disforia Fútbol Club' : 'Documentary · Disforia Fútbol Club'}
             </div>
