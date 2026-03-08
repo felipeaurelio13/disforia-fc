@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { copy } from '@/content/copy';
 import { externalLinks, Locale } from '@/content/site';
+import { localizedPath } from '@/lib/routes';
 import { Container } from './ui';
 
 export function SiteFooter({ lang }: { lang: Locale }) {
@@ -15,8 +16,8 @@ export function SiteFooter({ lang }: { lang: Locale }) {
           </div>
           <div className="space-y-1 text-sm">
             {t.nav.map((item) => (
-              <p key={item.href}>
-                <Link href={item.href} className="inline-flex min-h-12 items-center text-brand-softWhite/80 hover:text-brand-sky">
+              <p key={item.route}>
+                <Link href={localizedPath(lang, item.route)} className="inline-flex min-h-12 items-center text-brand-softWhite/80 hover:text-brand-sky">
                   {item.label}
                 </Link>
               </p>

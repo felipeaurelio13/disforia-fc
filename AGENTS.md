@@ -34,3 +34,5 @@
 - Resolver assets en Pages con un helper único (`lib/assets.ts`) + `NEXT_PUBLIC_BASE_PATH` evita rutas rotas de logo/retratos en export estático.
 - `SafeImage` centraliza fallback visual elegante y elimina iconos rotos del navegador en bloques críticos (header, hero, personas).
 - Valencia 2026 ahora usa modelo explícito `campaignMode: narrative | tracked`; en modo narrative se oculta todo tracker numérico sin depender de `null` públicos.
+
+- Paridad de slugs bilingües: navegación y CTAs ahora usan `lib/routes.ts` con keys compartidas; EN usa `/support` y `/join` sin ramas paralelas de contenido.

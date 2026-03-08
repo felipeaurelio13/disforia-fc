@@ -3,13 +3,13 @@ import { Locale, locales } from '@/content/site';
 import { notFound } from 'next/navigation';
 
 export function generateStaticParams() {
-  return [{ lang: 'es' }];
+  return [{ lang: 'en' }];
 }
 
-export default function SupportPage({ params }: { params: { lang: string } }) {
+export default function SupportRoutePage({ params }: { params: { lang: string } }) {
   if (!locales.includes(params.lang as Locale)) notFound();
   const lang = params.lang as Locale;
-  if (lang === 'en') notFound();
+  if (lang === 'es') notFound();
 
   return <SupportPageContent lang={lang} />;
 }
