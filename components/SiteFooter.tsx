@@ -45,7 +45,7 @@ export function SiteFooter({ lang }: { lang: Locale }) {
 
           <div className="mt-7 flex flex-col gap-2 border-t border-brand-secondary/10 pt-4 text-xs text-brand-secondary/55 sm:flex-row sm:items-center sm:justify-between">
             <p>© Disforia FC</p>
-            <p className="tracking-[0.08em]">Release 0.8.0</p>
+            <p className="tracking-[0.08em]">Release 0.8.1</p>
           </div>
         </div>
       </Container>

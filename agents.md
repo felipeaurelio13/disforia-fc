@@ -48,3 +48,6 @@
 - Para campañas, página Valencia debe incluir transparencia de uso + testimonios + FAQ junto al CTA principal para reforzar conversión.
 
 - Nuevo design system base: tokens actualizados (primary/secondary/bg/surface/text/accent), `card-surface` reutilizable y navbar con subrayado animado para mantener consistencia visual sin duplicación de estilos.
+
+- Cuando el entorno bloquea `npm install` (403), implementar componentes con API compatible local (estilo shadcn) permite evolucionar UI sin romper CI ni static export.
+- Para tests de componentes Next/React con TS en este repo, configurar `jest.config.js` con transformación `tsx` (`jsx: react-jsx`) evita errores de parseo en imports de componentes.

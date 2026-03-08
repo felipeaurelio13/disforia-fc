@@ -7,6 +7,7 @@ import { Locale } from '@/content/site';
 import { SafeImage } from '@/components/ui/SafeImage';
 import { localizedPath } from '@/lib/routes';
 import { Container } from './ui';
+import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList } from '@/components/ui/navigation-menu';
 
 export function SiteHeader({ lang }: { lang: Locale }) {
   const t = copy[lang];
@@ -27,13 +28,17 @@ export function SiteHeader({ lang }: { lang: Locale }) {
             <span className="text-sm font-semibold tracking-tight text-brand-secondary sm:text-base">{t.common.clubName}</span>
           </Link>
 
-          <nav className="hidden items-center gap-5 md:flex">
-            {t.nav.map((item) => (
-              <Link key={item.route} href={localizedPath(lang, item.route)} className="nav-link min-h-12 content-center text-sm font-medium text-brand-secondary/86 hover:text-brand-primary">
-                {item.label}
-              </Link>
-            ))}
-          </nav>
+          <div className="hidden md:flex md:flex-1 md:justify-center">
+            <NavigationMenu>
+              <NavigationMenuList className="gap-1">
+                {t.nav.map((item) => (
+                  <NavigationMenuItem key={item.route}>
+                    <NavigationMenuLink href={localizedPath(lang, item.route)}>{item.label}</NavigationMenuLink>
+                  </NavigationMenuItem>
+                ))}
+              </NavigationMenuList>
+            </NavigationMenu>
+          </div>
 
           <div className="flex items-center gap-2">
             <Link href={localizedPath(lang, 'valencia')} className="hidden min-h-12 items-center rounded-full bg-brand-primary px-4 py-2 text-xs font-semibold text-white shadow-soft hover:scale-[1.02] hover:shadow-lift sm:inline-flex" onClick={() => setMenuOpen(false)}>{t.common.supportCTA}</Link>
