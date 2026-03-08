@@ -21,7 +21,7 @@ type Copy = {
   };
   home: {
     hero: { title: string; subtitle: string; primary: string; secondary: string; kicker: string };
-    legitimacy: string[];
+    credibility: { title: string; detail: string }[];
     about: { title: string; body: string; quote: string };
     branches: { title: string; items: { title: string; text: string; featured?: boolean }[] };
     valencia: { title: string; text: string; donate: string; sponsor: string };
@@ -78,7 +78,11 @@ export const copy: Record<Locale, Copy> = {
         secondary: 'Apoyar Valencia 2026',
         kicker: 'Desde 2019 · deporte, comunidad y pertenencia',
       },
-      legitimacy: ['Desde 2019', 'Fútbol como rama principal', 'Básquet y vóley activos', 'Documental premiado en FIDOCS 2022', 'Presencia sostenida en medios'],
+      credibility: [
+        { title: 'Proyecto activo desde 2019', detail: 'Más de cinco años de trabajo deportivo y comunitario sostenido en Chile.' },
+        { title: 'Competencia y formación permanente', detail: 'Fútbol como rama principal con expansión activa en básquet y vóley.' },
+        { title: 'Validación pública comprobable', detail: 'Documental premiado en FIDOCS 2022 y cobertura continua en medios nacionales.' },
+      ],
       about: {
         title: 'Qué es Disforia',
         body: 'Somos un club deportivo con base comunitaria. Entrenamos, competimos y sostenemos un espacio donde personas trans y no binarias habitan el deporte con dignidad.',
@@ -204,7 +208,11 @@ export const copy: Record<Locale, Copy> = {
         secondary: 'Support Valencia 2026',
         kicker: 'Since 2019 · sport, community, and belonging',
       },
-      legitimacy: ['Since 2019', 'Football as main branch', 'Active basketball and volleyball branches', 'Audience Award at FIDOCS 2022', 'Sustained media coverage'],
+      credibility: [
+        { title: 'Active project since 2019', detail: 'Over five years of sustained sports and community work in Chile.' },
+        { title: 'Ongoing competition and training', detail: 'Football as the main branch, with active basketball and volleyball growth.' },
+        { title: 'Verified public track record', detail: 'Audience Award at FIDOCS 2022 plus sustained national media coverage.' },
+      ],
       about: {
         title: 'What Disforia is',
         body: 'We are a community-rooted sports club. We train, compete, and sustain a space where trans and non-binary people belong in sport with dignity.',

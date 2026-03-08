@@ -22,10 +22,18 @@ export function HomeSections({ lang }: { lang: Locale }) {
     <>
       <Section className="pt-3 md:pt-6">
         <div className="rounded-[20px] border border-white/10 bg-white/[0.03] px-4 py-4 sm:px-5 md:px-8">
-          <div className="grid gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
-            {t.home.legitimacy.map((item, index) => (
-              <Reveal key={item} delayMs={index * 50}>
-                <p className="rounded-2xl border border-white/10 bg-black/20 px-3 py-3 text-xs font-medium text-brand-softWhite/90 sm:text-sm">{item}</p>
+          <div className="mb-3 flex items-center justify-between">
+            <p className="font-display text-xs uppercase tracking-[0.16em] text-brand-softWhite/62">
+              {lang === 'es' ? 'Por qué confiar en Disforia FC' : 'Why trust Disforia FC'}
+            </p>
+          </div>
+          <div className="grid gap-3 md:grid-cols-3">
+            {t.home.credibility.map((item, index) => (
+              <Reveal key={item.title} delayMs={index * 60}>
+                <article className="rounded-2xl border border-white/10 bg-black/20 p-4">
+                  <p className="font-display text-sm font-semibold text-brand-softWhite/95">{item.title}</p>
+                  <p className="mt-2 text-xs leading-relaxed text-brand-softWhite/75 sm:text-sm">{item.detail}</p>
+                </article>
               </Reveal>
             ))}
           </div>
