@@ -38,7 +38,7 @@ export function HomeSections({ lang }: { lang: Locale }) {
         </div>
       </Section>
 
-      <Section eyebrow="Editorial" title={t.home.about.title} description={t.home.about.body}>
+      <Section eyebrow={lang === 'es' ? 'Editorial' : 'Editorial'} title={t.home.about.title} description={t.home.about.body}>
         <Reveal>
           <article className="rounded-[20px] border border-white/10 bg-white/[0.03] p-4 sm:p-5">
             <blockquote className="border-l-2 border-brand-sky/70 pl-4 text-sm leading-relaxed text-brand-softWhite/88 sm:text-base">“{t.home.about.quote}”</blockquote>
@@ -71,6 +71,21 @@ export function HomeSections({ lang }: { lang: Locale }) {
               </Reveal>
             ))}
           </div>
+        </div>
+      </Section>
+
+
+
+      <Section title={t.home.impact.title} description={t.home.impact.intro}>
+        <div className="grid gap-3 md:grid-cols-3">
+          {t.home.impact.items.map((item, index) => (
+            <Reveal key={item.title} delayMs={index * 70}>
+              <article className="rounded-[18px] border border-white/10 bg-white/[0.03] p-4">
+                <h3 className="font-display text-xl font-bold tracking-[-0.02em]">{item.title}</h3>
+                <p className="mt-1.5 text-sm leading-relaxed text-brand-softWhite/80">{item.text}</p>
+              </article>
+            </Reveal>
+          ))}
         </div>
       </Section>
 
@@ -144,7 +159,7 @@ export function HomeSections({ lang }: { lang: Locale }) {
                   <p className="font-display text-lg font-semibold">{link.title}</p>
                   <p className="mt-1.5 text-sm leading-relaxed text-brand-softWhite/74">{link.description}</p>
                 </div>
-                <p className="mt-4 text-sm font-semibold text-brand-sky">{link.cta}</p>
+                <p className="mt-4 text-sm font-semibold text-brand-sky">{link.cta} →</p>
               </a>
             </Reveal>
           ))}

@@ -15,6 +15,9 @@ export function SiteHeader({ lang }: { lang: Locale }) {
 
   return (
     <header className="sticky top-0 z-40 border-b border-white/10 bg-brand-charcoal/92 backdrop-blur-md">
+      <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:z-50 focus:rounded-md focus:bg-brand-sky focus:px-3 focus:py-2 focus:text-black">
+        {lang === 'es' ? 'Saltar al contenido' : 'Skip to content'}
+      </a>
       <Container>
         <div className="flex items-center justify-between py-2.5 sm:py-3">
           <Link href={`/${lang}`} className="inline-flex min-h-12 items-center gap-2.5 pr-2" onClick={() => setMenuOpen(false)}>
@@ -33,7 +36,7 @@ export function SiteHeader({ lang }: { lang: Locale }) {
           </nav>
 
           <div className="flex items-center gap-1.5 sm:gap-2">
-            <Link href={`/${lang}/valencia-2026`} className="hidden min-h-12 items-center rounded-full border border-brand-magenta/65 bg-brand-magenta px-4 py-2 text-xs font-semibold text-white sm:inline-flex" onClick={() => setMenuOpen(false)}>{t.common.supportCTA}</Link>
+            <Link href={localizedPath(lang, 'valencia')} className="hidden min-h-12 items-center rounded-full border border-brand-magenta/65 bg-brand-magenta px-4 py-2 text-xs font-semibold text-white sm:inline-flex" onClick={() => setMenuOpen(false)}>{t.common.supportCTA}</Link>
             <Link href={switchHref} className="inline-flex min-h-12 min-w-12 items-center justify-center rounded-full border border-white/15 bg-white/[0.04] px-2.5 text-[11px] font-semibold tracking-[0.08em] hover:border-brand-sky/70 hover:bg-brand-sky/15" onClick={() => setMenuOpen(false)}>
               {t.common.switchTo}
             </Link>
@@ -55,7 +58,7 @@ export function SiteHeader({ lang }: { lang: Locale }) {
         <div id="mobile-nav" className="border-t border-white/10 bg-brand-charcoal/95 md:hidden">
           <Container>
             <div className="pb-2 pt-3">
-              <Link href={`/${lang}/valencia-2026`} onClick={() => setMenuOpen(false)} className="inline-flex min-h-12 w-full items-center justify-center rounded-full border border-brand-magenta/65 bg-brand-magenta px-5 py-2.5 text-sm font-semibold text-white">
+              <Link href={localizedPath(lang, 'valencia')} onClick={() => setMenuOpen(false)} className="inline-flex min-h-12 w-full items-center justify-center rounded-full border border-brand-magenta/65 bg-brand-magenta px-5 py-2.5 text-sm font-semibold text-white">
                 {t.common.supportCTA}
               </Link>
             </div>

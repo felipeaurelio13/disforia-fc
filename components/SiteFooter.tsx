@@ -52,7 +52,7 @@ export function SiteFooter({ lang }: { lang: Locale }) {
 
           <div className="mt-7 flex flex-col gap-2 border-t border-white/10 pt-4 text-xs text-brand-softWhite/55 sm:flex-row sm:items-center sm:justify-between">
             <p>{lang === 'es' ? '© Disforia FC' : '© Disforia FC'}</p>
-            <p className="font-display tracking-[0.08em]">Release 0.6.2</p>
+            <p className="font-display tracking-[0.08em]">Release 0.7.0</p>
           </div>
         </div>
       </Container>

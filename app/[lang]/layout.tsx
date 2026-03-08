@@ -31,7 +31,7 @@ export default function LocaleLayout({ children, params }: { children: React.Rea
   return (
     <>
       <SiteHeader lang={lang} />
-      <main>{children}</main>
+      <main id="main-content">{children}</main>
       <SiteFooter lang={lang} />
     </>
   );
