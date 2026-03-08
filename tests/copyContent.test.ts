@@ -1,7 +1,7 @@
 import { copy } from '@/content/copy';
 
 describe('editorial content', () => {
-  it('includes visible leadership on home for both locales', () => {
+  it('includes key public people on home for both locales', () => {
     for (const lang of ['es', 'en'] as const) {
       const names = copy[lang].home.people.list.map((person) => person.name);
       expect(names).toContain('Christopher Erlandsen');
@@ -10,17 +10,24 @@ describe('editorial content', () => {
     }
   });
 
-  it('includes a quote for each visible person in both locales', () => {
-    for (const lang of ['es', 'en'] as const) {
-      for (const person of copy[lang].home.people.list) {
-        expect(person.quote.trim().length).toBeGreaterThan(0);
-      }
-    }
+  it('keeps only approved public quotes for people section', () => {
+    const aaronEs = copy.es.home.people.list.find((person) => person.name === 'Aaron Domke');
+    const aaronEn = copy.en.home.people.list.find((person) => person.name === 'Aaron Domke');
+    expect(aaronEs?.quote).toBeUndefined();
+    expect(aaronEn?.quote).toBeUndefined();
   });
 
-  it('keeps recommended quotes in their intended sections', () => {
+  it('keeps required quotes in their intended sections', () => {
     expect(copy.es.home.about.quote).toBe('Es una familia, es un espacio seguro para jugar a la pelota.');
-    expect(copy.es.valencia.quote).toBe('football became an embrace, support, community, and family.');
-    expect(copy.es.home.join.quote).toBe('vi que tenía un propósito y que era necesario');
+    expect(copy.en.valencia.quote).toBe('football became an embrace, support, community, and family.');
+    expect(copy.es.home.people.list.find((person) => person.shortName === 'Waldo')?.quote).toBe('vi que tenía un propósito y que era necesario');
+  });
+
+  it('removes forbidden placeholder strings from public copy', () => {
+    const serialized = JSON.stringify(copy);
+    const forbidden = ['Por confirmar', 'To be confirmed', 'Actualización manual pendiente', 'Manual update pending', 'Canal por confirmar', 'Channel to be confirmed'];
+    for (const term of forbidden) {
+      expect(serialized).not.toContain(term);
+    }
   });
 });

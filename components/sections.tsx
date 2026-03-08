@@ -16,6 +16,7 @@ export function HomeSections({ lang }: { lang: Locale }) {
   const t = copy[lang];
   const { percentage, remaining } = getValenciaProgress();
   const format = currencyFormatter(lang);
+  const hasFundingData = valenciaFunding.raised != null && valenciaFunding.target != null;
 
   return (
     <>
@@ -84,22 +85,25 @@ export function HomeSections({ lang }: { lang: Locale }) {
                 </div>
               </div>
               <div className="rounded-[20px] border border-white/12 bg-black/20 p-5">
-                <p className="font-display text-xs uppercase tracking-[0.16em] text-brand-softWhite/65">{lang === 'es' ? 'Avance' : 'Progress'}</p>
-                <p className="mt-2 font-display text-3xl font-bold tracking-[-0.02em] sm:text-4xl">{percentage == null ? '—' : `${percentage}%`}</p>
-                <p className="mt-2 text-sm text-brand-softWhite/75">
-                  {valenciaFunding.raised == null || valenciaFunding.target == null
-                    ? lang === 'es'
-                      ? 'Actualización manual pendiente'
-                      : 'Manual update pending'
-                    : `${format.format(valenciaFunding.raised)} / ${format.format(valenciaFunding.target)}`}
-                </p>
-                <div className="mt-4 h-2.5 overflow-hidden rounded-full bg-white/15">
-                  <div className="h-full rounded-full bg-brand-sky transition-all duration-500 ease-smooth" style={{ width: `${percentage ?? 0}%` }} />
-                </div>
-                <p className="mt-3 text-sm text-brand-softWhite/80">
-                  {lang === 'es' ? 'Faltan por financiar:' : 'Still to fund:'}{' '}
-                  <span className="font-display font-semibold">{remaining == null ? (lang === 'es' ? 'por confirmar' : 'to be confirmed') : format.format(remaining)}</span>
-                </p>
+                {hasFundingData ? (
+                  <>
+                    <p className="font-display text-xs uppercase tracking-[0.16em] text-brand-softWhite/65">{lang === 'es' ? 'Avance' : 'Progress'}</p>
+                    <p className="mt-2 font-display text-3xl font-bold tracking-[-0.02em] sm:text-4xl">{`${percentage}%`}</p>
+                    <p className="mt-2 text-sm text-brand-softWhite/75">{`${format.format(valenciaFunding.raised!)} / ${format.format(valenciaFunding.target!)}`}</p>
+                    <div className="mt-4 h-2.5 overflow-hidden rounded-full bg-white/15">
+                      <div className="h-full rounded-full bg-brand-sky transition-all duration-500 ease-smooth" style={{ width: `${percentage ?? 0}%` }} />
+                    </div>
+                    <p className="mt-3 text-sm text-brand-softWhite/80">
+                      {lang === 'es' ? 'Faltan por financiar:' : 'Still to fund:'} <span className="font-display font-semibold">{format.format(remaining!)}</span>
+                    </p>
+                  </>
+                ) : (
+                  <>
+                    <p className="font-display text-xs uppercase tracking-[0.16em] text-brand-softWhite/65">{lang === 'es' ? 'Campaña activa' : 'Active campaign'}</p>
+                    <p className="mt-2 font-display text-2xl font-bold tracking-[-0.02em] sm:text-3xl">{lang === 'es' ? 'Valencia 2026' : 'Valencia 2026'}</p>
+                    <p className="mt-3 text-sm leading-relaxed text-brand-softWhite/80">{lang === 'es' ? 'El equipo está en recaudación activa para cubrir inscripciones, viaje y operación.' : 'The team is actively fundraising to cover registration, travel, and operations.'}</p>
+                  </>
+                )}
               </div>
             </div>
           </div>
@@ -116,9 +120,9 @@ export function HomeSections({ lang }: { lang: Locale }) {
                 </div>
                 <p className="font-display text-xl font-bold tracking-[-0.02em] sm:text-2xl">{person.shortName ? `${person.name} (${person.shortName})` : person.name}</p>
                 <p className="mt-2 text-sm leading-relaxed text-brand-softWhite/84">{person.role}</p>
-                <blockquote className="mt-3 border-l-2 border-brand-magenta/70 pl-3 text-sm italic leading-relaxed text-brand-softWhite/85">
-                  “{person.quote}”
-                </blockquote>
+                {person.quote ? (
+                  <blockquote className="mt-3 border-l-2 border-brand-magenta/70 pl-3 text-sm italic leading-relaxed text-brand-softWhite/85">“{person.quote}”</blockquote>
+                ) : null}
               </article>
             </Reveal>
           ))}
@@ -126,12 +130,15 @@ export function HomeSections({ lang }: { lang: Locale }) {
       </Section>
 
       <Section title={t.home.press.title}>
-        <div className="grid gap-3 md:grid-cols-3">
+        <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
           {t.home.press.links.map((link, index) => (
             <Reveal key={link.title} delayMs={index * 70}>
-              <a href={link.href} target="_blank" rel="noreferrer" className="group flex min-h-36 flex-col justify-between rounded-[20px] border border-white/10 bg-white/[0.03] p-5 hover:-translate-y-1 hover:border-brand-sky/55">
-                <p className="font-display text-lg font-semibold sm:text-xl">{link.title}</p>
-                <p className="mt-7 text-sm text-brand-softWhite/70">{lang === 'es' ? 'Ver cobertura' : 'Read coverage'}</p>
+              <a href={link.href} target="_blank" rel="noreferrer" className="group flex min-h-44 flex-col justify-between rounded-[20px] border border-white/10 bg-white/[0.03] p-5 hover:-translate-y-1 hover:border-brand-sky/55">
+                <div>
+                  <p className="font-display text-lg font-semibold sm:text-xl">{link.title}</p>
+                  <p className="mt-3 text-sm leading-relaxed text-brand-softWhite/74">{link.description}</p>
+                </div>
+                <p className="mt-6 text-sm font-semibold text-brand-sky">{link.cta}</p>
               </a>
             </Reveal>
           ))}
@@ -153,7 +160,6 @@ export function HomeSections({ lang }: { lang: Locale }) {
             <article>
               <h3 className="font-display text-2xl font-bold tracking-[-0.02em]">{t.home.join.title}</h3>
               <ul className="mt-4 space-y-2 text-sm text-brand-softWhite/82 sm:text-base">{t.home.join.paths.map((path) => <li key={path}>• {path}</li>)}</ul>
-              <p className="mt-4 border-l-2 border-brand-magenta/70 pl-4 text-sm italic text-brand-softWhite/86">“{t.home.join.quote}”</p>
               <div className="mt-3">
                 <ButtonLink href={`/${lang}/sumate`} variant="text">
                   {lang === 'es' ? 'Ir a Súmate' : 'Go to Join'}
