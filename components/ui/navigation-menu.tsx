@@ -10,7 +10,7 @@ function mergeClasses(...classes: Array<string | undefined>) {
 }
 
 export function navigationMenuTriggerStyle() {
-  return 'inline-flex min-h-12 items-center justify-center rounded-full px-3 text-sm font-medium text-brand-secondary/86 transition-colors hover:text-brand-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent';
+  return 'inline-flex min-h-12 items-center justify-center rounded-full px-3 text-sm font-medium text-brand-charcoal/88 transition-colors hover:text-brand-magenta focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent';
 }
 
 export function NavigationMenu({ children, className }: PropsWithChildren<ClassNameProps>) {
@@ -38,5 +38,5 @@ export function NavigationMenuTrigger({ children, className }: PropsWithChildren
 }
 
 export function NavigationMenuContent({ children, className }: PropsWithChildren<ClassNameProps>) {
-  return <div className={mergeClasses('rounded-2xl border border-brand-secondary/12 bg-brand-surface p-2 shadow-soft', className)}>{children}</div>;
+  return <div className={mergeClasses('rounded-2xl border border-brand-softGray bg-brand-surface p-2 shadow-soft', className)}>{children}</div>;
 }

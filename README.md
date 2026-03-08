@@ -1,96 +1,83 @@
 # Disforia FC Website
 
-Sitio oficial bilingüe (ES/EN) para Disforia FC, construido con Next.js App Router + TypeScript + Tailwind.
+Sitio oficial bilingüe (ES/EN) de Disforia FC con Next.js App Router y export estático para GitHub Pages.
 
-## Stack
+## Stack final
 - Next.js 14 (App Router)
-- React 18
-- TypeScript (strict)
-- Tailwind CSS
-- Contenido editable local (`content/`)
-- Jest
+- React 18 + TypeScript strict
+- Tailwind CSS v3.4 (se mantiene por estabilidad del build actual)
+- Design system UI interno (API estilo shadcn para navegación y primitives reutilizables)
+- Tipografía variable consolidada por stack/fallback CSS:
+  - Archivo Variable / Archivo (display: hero, títulos, navegación, botones, cifras)
+  - Inter Variable / Inter (body y copy largo)
+- Jest + Testing Library
 
-## Estructura
-- `app/`: rutas y páginas (`/`, `/es`, `/en`, subpáginas)
-- `components/`: header, footer, secciones y UI
-- `components/ui/SafeImage.tsx`: imagen segura con fallback elegante
-- `content/`: copy y datos editoriales
-- `lib/assets.ts`: helper único de rutas públicas (`withBasePath`)
-- `lib/routes.ts`: helper único de rutas internas bilingües (`localizedPath`)
-- `lib/`: utilidades (GitHub Pages, Valencia)
-- `tests/`: pruebas unitarias
+## Qué se conservó del sistema previo
+- Export estático compatible con Pages: `output: 'export'`, `trailingSlash`, `images.unoptimized`.
+- Resolución de assets con `withBasePath` (`lib/assets.ts`).
+- Ruteo bilingüe único con `localizedPath` (`lib/routes.ts`).
+- Fallback centralizado de imágenes con `SafeImage`.
+- Contenido centralizado por locale (`content/copy.ts`).
+- Modelo Valencia 2026 `campaignMode: narrative | tracked` (`content/site.ts`, `lib/valencia.ts`).
 
-## Assets en GitHub Pages (basePath)
-El proyecto se exporta estático (`output: 'export'`) y usa:
-- `basePath` + `assetPrefix` dinámicos desde `GITHUB_REPOSITORY` en Actions.
-- `NEXT_PUBLIC_BASE_PATH` inyectado desde `next.config.mjs`.
+## Sistema visual (refactor incremental)
+### Tokens y estilos globales
+Editar en:
+- `app/globals.css` (tokens CSS y ritmo vertical)
+- `tailwind.config.ts` (paleta y extensiones de tema)
 
-Para resolver imágenes públicas sin rutas rotas:
-1. Usa siempre `SafeImage` para logo/retratos.
-2. `SafeImage` llama internamente a `withBasePath('/images/...')`.
-3. No armar rutas manuales con `/${repo}` en componentes.
+Paleta consolidada:
+- sky `#87C2E3`
+- magenta `#B34173`
+- lavender `#84719D`
+- charcoal `#111111`
+- offwhite `#F5F5F5`
+- softgray `#DAD6D9`
 
-## SafeImage
-`components/ui/SafeImage.tsx` soporta:
-- `src`, `alt`, `className`
-- modo `fill`
-- o `width`/`height`
-- `fallbackLabel` opcional
+### Componentes base reutilizables
+Archivo: `components/ui.tsx`
+- `Container`
+- `Section` + `SectionHeader`
+- `Card`
+- `Badge`
+- `Separator`
+- `ButtonLink` (`primary`, `secondary`, `ghost`, `text`)
 
-Si falla la carga:
-- no se muestra icono roto del navegador
-- se renderiza un fallback visual premium con gradiente + iniciales
-- se conserva el layout
+### Navegación
+- Desktop: `components/ui/navigation-menu.tsx`
+- Header completo + menú móvil: `components/SiteHeader.tsx`
 
-## Cómo cargar/reemplazar logo y retratos
-1. Sube/reemplaza archivos en `public/images/`.
-2. Ajusta rutas en `content/copy.ts` (`home.people.list[].image.src`) o en componentes que usen logo.
-3. Mantén nombres consistentes para evitar cambios múltiples.
+## Contenido y paridad ES/EN
+- Editar copy en `content/copy.ts`.
+- Mantener una sola estructura de datos para ambos idiomas.
+- Evitar hardcode de slugs: usar siempre `localizedPath(lang, routeKey)`.
 
-## Valencia 2026: modos `narrative` y `tracked`
-Archivo: `content/site.ts` (`valenciaFunding`).
+Slugs activos:
+- ES: `/es/club`, `/es/valencia-2026`, `/es/apoya`, `/es/sumate`
+- EN: `/en/club`, `/en/valencia-2026`, `/en/support`, `/en/join`
 
-- `campaignMode: 'narrative'`
-  - no muestra tracker numérico
-  - muestra campaña activa + categorías de apoyo
-  - CTA a GoFundMe e Instagram
+## Assets e imágenes
+### `withBasePath` (`lib/assets.ts`)
+- Normaliza rutas locales y aplica `NEXT_PUBLIC_BASE_PATH` cuando corresponde.
+- No crear rutas manuales con prefijos de repo dentro de componentes.
 
-- `campaignMode: 'tracked'`
-  - requiere `tracked.target`, `tracked.raised`, `tracked.breakdown`, `tracked.nextMilestone`
-  - muestra progreso, porcentaje y restante
+### `SafeImage` (`components/ui/SafeImage.tsx`)
+- Wrapper recomendado para imágenes críticas.
+- Soporta `fill` o `width/height`.
+- Fallback visual sin icono roto y conservación de layout.
 
-También se mantienen hechos oficiales editables en `officialFacts`.
+## Valencia 2026 (narrative/tracked)
+- Fuente de verdad: `content/site.ts` (`valenciaFunding`).
+- `narrative`: muestra estado y categorías, sin tracker numérico.
+- `tracked`: muestra objetivo, recaudado, desglose, milestone y progreso.
 
-## Editar CTA oficiales
-- Instagram y GoFundMe: `content/site.ts` → `externalLinks`
-- Textos de CTA: `content/copy.ts`
+## Build y deploy
+- Build: `npm run build`
+- Tests: `npm test`
+- Workflow recomendado: `.github/workflows/deploy-pages.yml` con `npm ci` y deploy de `out/`.
 
-
-## Rutas bilingües (ES/EN)
-- Navegación y CTAs resuelven rutas con `localizedPath(lang, route)` desde `lib/routes.ts`.
-- Slugs activos por idioma:
-  - ES: `/es/club`, `/es/valencia-2026`, `/es/apoya`, `/es/sumate`
-  - EN: `/en/club`, `/en/valencia-2026`, `/en/support`, `/en/join`
-- Se evita mantener dos árboles de navegación manuales: ambos idiomas comparten las mismas `route keys` en `content/copy.ts`.
-
-## Build estático y deploy
-- `next.config.mjs`: `output: 'export'`, `trailingSlash: true`, `images.unoptimized: true`
-- Deploy recomendado: `.github/workflows/deploy-pages.yml` con `npm ci`, `next build` y deploy de `out/`
-
-## Scripts
-- `npm test`
-- `npm run build`
-
-
-## Registro de cambios recientes
-- Header actualizado con `components/ui/navigation-menu.tsx` (API estilo shadcn) para navegación desktop más modular, manteniendo menú móvil existente y compatibilidad con export estático en GitHub Pages.
-- Se agrega cobertura de pruebas para `SiteHeader` (render de enlaces + toggle de menú móvil) y ajuste de `jest.config.js` para transformar archivos `tsx` en tests de componentes.
-- Refactor visual integral al nuevo design system (magenta/azul, superficies claras, tipografía Inter, hero con gradiente y microinteracciones de 220ms) aplicado en layout, header, home y bloques reutilizables.
-- Implementación completa de checklist UX: nueva IA con páginas dedicadas de Fútbol, Básquetbol, Documentales y prensa, Contacto y redes, además de reforzar Home y Valencia 2026 con narrativa, impacto, transparencia, testimonios y FAQ.
-- Navegación bilingüe ampliada en `lib/routes.ts` con slugs localizados para nuevas secciones y CTA persistente de donación en header (mobile + desktop).
-- Mejoras de accesibilidad y usabilidad: `skip to content`, enlaces más descriptivos y estructura de conversión más clara por página.
-- Se incorpora `docs/guia-editorial.md` como guía interna de tono, pronombres y lenguaje inclusivo.
-- Upgrade visual mobile-first: footer editorial con release visible, CTA reforzado de Valencia 2026 y tipografía display serif local para mejorar legibilidad sin depender de descargas externas.
-- Se agregaron SVG locales de ramas (fútbol, básquet, vóley) para cubrir imágenes faltantes con placeholders controlados.
-
-- Se incorpora `docs/ux-auditoria-disforia-fc.md` con auditoría integral de contenido, IA, tono, accesibilidad y propuesta de estructura/copy para reforzar conversión de la campaña Valencia 2026.
+## Registro breve de esta sesión
+- Refactor visual incremental mobile-first de tokens, tipografía, navbar/footer y primitives.
+- Home y bloques principales refactorizados con mayor consistencia visual y menor densidad de ruido.
+- Páginas de soporte/súmate/ramas/prensa/contacto alineadas al mismo sistema de cards y acciones.
+- Release actualizado a `0.9.0`.
