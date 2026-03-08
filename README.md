@@ -27,12 +27,12 @@ Editar en:
 - `tailwind.config.ts` (paleta y extensiones de tema)
 
 Paleta consolidada:
-- sky `#87C2E3`
-- magenta `#B34173`
-- lavender `#84719D`
-- charcoal `#111111`
-- offwhite `#F5F5F5`
-- softgray `#DAD6D9`
+- sky `#89C2E3`
+- magenta `#BD2B71`
+- lavender `#835CA3`
+- charcoal `#000000`
+- offwhite `#FFFFFF`
+- softgray `#D9D9D9`
 
 ### Componentes base reutilizables
 Archivo: `components/ui.tsx`
@@ -77,7 +77,6 @@ Slugs activos:
 - Workflow recomendado: `.github/workflows/deploy-pages.yml` con `npm ci` y deploy de `out/`.
 
 ## Registro breve de esta sesión
-- Refactor visual incremental mobile-first de tokens, tipografía, navbar/footer y primitives.
-- Home y bloques principales refactorizados con mayor consistencia visual y menor densidad de ruido.
-- Páginas de soporte/súmate/ramas/prensa/contacto alineadas al mismo sistema de cards y acciones.
-- Release actualizado a `0.9.0`.
+- Reestructuración de la paleta del manual de marca (celeste/magenta/morado/blanco/negro) en tokens globales y Tailwind para evitar colores fuera de estándar.
+- Actualización del hero y de los assets del logo/icono para reflejar exactamente la nueva identidad cromática.
+- Release actualizado a `0.9.1`.

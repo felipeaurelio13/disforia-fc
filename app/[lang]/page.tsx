@@ -15,7 +15,7 @@ export default function Home({ params }: { params: { lang: string } }) {
   return (
     <>
       <Section className="pt-3 sm:pt-5 md:pt-6">
-        <div className="overflow-hidden rounded-[24px] border border-brand-softGray bg-[linear-gradient(140deg,#111111_8%,#84719d_58%,#87c2e3_100%)] px-4 py-6 text-white shadow-lift sm:px-7 sm:py-9 md:px-10 md:py-11">
+        <div className="overflow-hidden rounded-[24px] border border-brand-softGray bg-[linear-gradient(140deg,#000000_8%,#835ca3_58%,#89c2e3_100%)] px-4 py-6 text-white shadow-lift sm:px-7 sm:py-9 md:px-10 md:py-11">
           <div className="mx-auto grid max-w-5xl gap-5 text-left lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
             <Reveal>
               <Badge>{t.home.hero.kicker}</Badge>
