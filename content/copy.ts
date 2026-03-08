@@ -1,6 +1,7 @@
 import { externalLinks, Locale } from './site';
+import { RouteKey } from '@/lib/routes';
 
-type NavItem = { href: string; label: string };
+type NavItem = { route: RouteKey; label: string };
 
 type Person = {
   name: string;
@@ -55,11 +56,11 @@ type Copy = {
 export const copy: Record<Locale, Copy> = {
   es: {
     nav: [
-      { href: '/es', label: 'Inicio' },
-      { href: '/es/club', label: 'El club' },
-      { href: '/es/valencia-2026', label: 'Valencia 2026' },
-      { href: '/es/apoya', label: 'Apoya' },
-      { href: '/es/sumate', label: 'Súmate' },
+      { route: 'home', label: 'Inicio' },
+      { route: 'club', label: 'El club' },
+      { route: 'valencia', label: 'Valencia 2026' },
+      { route: 'support', label: 'Apoya' },
+      { route: 'join', label: 'Súmate' },
     ],
     common: { clubName: 'Disforia FC', switchTo: 'EN', supportCTA: 'Apoyar campaña', contactEmail: null },
     home: {
@@ -177,11 +178,11 @@ export const copy: Record<Locale, Copy> = {
   },
   en: {
     nav: [
-      { href: '/en', label: 'Home' },
-      { href: '/en/club', label: 'Club' },
-      { href: '/en/valencia-2026', label: 'Valencia 2026' },
-      { href: '/en/apoya', label: 'Support' },
-      { href: '/en/sumate', label: 'Join' },
+      { route: 'home', label: 'Home' },
+      { route: 'club', label: 'Club' },
+      { route: 'valencia', label: 'Valencia 2026' },
+      { route: 'support', label: 'Support' },
+      { route: 'join', label: 'Join' },
     ],
     common: { clubName: 'Disforia FC', switchTo: 'ES', supportCTA: 'Support campaign', contactEmail: null },
     home: {

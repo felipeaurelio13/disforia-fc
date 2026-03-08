@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { copy } from '@/content/copy';
 import { Locale } from '@/content/site';
 import { SafeImage } from '@/components/ui/SafeImage';
+import { localizedPath } from '@/lib/routes';
 import { Container } from './ui';
 
 export function SiteHeader({ lang }: { lang: Locale }) {
@@ -25,7 +26,7 @@ export function SiteHeader({ lang }: { lang: Locale }) {
 
           <nav className="hidden items-center gap-4 md:flex">
             {t.nav.map((item) => (
-              <Link key={item.href} href={item.href} className="min-h-12 content-center font-display text-sm font-semibold text-brand-softWhite/85 hover:text-brand-sky">
+              <Link key={item.route} href={localizedPath(lang, item.route)} className="min-h-12 content-center font-display text-sm font-semibold text-brand-softWhite/85 hover:text-brand-sky">
                 {item.label}
               </Link>
             ))}
@@ -61,8 +62,8 @@ export function SiteHeader({ lang }: { lang: Locale }) {
             <nav className="grid gap-1 py-1">
               {t.nav.map((item) => (
                 <Link
-                  key={item.href}
-                  href={item.href}
+                  key={item.route}
+                  href={localizedPath(lang, item.route)}
                   onClick={() => setMenuOpen(false)}
                   className="inline-flex min-h-12 items-center rounded-xl border border-white/10 bg-white/[0.03] px-3 font-display text-sm font-semibold text-brand-softWhite/90"
                 >

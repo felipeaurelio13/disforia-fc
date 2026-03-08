@@ -4,6 +4,7 @@ import { getValenciaProgress } from '@/lib/valencia';
 import { SafeImage } from '@/components/ui/SafeImage';
 import { Reveal } from './Reveal';
 import { ButtonLink, Section } from './ui';
+import { localizedPath } from '@/lib/routes';
 
 const currencyFormatter = (lang: Locale) =>
   new Intl.NumberFormat(lang === 'es' ? 'es-CL' : 'en-US', {
@@ -147,12 +148,12 @@ export function HomeSections({ lang }: { lang: Locale }) {
             <article>
               <h3 className="font-display text-2xl font-bold tracking-[-0.02em]">{t.home.support.title}</h3>
               <ul className="mt-3 space-y-1.5 text-sm text-brand-softWhite/82 sm:text-base">{t.home.support.paths.map((path) => <li key={path}>• {path}</li>)}</ul>
-              <div className="mt-3"><ButtonLink href={`/${lang}/apoya`} variant="text">{lang === 'es' ? 'Ver opciones' : 'View options'}</ButtonLink></div>
+              <div className="mt-3"><ButtonLink href={localizedPath(lang, 'support')} variant="text">{lang === 'es' ? 'Ver opciones' : 'View options'}</ButtonLink></div>
             </article>
             <article>
               <h3 className="font-display text-2xl font-bold tracking-[-0.02em]">{t.home.join.title}</h3>
               <ul className="mt-3 space-y-1.5 text-sm text-brand-softWhite/82 sm:text-base">{t.home.join.paths.map((path) => <li key={path}>• {path}</li>)}</ul>
-              <div className="mt-3"><ButtonLink href={`/${lang}/sumate`} variant="text">{lang === 'es' ? 'Ir a Súmate' : 'Go to Join'}</ButtonLink></div>
+              <div className="mt-3"><ButtonLink href={localizedPath(lang, 'join')} variant="text">{lang === 'es' ? 'Ir a Súmate' : 'Go to Join'}</ButtonLink></div>
             </article>
           </div>
         </Reveal>

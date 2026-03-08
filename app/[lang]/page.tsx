@@ -5,6 +5,7 @@ import { ButtonLink, Section } from '@/components/ui';
 import { copy } from '@/content/copy';
 import { Locale, locales } from '@/content/site';
 import { notFound } from 'next/navigation';
+import { localizedPath } from '@/lib/routes';
 
 export default function Home({ params }: { params: { lang: string } }) {
   if (!locales.includes(params.lang as Locale)) notFound();
@@ -22,8 +23,8 @@ export default function Home({ params }: { params: { lang: string } }) {
             </h1>
             <p className="mt-3 max-w-xl text-sm leading-relaxed text-brand-softWhite/82 sm:text-base md:text-lg">{t.home.hero.subtitle}</p>
             <div className="mt-5 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap">
-              <ButtonLink href={`/${lang}/club`}>{t.home.hero.primary}</ButtonLink>
-              <ButtonLink href={`/${lang}/valencia-2026`} variant="secondary">{t.home.hero.secondary}</ButtonLink>
+              <ButtonLink href={localizedPath(lang, 'club')}>{t.home.hero.primary}</ButtonLink>
+              <ButtonLink href={localizedPath(lang, 'valencia')} variant="secondary">{t.home.hero.secondary}</ButtonLink>
             </div>
           </Reveal>
           <Reveal delayMs={120}>

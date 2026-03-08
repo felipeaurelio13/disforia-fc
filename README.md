@@ -16,6 +16,7 @@ Sitio oficial bilingüe (ES/EN) para Disforia FC, construido con Next.js App Rou
 - `components/ui/SafeImage.tsx`: imagen segura con fallback elegante
 - `content/`: copy y datos editoriales
 - `lib/assets.ts`: helper único de rutas públicas (`withBasePath`)
+- `lib/routes.ts`: helper único de rutas internas bilingües (`localizedPath`)
 - `lib/`: utilidades (GitHub Pages, Valencia)
 - `tests/`: pruebas unitarias
 
@@ -63,6 +64,14 @@ También se mantienen hechos oficiales editables en `officialFacts`.
 ## Editar CTA oficiales
 - Instagram y GoFundMe: `content/site.ts` → `externalLinks`
 - Textos de CTA: `content/copy.ts`
+
+
+## Rutas bilingües (ES/EN)
+- Navegación y CTAs resuelven rutas con `localizedPath(lang, route)` desde `lib/routes.ts`.
+- Slugs activos por idioma:
+  - ES: `/es/club`, `/es/valencia-2026`, `/es/apoya`, `/es/sumate`
+  - EN: `/en/club`, `/en/valencia-2026`, `/en/support`, `/en/join`
+- Se evita mantener dos árboles de navegación manuales: ambos idiomas comparten las mismas `route keys` en `content/copy.ts`.
 
 ## Build estático y deploy
 - `next.config.mjs`: `output: 'export'`, `trailingSlash: true`, `images.unoptimized: true`
