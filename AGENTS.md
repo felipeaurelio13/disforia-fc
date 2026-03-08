@@ -45,3 +45,4 @@
 - Refactor incremental exitoso: centralizar primitives (`Card`, `Badge`, `SectionHeader`, `Separator`) en `components/ui.tsx` permite modernizar secciones sin reescribir rutas ni contenido.
 - Para tipografía variable estable en Next 14, usar `next/font` (Archivo + Inter) aplicado por variables CSS evita drift entre hero/body y mantiene performance en static export.
 - Decisión técnica: mantener Tailwind v3.4 en este ciclo reduce riesgo de regresión en Pages; priorizar consolidación de tokens y componentes antes de migrar a v4.
+- Para cambios de branding, alinear primero `app/globals.css` + `tailwind.config.ts` y luego sincronizar assets (`public/images/disforia-logo.svg`, `public/icon.svg`) para evitar inconsistencias entre UI y emblema.

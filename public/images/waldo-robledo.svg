@@ -5,9 +5,9 @@
     <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#181818" />
       <stop offset="0.55" stop-color="#4B3A58" />
-      <stop offset="1" stop-color="#84719D" />
+      <stop offset="1" stop-color="#835CA3" />
     </linearGradient>
   </defs>
   <rect width="1200" height="750" fill="url(#g)" />
-  <text x="72" y="626" fill="#F5F5F5" font-family="Arial, sans-serif" font-size="52" font-weight="700">Christofer Waldo Robledo Alfaro (Waldo)</text>
+  <text x="72" y="626" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="52" font-weight="700">Christofer Waldo Robledo Alfaro (Waldo)</text>
 </svg>

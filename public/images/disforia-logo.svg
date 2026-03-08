@@ -3,26 +3,26 @@
   <desc id="desc">Circular badge with ball, trans symbol and club lettering.</desc>
   <defs>
     <linearGradient id="sky" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#9dd3ef"/>
-      <stop offset="100%" stop-color="#76b6dc"/>
+      <stop offset="0%" stop-color="#89c2e3"/>
+      <stop offset="100%" stop-color="#89c2e3"/>
     </linearGradient>
   </defs>
-  <circle cx="160" cy="160" r="150" fill="none" stroke="#101010" stroke-width="5"/>
-  <circle cx="160" cy="160" r="105" fill="url(#sky)" stroke="#101010" stroke-width="4"/>
-  <circle cx="160" cy="160" r="52" fill="#b34173" stroke="#101010" stroke-width="4"/>
-  <circle cx="160" cy="160" r="34" fill="#fff" stroke="#101010" stroke-width="3"/>
-  <polygon points="160,132 170,139 166,150 154,150 150,139" fill="#101010"/>
-  <polygon points="160,188 170,181 166,170 154,170 150,181" fill="#101010"/>
-  <polygon points="132,160 139,150 150,154 150,166 139,170" fill="#101010"/>
-  <polygon points="188,160 181,150 170,154 170,166 181,170" fill="#101010"/>
-  <line x1="160" y1="212" x2="160" y2="266" stroke="#b34173" stroke-width="10" stroke-linecap="round"/>
-  <line x1="138" y1="248" x2="182" y2="248" stroke="#b34173" stroke-width="10" stroke-linecap="round"/>
-  <line x1="98" y1="112" x2="128" y2="142" stroke="#334155" stroke-width="6" stroke-linecap="round"/>
-  <line x1="118" y1="112" x2="98" y2="112" stroke="#334155" stroke-width="6" stroke-linecap="round"/>
-  <line x1="98" y1="112" x2="98" y2="132" stroke="#334155" stroke-width="6" stroke-linecap="round"/>
-  <line x1="222" y1="98" x2="188" y2="132" stroke="#334155" stroke-width="6" stroke-linecap="round"/>
-  <line x1="222" y1="98" x2="201" y2="98" stroke="#334155" stroke-width="6" stroke-linecap="round"/>
-  <line x1="222" y1="98" x2="222" y2="119" stroke="#334155" stroke-width="6" stroke-linecap="round"/>
-  <text x="160" y="42" text-anchor="middle" font-family="Arial, sans-serif" font-size="32" font-weight="700" fill="#b34173" letter-spacing="2">DISFORIA</text>
-  <text x="160" y="300" text-anchor="middle" font-family="Arial, sans-serif" font-size="30" font-weight="700" fill="#b34173" letter-spacing="1">FÚTBOL CLUB</text>
+  <circle cx="160" cy="160" r="150" fill="none" stroke="#000000" stroke-width="5"/>
+  <circle cx="160" cy="160" r="105" fill="url(#sky)" stroke="#000000" stroke-width="4"/>
+  <circle cx="160" cy="160" r="52" fill="#bd2b71" stroke="#000000" stroke-width="4"/>
+  <circle cx="160" cy="160" r="34" fill="#fff" stroke="#000000" stroke-width="3"/>
+  <polygon points="160,132 170,139 166,150 154,150 150,139" fill="#000000"/>
+  <polygon points="160,188 170,181 166,170 154,170 150,181" fill="#000000"/>
+  <polygon points="132,160 139,150 150,154 150,166 139,170" fill="#000000"/>
+  <polygon points="188,160 181,150 170,154 170,166 181,170" fill="#000000"/>
+  <line x1="160" y1="212" x2="160" y2="266" stroke="#bd2b71" stroke-width="10" stroke-linecap="round"/>
+  <line x1="138" y1="248" x2="182" y2="248" stroke="#bd2b71" stroke-width="10" stroke-linecap="round"/>
+  <line x1="98" y1="112" x2="128" y2="142" stroke="#835ca3" stroke-width="6" stroke-linecap="round"/>
+  <line x1="118" y1="112" x2="98" y2="112" stroke="#835ca3" stroke-width="6" stroke-linecap="round"/>
+  <line x1="98" y1="112" x2="98" y2="132" stroke="#835ca3" stroke-width="6" stroke-linecap="round"/>
+  <line x1="222" y1="98" x2="188" y2="132" stroke="#835ca3" stroke-width="6" stroke-linecap="round"/>
+  <line x1="222" y1="98" x2="201" y2="98" stroke="#835ca3" stroke-width="6" stroke-linecap="round"/>
+  <line x1="222" y1="98" x2="222" y2="119" stroke="#835ca3" stroke-width="6" stroke-linecap="round"/>
+  <text x="160" y="42" text-anchor="middle" font-family="Arial, sans-serif" font-size="32" font-weight="700" fill="#bd2b71" letter-spacing="2">DISFORIA</text>
+  <text x="160" y="300" text-anchor="middle" font-family="Arial, sans-serif" font-size="30" font-weight="700" fill="#bd2b71" letter-spacing="1">FÚTBOL CLUB</text>
 </svg>
