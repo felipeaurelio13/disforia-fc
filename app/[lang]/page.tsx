@@ -12,32 +12,36 @@ export default function Home({ params }: { params: { lang: string } }) {
 
   return (
     <>
-      <Section className="pt-8 md:pt-14">
-          <div className="grid gap-10 lg:grid-cols-[1.15fr_1fr] lg:items-end">
-            <Reveal>
-              <p className="font-display text-xs uppercase tracking-[0.2em] text-brand-sky">Disforia FC</p>
-              <h1 className="mt-4 max-w-3xl font-display text-[2.6rem] font-extrabold uppercase leading-[0.95] tracking-[-0.03em] sm:text-[4rem] lg:text-[5.1rem]">
-                {t.home.hero.title}
-              </h1>
-              <p className="mt-6 max-w-xl text-lg leading-relaxed text-brand-softWhite/82">{t.home.hero.subtitle}</p>
-              <div className="mt-9 flex flex-wrap gap-3">
-                <ButtonLink href={`/${lang}/club`}>{t.home.hero.primary}</ButtonLink>
-                <ButtonLink href={`/${lang}/valencia-2026`} variant="secondary">
-                  {t.home.hero.secondary}
-                </ButtonLink>
+      <Section className="pt-5 sm:pt-8 md:pt-12">
+        <div className="grid gap-5 lg:grid-cols-[1.12fr_0.88fr] lg:items-end">
+          <Reveal>
+            <p className="font-display text-xs uppercase tracking-[0.16em] text-brand-sky">{t.home.hero.kicker}</p>
+            <h1 className="mt-3 max-w-3xl text-balance font-display text-[2rem] font-extrabold uppercase leading-[0.94] tracking-[-0.03em] sm:text-[2.6rem] md:text-[3.3rem] lg:text-[4.6rem]">
+              {t.home.hero.title}
+            </h1>
+            <p className="mt-4 max-w-xl text-sm leading-relaxed text-brand-softWhite/82 sm:text-base md:text-lg">{t.home.hero.subtitle}</p>
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <ButtonLink href={`/${lang}/club`}>{t.home.hero.primary}</ButtonLink>
+              <ButtonLink href={`/${lang}/valencia-2026`} variant="secondary">
+                {t.home.hero.secondary}
+              </ButtonLink>
+            </div>
+          </Reveal>
+          <Reveal delayMs={120}>
+            <div className="relative overflow-hidden rounded-[24px] border border-white/10 bg-[linear-gradient(160deg,#141414_10%,#1f2f3a_55%,#87C2E34f_100%)] p-5 shadow-surface md:min-h-[380px]">
+              <div className="absolute -right-20 -top-16 h-44 w-44 rounded-full border border-brand-sky/45" aria-hidden="true" />
+              <div className="absolute -bottom-12 left-10 h-52 w-52 rounded-full border border-brand-magenta/35" aria-hidden="true" />
+              <div className="relative flex h-full min-h-56 flex-col justify-between sm:min-h-72">
+                <p className="max-w-sm font-display text-lg font-semibold leading-tight sm:text-xl md:text-2xl">
+                  {lang === 'es' ? 'Entrenar, competir y representar con identidad y nivel deportivo.' : 'Train, compete, and represent with identity and sporting level.'}
+                </p>
+                <p className="mt-4 inline-flex w-fit rounded-full border border-white/20 bg-black/30 px-4 py-2 text-[11px] font-medium uppercase tracking-[0.12em] text-brand-softWhite/80 sm:text-xs">
+                  {lang === 'es' ? 'Club deportivo real, comunidad viva' : 'Real sports club, living community'}
+                </p>
               </div>
-            </Reveal>
-            <Reveal delayMs={130}>
-              <div className="relative overflow-hidden rounded-[24px] border border-white/10 bg-[linear-gradient(160deg,#141414_10%,#1f2f3a_55%,#87C2E34f_100%)] p-6 shadow-surface md:min-h-[420px]">
-                <div className="absolute -right-20 -top-16 h-44 w-44 rounded-full border border-brand-sky/45" aria-hidden="true" />
-                <div className="absolute -bottom-12 left-10 h-52 w-52 rounded-full border border-brand-magenta/35" aria-hidden="true" />
-                <div className="relative flex h-full min-h-72 flex-col justify-between">
-                  <p className="max-w-sm font-display text-xl font-semibold leading-tight md:text-2xl">Entrenar, competir y representar con identidad y alto nivel deportivo.</p>
-                  <p className="mt-5 inline-flex w-fit rounded-full border border-white/20 bg-black/30 px-4 py-2 text-xs font-medium uppercase tracking-[0.12em] text-brand-softWhite/80">Club deportivo real, comunidad viva</p>
-                </div>
-              </div>
-            </Reveal>
-          </div>
+            </div>
+          </Reveal>
+        </div>
       </Section>
       <HomeSections lang={lang} />
     </>

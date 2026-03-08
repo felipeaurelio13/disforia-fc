@@ -16,8 +16,8 @@ export default function SupportPage({ params }: { params: { lang: string } }) {
       </Section>
       <Section title={lang === 'es' ? 'Contacto' : 'Contact'}>
         <div className="flex flex-wrap gap-3">
-          <a href={externalLinks.gofundme} target="_blank" rel="noreferrer" className="rounded-full bg-brand-magenta px-5 py-2.5 text-sm font-semibold">GoFundMe</a>
-          <a href={`/${lang}/sumate`} className="rounded-full bg-white/10 px-5 py-2.5 text-sm font-semibold">{lang === 'es' ? 'Cómo sumarte' : 'How to join'}</a>
+          <a href={externalLinks.gofundme} target="_blank" rel="noreferrer" className="inline-flex min-h-12 items-center rounded-full bg-brand-magenta px-5 py-2.5 text-sm font-semibold">GoFundMe</a>
+          <a href={`/${lang}/sumate`} className="inline-flex min-h-12 items-center rounded-full bg-white/10 px-5 py-2.5 text-sm font-semibold">{lang === 'es' ? 'Cómo sumarte' : 'How to join'}</a>
         </div>
       </Section>
     </>

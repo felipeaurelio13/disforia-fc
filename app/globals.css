@@ -13,7 +13,7 @@
   --container-main: 1280px;
   --container-narrow: 820px;
 
-  --space-section: 88px;
+  --space-section: 64px;
   --space-block-sm: 24px;
   --space-block-md: 32px;
   --space-block-lg: 48px;
@@ -29,15 +29,26 @@
   --motion-reveal: 420ms;
 }
 
+@media (min-width: 768px) {
+  :root {
+    --space-section: 82px;
+  }
+}
+
 @media (min-width: 1024px) {
   :root {
-    --space-section: 120px;
+    --space-section: 108px;
   }
 }
 
 body {
   @apply bg-brand-charcoal text-brand-softWhite antialiased font-sans;
   text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+
+main {
+  overflow-x: clip;
 }
 
 a,

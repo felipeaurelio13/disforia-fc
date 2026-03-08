@@ -70,3 +70,8 @@ No se requieren secrets adicionales para este flujo.
 - Se actualizaron placeholders de personas en ES/EN para mantener contenido editable sin nombres no aprobados.
 - Se ajustó la lógica de avance de Valencia 2026 para soportar datos no configurados (`null`) y mostrar estado pendiente de actualización manual.
 - Se actualizó la versión visible del sitio en footer a `v0.4.0`.
+- Se rediseñó la navegación con menú móvil explícito, targets táctiles de 48px y jerarquía mobile-first.
+- Se incorporó contenido editorial real de liderazgos visibles (Chris, Aaron, Waldo) en home, con estructura formal pública en sección discreta y editable.
+- Se integraron citas editoriales en Home, Valencia 2026 y Súmate sin sobrecargar la narrativa.
+- Se añadieron imágenes locales editables para rostros visibles usando `next/image` con `sizes` para mejor rendimiento móvil.
+- Se actualizó la versión visible del sitio en footer a `v0.5.0`.

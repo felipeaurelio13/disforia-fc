@@ -20,3 +20,7 @@
 
 - Si aún no hay canal oficial de contacto validado por el club, evitar `mailto` y formularios funcionales; usar CTAs internos y texto “por confirmar”.
 - Para el tracker de campañas, soportar valores `null` en contenido y representar “pendiente” en UI para mantener edición manual sin scraping.
+
+- Upgrade mobile-first: priorizar navegación táctil con menú móvil explícito, `min-h-12` en acciones y copy más corto por bloque mejora uso en 320–414px.
+- Para contenido humano real, centralizar liderazgos/quotes/estructura formal en `content/copy.ts` evita hardcode en componentes y permite edición editorial segura.
+- Cuando se usen retratos temporales, preferir assets locales ligeros (SVG) + `next/image` con `sizes` para evitar CLS y mantener control de performance.
