@@ -16,7 +16,7 @@ export function Section({ title, eyebrow, description, children, narrow, classNa
         {eyebrow ? <p className="font-display text-xs uppercase tracking-[0.18em] text-brand-sky">{eyebrow}</p> : null}
         {title ? <h2 className="mt-2 max-w-3xl text-balance font-display text-2xl font-bold leading-[1.03] tracking-[-0.02em] text-brand-softWhite sm:text-3xl md:text-5xl">{title}</h2> : null}
         {description ? <p className="mt-4 max-w-3xl text-sm leading-relaxed text-brand-softWhite/80 sm:text-base md:text-lg">{description}</p> : null}
-        <div className="mt-6 sm:mt-8 md:mt-10">{children}</div>
+        <div className="mt-5 sm:mt-6 md:mt-8">{children}</div>
       </Container>
     </section>
   );

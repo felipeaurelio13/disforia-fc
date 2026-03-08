@@ -29,3 +29,5 @@
 - Valencia 2026 quedó sin tracker vacío en producción: si no hay montos, se muestra campaña activa sin cifras placeholders.
 
 - En home mobile, reemplazar listas de “credenciales” tipo chip por 2–3 evidencias con título + contexto mejora comprensión y reduce sensación de relleno.
+
+- Cuando aparezcan huecos verticales excesivos, ajustar primero el token global `--space-section` y los offsets de `Section`/footer antes de intervenir cada página, para mantener consistencia de ritmo visual.

@@ -87,3 +87,5 @@ No se requieren secrets adicionales para este flujo.
 - Se reemplazó el bloque de “legitimidad” en Home por un bloque de “credibilidad” con evidencia contextual (qué aporta y por qué importa), reduciendo ruido y mejorando claridad para personas nuevas en el sitio.
 - Se añadió validación de contenido para garantizar que cada item de credibilidad tenga título y detalle con valor editorial en ES/EN.
 - Se actualizó la versión del proyecto a `0.6.1`.
+
+- Se redujeron los espacios verticales globales (secciones, hero y footer) para eliminar huecos excesivos y mejorar continuidad visual, especialmente en mobile-first.
