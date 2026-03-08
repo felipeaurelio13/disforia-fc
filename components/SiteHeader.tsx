@@ -1,36 +1,34 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { copy } from '@/content/copy';
 import { Locale } from '@/content/site';
-import { SafeImage } from '@/components/ui/SafeImage';
 import { localizedPath } from '@/lib/routes';
+import { SafeImage } from './ui/SafeImage';
 import { Container } from './ui';
-import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList } from '@/components/ui/navigation-menu';
+import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList } from './ui/navigation-menu';
 
 export function SiteHeader({ lang }: { lang: Locale }) {
   const t = copy[lang];
-  const switchHref = lang === 'es' ? '/en' : '/es';
   const [menuOpen, setMenuOpen] = useState(false);
+  const switchHref = useMemo(() => (lang === 'es' ? '/en' : '/es'), [lang]);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-brand-secondary/10 bg-brand-surface/95 backdrop-blur-md">
-      <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:z-50 focus:rounded-md focus:bg-brand-accent focus:px-3 focus:py-2 focus:text-brand-secondary">
+    <header className="sticky top-0 z-50 border-b border-brand-softGray/90 bg-brand-bg/95 backdrop-blur">
+      <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:z-[60] focus:rounded-full focus:bg-brand-surface focus:px-3 focus:py-2">
         {lang === 'es' ? 'Saltar al contenido' : 'Skip to content'}
       </a>
       <Container>
-        <div className="flex items-center justify-between py-2.5 sm:py-3">
-          <Link href={`/${lang}`} className="inline-flex min-h-12 items-center gap-3 pr-2" onClick={() => setMenuOpen(false)}>
-            <span className="inline-flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border border-brand-secondary/12 bg-brand-bg">
-              <SafeImage src="/images/disforia-logo.svg" alt="Disforia FC" width={36} height={36} className="h-9 w-9 object-contain" fallbackLabel="Disforia FC" priority />
-            </span>
-            <span className="text-sm font-semibold tracking-tight text-brand-secondary sm:text-base">{t.common.clubName}</span>
+        <div className="flex min-h-[68px] items-center justify-between gap-2">
+          <Link href={localizedPath(lang, 'home')} className="inline-flex min-h-12 items-center gap-2.5 rounded-full border border-brand-softGray/80 bg-brand-surface px-3 py-2">
+            <SafeImage src="/images/disforia-logo.svg" alt="Disforia FC logo" width={30} height={30} className="h-7 w-7 object-contain" fallbackLabel="Disforia FC" priority />
+            <span className="font-display text-sm font-semibold tracking-tight text-brand-charcoal sm:text-base">{t.common.clubName}</span>
           </Link>
 
           <div className="hidden md:flex md:flex-1 md:justify-center">
             <NavigationMenu>
-              <NavigationMenuList className="gap-1">
+              <NavigationMenuList className="gap-0.5">
                 {t.nav.map((item) => (
                   <NavigationMenuItem key={item.route}>
                     <NavigationMenuLink href={localizedPath(lang, item.route)}>{item.label}</NavigationMenuLink>
@@ -40,14 +38,14 @@ export function SiteHeader({ lang }: { lang: Locale }) {
             </NavigationMenu>
           </div>
 
-          <div className="flex items-center gap-2">
-            <Link href={localizedPath(lang, 'valencia')} className="hidden min-h-12 items-center rounded-full bg-brand-primary px-4 py-2 text-xs font-semibold text-white shadow-soft hover:scale-[1.02] hover:shadow-lift sm:inline-flex" onClick={() => setMenuOpen(false)}>{t.common.supportCTA}</Link>
-            <Link href={switchHref} className="inline-flex min-h-12 min-w-12 items-center justify-center rounded-full border border-brand-secondary/18 bg-brand-bg px-2.5 text-[11px] font-semibold tracking-[0.08em] text-brand-secondary hover:border-brand-accent hover:text-brand-accent" onClick={() => setMenuOpen(false)}>
+          <div className="flex items-center gap-1.5">
+            <Link href={localizedPath(lang, 'valencia')} className="hidden min-h-12 items-center rounded-full bg-brand-primary px-4 py-2 text-xs font-semibold text-white shadow-soft hover:scale-[1.01] hover:shadow-lift sm:inline-flex" onClick={() => setMenuOpen(false)}>{t.common.supportCTA}</Link>
+            <Link href={switchHref} className="inline-flex min-h-12 min-w-12 items-center justify-center rounded-full border border-brand-softGray bg-brand-surface px-2 text-[11px] font-semibold tracking-[0.08em] text-brand-charcoal hover:border-brand-accent" onClick={() => setMenuOpen(false)}>
               {t.common.switchTo}
             </Link>
             <button
               type="button"
-              className="inline-flex min-h-12 min-w-12 items-center justify-center rounded-full border border-brand-secondary/18 bg-brand-bg text-brand-secondary md:hidden"
+              className="inline-flex min-h-12 min-w-12 items-center justify-center rounded-full border border-brand-softGray bg-brand-surface text-brand-charcoal md:hidden"
               aria-expanded={menuOpen}
               aria-controls="mobile-nav"
               aria-label={menuOpen ? (lang === 'es' ? 'Cerrar menú' : 'Close menu') : lang === 'es' ? 'Abrir menú' : 'Open menu'}
@@ -60,25 +58,25 @@ export function SiteHeader({ lang }: { lang: Locale }) {
       </Container>
 
       {menuOpen ? (
-        <div id="mobile-nav" className="border-t border-brand-secondary/10 bg-brand-surface md:hidden">
+        <div id="mobile-nav" className="border-t border-brand-softGray bg-brand-bg md:hidden">
           <Container>
-            <div className="pb-2 pt-3">
+            <div className="grid gap-2 pb-3 pt-3">
               <Link href={localizedPath(lang, 'valencia')} onClick={() => setMenuOpen(false)} className="inline-flex min-h-12 w-full items-center justify-center rounded-full bg-brand-primary px-5 py-2.5 text-sm font-semibold text-white shadow-soft">
                 {t.common.supportCTA}
               </Link>
+              <nav className="grid gap-2 py-1">
+                {t.nav.map((item) => (
+                  <Link
+                    key={item.route}
+                    href={localizedPath(lang, item.route)}
+                    onClick={() => setMenuOpen(false)}
+                    className="inline-flex min-h-12 items-center rounded-2xl border border-brand-softGray bg-brand-surface px-3.5 text-sm font-medium text-brand-charcoal"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </nav>
             </div>
-            <nav className="grid gap-2 py-1">
-              {t.nav.map((item) => (
-                <Link
-                  key={item.route}
-                  href={localizedPath(lang, item.route)}
-                  onClick={() => setMenuOpen(false)}
-                  className="inline-flex min-h-12 items-center rounded-xl border border-brand-secondary/12 bg-brand-bg px-3 text-sm font-medium text-brand-secondary"
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </nav>
           </Container>
         </div>
       ) : null}

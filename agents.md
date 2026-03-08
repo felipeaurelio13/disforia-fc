@@ -51,3 +51,7 @@
 
 - Cuando el entorno bloquea `npm install` (403), implementar componentes con API compatible local (estilo shadcn) permite evolucionar UI sin romper CI ni static export.
 - Para tests de componentes Next/React con TS en este repo, configurar `jest.config.js` con transformación `tsx` (`jsx: react-jsx`) evita errores de parseo en imports de componentes.
+
+- Refactor incremental exitoso: centralizar primitives (`Card`, `Badge`, `SectionHeader`, `Separator`) en `components/ui.tsx` permite modernizar secciones sin reescribir rutas ni contenido.
+- Para tipografía variable estable en Next 14, usar `next/font` (Archivo + Inter) aplicado por variables CSS evita drift entre hero/body y mantiene performance en static export.
+- Decisión técnica: mantener Tailwind v3.4 en este ciclo reduce riesgo de regresión en Pages; priorizar consolidación de tokens y componentes antes de migrar a v4.
