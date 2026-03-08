@@ -51,7 +51,7 @@ type Copy = {
     spread: string;
     contact: string;
   };
-  supportPage: { intro: string; cards: { title: string; text: string }[] };
+  supportPage: { intro: string; cards: { title: string; text: string; cta: string; href: string; external?: boolean }[] };
   joinPage: { intro: string; cards: { title: string; text: string; cta: string; href: string; external?: boolean }[] };
 };
 
@@ -100,7 +100,7 @@ export const copy: Record<Locale, Copy> = {
       },
       people: {
         title: 'Rostros del club',
-        intro: 'Personas visibles del club y voces públicas de su camino deportivo.',
+        intro: 'Personas del club que hoy sostienen su presencia pública desde el deporte y la comunidad.',
         list: [
           {
             name: 'Christopher Erlandsen',
@@ -119,7 +119,6 @@ export const copy: Record<Locale, Copy> = {
             name: 'Christofer Waldo Robledo Alfaro',
             shortName: 'Waldo',
             role: 'Integrante visible y voz del club en espacios públicos.',
-            quote: 'vi que tenía un propósito y que era necesario',
             image: { src: '/images/waldo-robledo.svg', alt: 'Retrato editorial de Christofer Waldo Robledo Alfaro' },
           },
         ],
@@ -152,11 +151,11 @@ export const copy: Record<Locale, Copy> = {
         intro: 'Chris se presenta como fundador y principal rostro público. Aaron y Waldo aparecen como integrantes visibles del proceso deportivo del club.',
       },
       timeline: [
-        { year: '2019', event: 'Inicio público del club en Chile.' },
-        { year: '2021', event: 'Primeras coberturas en prensa nacional.' },
-        { year: '2022', event: 'Premio del Público en FIDOCS para el documental.' },
-        { year: '2024', event: 'Mayor presencia en medios deportivos y culturales.' },
-        { year: '2026', event: 'Ruta internacional a Gay Games XII València.' },
+        { year: '2019', event: 'Inicio público de Disforia FC en Chile, con fútbol como rama base de entrenamiento y juego.' },
+        { year: '2021', event: 'Primeras coberturas en medios nacionales que visibilizan el proyecto deportivo del club.' },
+        { year: '2022', event: 'El documental Disforia Fútbol Club recibe el Premio del Público en FIDOCS.' },
+        { year: '2024', event: 'Expansión sostenida en ramas activas y mayor presencia en medios deportivos y culturales.' },
+        { year: '2026', event: 'Preparación para representar al club en Gay Games XII València.' },
       ],
     },
     valencia: {
@@ -173,10 +172,10 @@ export const copy: Record<Locale, Copy> = {
     supportPage: {
       intro: 'Sostener al club es sostener deporte, comunidad y proyección para Valencia 2026.',
       cards: [
-        { title: 'Donar', text: 'Aporte directo para financiar la campaña activa rumbo a Gay Games XII València 2026.' },
-        { title: 'Auspiciar', text: 'Tres formatos: financiamiento directo, apoyo en especie/logística y difusión en medios/alianzas.' },
-        { title: 'Difundir', text: 'Comparte la campaña en redes, medios y comunidades deportivas para ampliar alcance.' },
-        { title: 'Alianzas', text: 'Buscamos colaboración con clubes, medios, organizaciones y espacios culturales/deportivos.' },
+        { title: 'Donar', text: 'Aporte directo para financiar la campaña activa rumbo a Gay Games XII València 2026.', cta: 'Donar en GoFundMe', href: externalLinks.gofundme, external: true },
+        { title: 'Auspiciar', text: 'Tres formatos: financiamiento directo, apoyo en especie/logística y difusión en medios/alianzas.', cta: 'Auspiciar por Instagram', href: externalLinks.instagram, external: true },
+        { title: 'Difundir', text: 'Comparte la campaña en redes, medios y comunidades deportivas para ampliar alcance.', cta: 'Difundir desde Instagram', href: externalLinks.instagram, external: true },
+        { title: 'Alianzas', text: 'Buscamos colaboración con clubes, medios, organizaciones y espacios culturales/deportivos.', cta: 'Proponer alianza por Instagram', href: externalLinks.instagram, external: true },
       ],
     },
     joinPage: {
@@ -227,7 +226,7 @@ export const copy: Record<Locale, Copy> = {
       },
       people: {
         title: 'Faces of the club',
-        intro: 'Visible members of the club and public voices from its sports journey.',
+        intro: 'Club members who currently sustain its public presence through sport and community.',
         list: [
           {
             name: 'Christopher Erlandsen',
@@ -246,7 +245,6 @@ export const copy: Record<Locale, Copy> = {
             name: 'Christofer Waldo Robledo Alfaro',
             shortName: 'Waldo',
             role: 'Visible member and club voice in public spaces.',
-            quote: 'I saw it had a purpose and that it was necessary.',
             image: { src: '/images/waldo-robledo.svg', alt: 'Editorial portrait of Christofer Waldo Robledo Alfaro' },
           },
         ],
@@ -279,11 +277,11 @@ export const copy: Record<Locale, Copy> = {
         intro: 'Chris appears as founder and main public face. Aaron and Waldo are shown as visible members of the club’s sports process.',
       },
       timeline: [
-        { year: '2019', event: 'Public origin of the club in Chile.' },
-        { year: '2021', event: 'First national media coverage.' },
-        { year: '2022', event: 'FIDOCS Audience Award for the documentary.' },
-        { year: '2024', event: 'Expanded presence in sports and cultural media.' },
-        { year: '2026', event: 'International path to Gay Games XII València.' },
+        { year: '2019', event: 'Public start of Disforia FC in Chile, with football as the core training and match branch.' },
+        { year: '2021', event: 'First national media coverage making the club’s sports project visible.' },
+        { year: '2022', event: 'The documentary Disforia Fútbol Club wins the Audience Award at FIDOCS.' },
+        { year: '2024', event: 'Sustained growth in active branches and stronger presence in sports and cultural media.' },
+        { year: '2026', event: 'Preparation to represent the club at Gay Games XII València.' },
       ],
     },
     valencia: {
@@ -300,10 +298,10 @@ export const copy: Record<Locale, Copy> = {
     supportPage: {
       intro: 'Supporting the club means supporting sport, community, and projection toward Valencia 2026.',
       cards: [
-        { title: 'Donate', text: 'Direct support for the active campaign toward Gay Games XII València 2026.' },
-        { title: 'Sponsor', text: 'Three formats: direct funding, in-kind/logistics support, and media/alliance visibility.' },
-        { title: 'Spread the word', text: 'Share the campaign across social channels, media, and sports communities.' },
-        { title: 'Partnerships', text: 'We seek collaboration with clubs, media, organizations, and cultural/sports spaces.' },
+        { title: 'Donate', text: 'Direct support for the active campaign toward Gay Games XII València 2026.', cta: 'Donate on GoFundMe', href: externalLinks.gofundme, external: true },
+        { title: 'Sponsor', text: 'Three formats: direct funding, in-kind/logistics support, and media/alliance visibility.', cta: 'Sponsor via Instagram', href: externalLinks.instagram, external: true },
+        { title: 'Spread the word', text: 'Share the campaign across social channels, media, and sports communities.', cta: 'Share from Instagram', href: externalLinks.instagram, external: true },
+        { title: 'Partnerships', text: 'We seek collaboration with clubs, media, organizations, and cultural/sports spaces.', cta: 'Propose a partnership', href: externalLinks.instagram, external: true },
       ],
     },
     joinPage: {

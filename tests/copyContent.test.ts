@@ -20,7 +20,8 @@ describe('editorial content', () => {
   it('keeps required quotes in their intended sections', () => {
     expect(copy.es.home.about.quote).toBe('Es una familia, es un espacio seguro para jugar a la pelota.');
     expect(copy.en.valencia.quote).toBe('football became an embrace, support, community, and family.');
-    expect(copy.es.home.people.list.find((person) => person.shortName === 'Waldo')?.quote).toBe('vi que tenía un propósito y que era necesario');
+    expect(copy.es.home.people.list.find((person) => person.shortName === 'Waldo')?.quote).toBeUndefined();
+    expect(copy.en.home.people.list.find((person) => person.shortName === 'Waldo')?.quote).toBeUndefined();
   });
 
   it('removes forbidden placeholder strings from public copy', () => {

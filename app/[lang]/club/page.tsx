@@ -41,17 +41,21 @@ export default function ClubPage({ params }: { params: { lang: string } }) {
               {t.club.documentary.cta}
             </a>
           </article>
-          <div className="relative min-h-44 overflow-hidden rounded-xl border border-white/15 bg-black/25">
-            <Image src="/images/disforia-logo.svg" alt={lang === 'es' ? 'Imagen del documental de Disforia Fútbol Club' : 'Disforia Fútbol Club documentary still'} fill className="object-contain p-6" sizes="(max-width: 767px) 92vw, 340px" />
+          <div className="relative min-h-52 overflow-hidden rounded-xl border border-white/15 bg-black/25">
+            <Image src="/images/chris-erlandsen.svg" alt={lang === 'es' ? 'Still editorial del documental Disforia Fútbol Club' : 'Editorial still for the Disforia Fútbol Club documentary'} fill className="object-cover" sizes="(max-width: 767px) 92vw, 340px" />
+            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-3 text-xs font-medium text-brand-softWhite/90">
+              {lang === 'es' ? 'Documental · Disforia Fútbol Club' : 'Documentary · Disforia Fútbol Club'}
+            </div>
           </div>
         </div>
       </Section>
       <Section title={lang === 'es' ? 'Recorrido público' : 'Public journey'}>
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {t.club.timeline.map((item) => (
-            <article key={item.year} className="rounded-xl border border-white/10 bg-white/5 p-4">
-              <p className="font-display text-xs uppercase tracking-[0.1em] text-brand-sky">{item.year}</p>
-              <p className="mt-2 text-sm leading-relaxed text-brand-softWhite/80">{item.event}</p>
+            <article key={item.year} className="relative overflow-hidden rounded-xl border border-white/10 bg-white/5 p-4">
+              <div className="absolute left-0 top-0 h-full w-1 bg-brand-sky/70" aria-hidden="true" />
+              <p className="pl-2 font-display text-xs uppercase tracking-[0.1em] text-brand-sky">{item.year}</p>
+              <p className="mt-2 pl-2 text-sm leading-relaxed text-brand-softWhite/80">{item.event}</p>
             </article>
           ))}
         </div>

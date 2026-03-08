@@ -30,3 +30,5 @@
 
 - Corrección editorial estricta en sitio público: se eliminaron placeholders visibles y versionado público en footer; contacto temporal unificado a Instagram + GoFundMe.
 - Valencia 2026 quedó sin tracker vacío en producción: si no hay montos, se muestra campaña activa sin cifras placeholders.
+- Para edición pública estricta, dejar citas solo cuando estén claramente validadas; si hay duda, ocultarlas y mantener roles descriptivos sin inflar liderazgos.
+- En páginas de conversión (Apoya/Súmate), cada card debe incluir CTA real y accionable, priorizando Instagram y GoFundMe cuando no exista correo oficial confirmado.

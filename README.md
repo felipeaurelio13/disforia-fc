@@ -82,3 +82,4 @@ No se requieren secrets adicionales para este flujo.
 - Se actualizó la versión visible del sitio en footer a `v0.6.0`.
 
 - Se ejecutó una corrección editorial y mobile-first estricta: eliminación de placeholders públicos, limpieza ES/EN, refuerzo de CTA reales (Instagram + GoFundMe), y rediseño de Home/Club/Valencia/Apoya/Súmate para mayor credibilidad y acción.
+- Se reforzó la corrección editorial pública: Waldo y Aaron quedaron sin citas no validadas, el bloque de Apoya ahora tiene CTA accionables por tarjeta, y El Club mejora documental + recorrido público con tratamiento visual más editorial.

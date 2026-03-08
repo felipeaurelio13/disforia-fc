@@ -18,7 +18,7 @@ export default function ValenciaPage({ params }: { params: { lang: string } }) {
         <blockquote className="mt-4 max-w-2xl border-l-2 border-brand-magenta/70 pl-4 text-sm italic text-brand-softWhite/90 sm:text-base">“{t.quote}”</blockquote>
         <div className="mt-6 rounded-2xl border border-white/10 bg-white/5 p-5">
           <p className="font-display text-sm uppercase tracking-[0.08em] text-brand-sky">Gay Games XII València 2026</p>
-          <p className="mt-2 text-sm text-brand-softWhite/85">{lang === 'es' ? '27 de junio al 4 de julio de 2026' : 'June 27 to July 4, 2026'}</p>
+          <p className="mt-2 text-sm text-brand-softWhite/85">{lang === 'es' ? '27 de junio al 4 de julio de 2026' : '27 June to 4 July 2026'}</p>
           <p className="mt-2 text-sm text-brand-softWhite/85">{lang === 'es' ? 'Cierre de equipos de fútbol: 1 de abril de 2026' : 'Football team registrations close on April 1st, 2026'}</p>
         </div>
       </Section>
