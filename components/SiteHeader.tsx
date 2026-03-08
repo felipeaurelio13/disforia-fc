@@ -27,6 +27,7 @@ export function SiteHeader({ lang }: { lang: Locale }) {
           </nav>
 
           <div className="flex items-center gap-2">
+            <Link href={`/${lang}/valencia-2026`} className="hidden min-h-12 items-center rounded-full border border-brand-magenta/65 bg-brand-magenta px-4 py-2 text-xs font-semibold text-white sm:inline-flex" onClick={() => setMenuOpen(false)}>{t.common.supportCTA}</Link>
             <Link href={switchHref} className="inline-flex min-h-12 min-w-12 items-center justify-center rounded-full border border-white/20 bg-white/5 px-3 py-1.5 font-display text-xs font-semibold tracking-[0.08em] hover:border-brand-sky/70 hover:bg-brand-sky/15" onClick={() => setMenuOpen(false)}>
               {t.common.switchTo}
             </Link>
@@ -35,7 +36,7 @@ export function SiteHeader({ lang }: { lang: Locale }) {
               className="inline-flex min-h-12 min-w-12 items-center justify-center rounded-full border border-white/20 bg-white/5 text-brand-softWhite md:hidden"
               aria-expanded={menuOpen}
               aria-controls="mobile-nav"
-              aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
+              aria-label={menuOpen ? (lang === 'es' ? 'Cerrar menú' : 'Close menu') : lang === 'es' ? 'Abrir menú' : 'Open menu'}
               onClick={() => setMenuOpen((prev) => !prev)}
             >
               <span className="text-lg leading-none">{menuOpen ? '×' : '☰'}</span>
@@ -47,6 +48,11 @@ export function SiteHeader({ lang }: { lang: Locale }) {
       {menuOpen ? (
         <div id="mobile-nav" className="border-t border-white/10 bg-brand-charcoal/95 md:hidden">
           <Container>
+            <div className="py-3">
+              <Link href={`/${lang}/valencia-2026`} onClick={() => setMenuOpen(false)} className="inline-flex min-h-12 w-full items-center justify-center rounded-full border border-brand-magenta/65 bg-brand-magenta px-5 py-2.5 text-sm font-semibold text-white">
+                {t.common.supportCTA}
+              </Link>
+            </div>
             <nav className="grid py-2">
               {t.nav.map((item) => (
                 <Link

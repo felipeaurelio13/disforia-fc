@@ -27,3 +27,6 @@
 
 - Mobile-first refinado: mostrar marca (logo) en header + hero y mover citas individuales al bloque de personas mejora identidad y reduce elementos decorativos sin valor.
 - Para retratos o logos no oficiales listos, usar SVG local transparente evita problemas de fondo blanco y mantiene control visual en GitHub Pages.
+
+- Corrección editorial estricta en sitio público: se eliminaron placeholders visibles y versionado público en footer; contacto temporal unificado a Instagram + GoFundMe.
+- Valencia 2026 quedó sin tracker vacío en producción: si no hay montos, se muestra campaña activa sin cifras placeholders.

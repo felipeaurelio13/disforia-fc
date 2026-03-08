@@ -38,7 +38,7 @@ export default function Home({ params }: { params: { lang: string } }) {
                   <span className="font-display text-[11px] uppercase tracking-[0.12em] text-brand-softWhite/80">Disforia FC</span>
                 </div>
                 <p className="max-w-sm font-display text-lg font-semibold leading-tight sm:text-xl md:text-2xl">
-                  {lang === 'es' ? 'Entrenar, competir y representar con identidad y nivel deportivo.' : 'Train, compete, and represent with identity and sporting level.'}
+                  {lang === 'es' ? 'Entrenar, competir y construir comunidad desde el deporte.' : 'Train, compete, and build community through sport.'}
                 </p>
                 <p className="mt-4 inline-flex w-fit rounded-full border border-white/20 bg-black/30 px-4 py-2 text-[11px] font-medium uppercase tracking-[0.12em] text-brand-softWhite/80 sm:text-xs">
                   {lang === 'es' ? 'Club deportivo real, comunidad viva' : 'Real sports club, living community'}

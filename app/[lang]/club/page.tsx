@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { Section } from '@/components/ui';
 import { copy } from '@/content/copy';
 import { externalLinks, Locale, locales } from '@/content/site';
@@ -5,17 +6,18 @@ import { notFound } from 'next/navigation';
 
 export default function ClubPage({ params }: { params: { lang: string } }) {
   if (!locales.includes(params.lang as Locale)) notFound();
-  const t = copy[params.lang as Locale];
+  const lang = params.lang as Locale;
+  const t = copy[lang];
 
   return (
     <>
-      <Section title={params.lang === 'es' ? 'El club' : 'The club'}>
+      <Section title={lang === 'es' ? 'El club' : 'The club'}>
         <p className="max-w-4xl text-base leading-relaxed text-brand-softWhite/85 md:text-lg">{t.club.manifesto}</p>
       </Section>
-      <Section title={params.lang === 'es' ? 'Historia' : 'History'}>
+      <Section title={lang === 'es' ? 'Historia' : 'History'}>
         <p className="max-w-4xl text-brand-softWhite/80">{t.club.history}</p>
       </Section>
-      <Section title={params.lang === 'es' ? 'Ramas' : 'Branches'}>
+      <Section title={lang === 'es' ? 'Ramas' : 'Branches'}>
         <div className="grid gap-4 sm:grid-cols-3">
           {t.home.branches.items.map((item) => (
             <article key={item.title} className="rounded-xl border border-white/10 bg-white/5 p-4">
@@ -25,29 +27,34 @@ export default function ClubPage({ params }: { params: { lang: string } }) {
           ))}
         </div>
       </Section>
-      <Section title={t.club.leadership.title}>
-        <div className="grid gap-4 lg:grid-cols-[1.3fr_0.7fr]">
-          <article className="rounded-xl border border-white/10 bg-white/5 p-5">
-            <p className="text-sm leading-relaxed text-brand-softWhite/85">{t.club.leadership.intro}</p>
-          </article>
-          <article className="rounded-xl border border-white/10 bg-white/[0.03] p-5">
-            <h3 className="text-sm font-semibold uppercase tracking-[0.08em] text-brand-softWhite/70">{t.club.leadership.formalBoardTitle}</h3>
-            <ul className="mt-3 space-y-2 text-sm text-brand-softWhite/80">
-              {t.club.leadership.formalBoard.map((member) => (
-                <li key={member}>• {member}</li>
-              ))}
-            </ul>
-          </article>
-        </div>
+      <Section title={t.club.people.title}>
+        <article className="rounded-2xl border border-white/10 bg-white/5 p-5 md:p-6">
+          <p className="text-sm leading-relaxed text-brand-softWhite/85 md:text-base">{t.club.people.intro}</p>
+        </article>
       </Section>
       <Section title={t.club.documentary.title}>
-        <div className="rounded-2xl border border-brand-lavender/50 bg-brand-lavender/10 p-6">
-          <p className="text-brand-softWhite/85">{t.club.documentary.text}</p>
-          <a href={externalLinks.documentary} className="mt-4 inline-flex min-h-12 items-center rounded-full bg-brand-magenta px-5 py-2.5 text-sm font-semibold" target="_blank" rel="noreferrer">{t.club.documentary.cta}</a>
+        <div className="grid gap-4 rounded-2xl border border-brand-lavender/50 bg-brand-lavender/10 p-5 md:grid-cols-[1.2fr_0.8fr] md:p-6">
+          <article>
+            <p className="text-brand-softWhite/85">{t.club.documentary.text}</p>
+            <p className="mt-3 inline-flex rounded-full border border-brand-sky/50 bg-brand-sky/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.08em] text-brand-softWhite">{t.club.documentary.award}</p>
+            <a href={externalLinks.documentary} className="mt-4 inline-flex min-h-12 items-center rounded-full bg-brand-magenta px-5 py-2.5 text-sm font-semibold" target="_blank" rel="noreferrer">
+              {t.club.documentary.cta}
+            </a>
+          </article>
+          <div className="relative min-h-44 overflow-hidden rounded-xl border border-white/15 bg-black/25">
+            <Image src="/images/disforia-logo.svg" alt={lang === 'es' ? 'Imagen del documental de Disforia Fútbol Club' : 'Disforia Fútbol Club documentary still'} fill className="object-contain p-6" sizes="(max-width: 767px) 92vw, 340px" />
+          </div>
         </div>
       </Section>
-      <Section title={params.lang === 'es' ? 'Recorrido público' : 'Public journey'}>
-        <ol className="space-y-3 border-l border-white/20 pl-4">{t.club.timeline.map((h) => <li key={h.year}><p className="font-semibold text-brand-sky">{h.year}</p><p className="text-sm text-brand-softWhite/80">{h.event}</p></li>)}</ol>
+      <Section title={lang === 'es' ? 'Recorrido público' : 'Public journey'}>
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {t.club.timeline.map((item) => (
+            <article key={item.year} className="rounded-xl border border-white/10 bg-white/5 p-4">
+              <p className="font-display text-xs uppercase tracking-[0.1em] text-brand-sky">{item.year}</p>
+              <p className="mt-2 text-sm leading-relaxed text-brand-softWhite/80">{item.event}</p>
+            </article>
+          ))}
+        </div>
       </Section>
     </>
   );

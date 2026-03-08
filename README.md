@@ -80,3 +80,5 @@ No se requieren secrets adicionales para este flujo.
 - Se integró un logo SVG local de Disforia FC en header y hero para mejorar reconocimiento de marca en móvil.
 - Se incorporaron citas editoriales por cada persona visible en la sección de rostros.
 - Se actualizó la versión visible del sitio en footer a `v0.6.0`.
+
+- Se ejecutó una corrección editorial y mobile-first estricta: eliminación de placeholders públicos, limpieza ES/EN, refuerzo de CTA reales (Instagram + GoFundMe), y rediseño de Home/Club/Valencia/Apoya/Súmate para mayor credibilidad y acción.
