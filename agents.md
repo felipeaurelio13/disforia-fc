@@ -42,3 +42,7 @@
 - Para reforzar tipografía en entornos restringidos, preferir stacks locales (`font-display` serif) antes de depender de fuentes remotas en build.
 - Para imágenes faltantes, crear SVG locales temáticos y reutilizarlos por índice/asset map evita placeholders rotos y mantiene consistencia visual.
 - En Valencia 2026, priorizar copy de acción directa (“donar ahora”) y ubicar GoFundMe como CTA principal en home + página dedicada.
+- Checklist de auditoría UX implementado en código: secciones faltantes se resolvieron como rutas dedicadas y copy centralizado en `content/copy.ts` para mantener edición sin tocar componentes.
+- Para arquitectura bilingüe escalable, agregar route keys nuevas en `lib/routes.ts` evita hardcode de slugs y mantiene paridad ES/EN en header/footer.
+- Incluir `skip to content` en header + `id` en `<main>` entrega mejora accesible transversal sin afectar diseño visual.
+- Para campañas, página Valencia debe incluir transparencia de uso + testimonios + FAQ junto al CTA principal para reforzar conversión.

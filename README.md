@@ -83,6 +83,10 @@ También se mantienen hechos oficiales editables en `officialFacts`.
 
 
 ## Registro de cambios recientes
+- Implementación completa de checklist UX: nueva IA con páginas dedicadas de Fútbol, Básquetbol, Documentales y prensa, Contacto y redes, además de reforzar Home y Valencia 2026 con narrativa, impacto, transparencia, testimonios y FAQ.
+- Navegación bilingüe ampliada en `lib/routes.ts` con slugs localizados para nuevas secciones y CTA persistente de donación en header (mobile + desktop).
+- Mejoras de accesibilidad y usabilidad: `skip to content`, enlaces más descriptivos y estructura de conversión más clara por página.
+- Se incorpora `docs/guia-editorial.md` como guía interna de tono, pronombres y lenguaje inclusivo.
 - Upgrade visual mobile-first: footer editorial con release visible, CTA reforzado de Valencia 2026 y tipografía display serif local para mejorar legibilidad sin depender de descargas externas.
 - Se agregaron SVG locales de ramas (fútbol, básquet, vóley) para cubrir imágenes faltantes con placeholders controlados.
 

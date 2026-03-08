@@ -32,8 +32,8 @@ describe('editorial content', () => {
   it('reinforces first-club positioning and direct donation message', () => {
     expect(copy.es.home.credibility[0]?.title).toContain('Primer club');
     expect(copy.en.home.credibility[0]?.title).toContain('First trans and non-binary sports club');
-    expect(copy.es.home.valencia.text).toContain('Tu aporte hoy');
-    expect(copy.en.home.valencia.text).toContain('Donate today');
+    expect(copy.es.home.valencia.text).toContain('Cada aporte');
+    expect(copy.en.home.valencia.text).toContain('Every contribution');
   });
 
   it('keeps required quotes in their intended sections', () => {
@@ -50,4 +50,13 @@ describe('editorial content', () => {
       expect(serialized).not.toContain(term);
     }
   });
+});
+
+
+it('includes valencia transparency and faq blocks for both locales', () => {
+  for (const lang of ['es', 'en'] as const) {
+    expect(copy[lang].valencia.needs.length).toBeGreaterThan(2);
+    expect(copy[lang].valencia.testimonials.length).toBeGreaterThan(0);
+    expect(copy[lang].valencia.faq.length).toBeGreaterThan(0);
+  }
 });
