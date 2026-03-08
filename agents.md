@@ -32,3 +32,6 @@
 - Valencia 2026 quedó sin tracker vacío en producción: si no hay montos, se muestra campaña activa sin cifras placeholders.
 - Para edición pública estricta, dejar citas solo cuando estén claramente validadas; si hay duda, ocultarlas y mantener roles descriptivos sin inflar liderazgos.
 - En páginas de conversión (Apoya/Súmate), cada card debe incluir CTA real y accionable, priorizando Instagram y GoFundMe cuando no exista correo oficial confirmado.
+- Resolver assets en Pages con un helper único (`lib/assets.ts`) + `NEXT_PUBLIC_BASE_PATH` evita rutas rotas de logo/retratos en export estático.
+- `SafeImage` centraliza fallback visual elegante y elimina iconos rotos del navegador en bloques críticos (header, hero, personas).
+- Valencia 2026 ahora usa modelo explícito `campaignMode: narrative | tracked`; en modo narrative se oculta todo tracker numérico sin depender de `null` públicos.

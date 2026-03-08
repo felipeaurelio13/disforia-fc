@@ -2,41 +2,60 @@ import { valenciaFunding } from '@/content/site';
 import { getValenciaProgress } from '@/lib/valencia';
 
 describe('getValenciaProgress', () => {
-  it('returns null progress when funding values are not configured', () => {
+  it('returns null progress in narrative mode', () => {
+    const originalMode = valenciaFunding.campaignMode;
+    const originalTracked = valenciaFunding.tracked;
+
+    valenciaFunding.campaignMode = 'narrative';
+    valenciaFunding.tracked = undefined;
+
     const progress = getValenciaProgress();
     expect(progress).toEqual({
       percentage: null,
       remaining: null,
     });
+
+    valenciaFunding.campaignMode = originalMode;
+    valenciaFunding.tracked = originalTracked;
   });
 
-  it('returns valid percentage and remaining amount when values are configured', () => {
-    const originalTarget = valenciaFunding.target;
-    const originalRaised = valenciaFunding.raised;
+  it('returns valid percentage and remaining amount in tracked mode', () => {
+    const originalMode = valenciaFunding.campaignMode;
+    const originalTracked = valenciaFunding.tracked;
 
-    valenciaFunding.target = 100;
-    valenciaFunding.raised = 40;
+    valenciaFunding.campaignMode = 'tracked';
+    valenciaFunding.tracked = {
+      target: 100,
+      raised: 40,
+      breakdown: [],
+      nextMilestone: { es: 'x', en: 'x' },
+    };
 
     const progress = getValenciaProgress();
     expect(progress.percentage).toBe(40);
     expect(progress.remaining).toBe(60);
 
-    valenciaFunding.target = originalTarget;
-    valenciaFunding.raised = originalRaised;
+    valenciaFunding.campaignMode = originalMode;
+    valenciaFunding.tracked = originalTracked;
   });
 
   it('clamps percentage to 100 when raised exceeds target', () => {
-    const originalTarget = valenciaFunding.target;
-    const originalRaised = valenciaFunding.raised;
+    const originalMode = valenciaFunding.campaignMode;
+    const originalTracked = valenciaFunding.tracked;
 
-    valenciaFunding.target = 100;
-    valenciaFunding.raised = 140;
+    valenciaFunding.campaignMode = 'tracked';
+    valenciaFunding.tracked = {
+      target: 100,
+      raised: 140,
+      breakdown: [],
+      nextMilestone: { es: 'x', en: 'x' },
+    };
 
     const progress = getValenciaProgress();
     expect(progress.percentage).toBe(100);
     expect(progress.remaining).toBe(0);
 
-    valenciaFunding.target = originalTarget;
-    valenciaFunding.raised = originalRaised;
+    valenciaFunding.campaignMode = originalMode;
+    valenciaFunding.tracked = originalTracked;
   });
 });

@@ -31,3 +31,6 @@
 - En home mobile, reemplazar listas de “credenciales” tipo chip por 2–3 evidencias con título + contexto mejora comprensión y reduce sensación de relleno.
 
 - Cuando aparezcan huecos verticales excesivos, ajustar primero el token global `--space-section` y los offsets de `Section`/footer antes de intervenir cada página, para mantener consistencia de ritmo visual.
+- Resolver assets en Pages con un helper único (`lib/assets.ts`) + `NEXT_PUBLIC_BASE_PATH` evita rutas rotas de logo/retratos en export estático.
+- `SafeImage` centraliza fallback visual elegante y elimina iconos rotos del navegador en bloques críticos (header, hero, personas).
+- Valencia 2026 ahora usa modelo explícito `campaignMode: narrative | tracked`; en modo narrative se oculta todo tracker numérico sin depender de `null` públicos.

@@ -28,18 +28,47 @@ export const editorialSources = [
   'https://www.gaygamesvalencia2026.com/en/sport/football/',
 ] as const;
 
-export const valenciaFunding = {
-  target: null as number | null,
-  raised: null as number | null,
+type CampaignMode = 'narrative' | 'tracked';
+
+type ValenciaBreakdownItem = {
+  key: 'registration' | 'flights' | 'accommodation' | 'operations';
+  label: { es: string; en: string };
+  amount: number;
+};
+
+type ValenciaTracked = {
+  target: number;
+  raised: number;
+  breakdown: ValenciaBreakdownItem[];
+  nextMilestone: { es: string; en: string };
+};
+
+export const valenciaFunding: {
+  campaignMode: CampaignMode;
+  currency: 'EUR';
+  officialFacts: {
+    games: { es: string; en: string };
+    dates: { es: string; en: string };
+    footballDeadline: { es: string; en: string };
+  };
+  narrative: {
+    status: { es: string; en: string };
+    categories: { es: string[]; en: string[] };
+  };
+  tracked?: ValenciaTracked;
+} = {
+  campaignMode: 'narrative',
   currency: 'EUR',
-  breakdown: [
-    { key: 'registration', label: { es: 'Inscripciones', en: 'Registrations' }, amount: null as number | null },
-    { key: 'flights', label: { es: 'Pasajes', en: 'Flights' }, amount: null as number | null },
-    { key: 'accommodation', label: { es: 'Alojamiento', en: 'Accommodation' }, amount: null as number | null },
-    { key: 'operations', label: { es: 'Operación', en: 'Operations' }, amount: null as number | null },
-  ],
-  nextMilestone: {
-    es: 'Cerrar inscripciones del equipo',
-    en: 'Complete team registrations',
+  officialFacts: {
+    games: { es: 'Gay Games XII València 2026', en: 'Gay Games XII València 2026' },
+    dates: { es: '27 de junio al 4 de julio de 2026', en: 'June 27 to July 4, 2026' },
+    footballDeadline: { es: 'Cierre de equipos de fútbol: 1 de abril de 2026', en: 'Football team registrations close on April 1, 2026' },
+  },
+  narrative: {
+    status: { es: 'Campaña activa', en: 'Active campaign' },
+    categories: {
+      es: ['Apoyo a inscripción', 'Apoyo a viaje', 'Apoyo a operación'],
+      en: ['Registration support', 'Travel support', 'Operations support'],
+    },
   },
 };

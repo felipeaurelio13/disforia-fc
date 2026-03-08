@@ -3,89 +3,71 @@
 Sitio oficial bilingüe (ES/EN) para Disforia FC, construido con Next.js App Router + TypeScript + Tailwind.
 
 ## Stack
-- Next.js (App Router)
+- Next.js 14 (App Router)
+- React 18
 - TypeScript (strict)
 - Tailwind CSS
-- Contenido editable local (archivos TS)
-- Jest para pruebas base
+- Contenido editable local (`content/`)
+- Jest
 
 ## Estructura
 - `app/`: rutas y páginas (`/`, `/es`, `/en`, subpáginas)
-- `components/`: header, footer, secciones reutilizables y UI base
-- `content/`: contenido bilingüe, enlaces oficiales, datos Valencia 2026
-- `lib/`: utilidades reutilizables
+- `components/`: header, footer, secciones y UI
+- `components/ui/SafeImage.tsx`: imagen segura con fallback elegante
+- `content/`: copy y datos editoriales
+- `lib/assets.ts`: helper único de rutas públicas (`withBasePath`)
+- `lib/`: utilidades (GitHub Pages, Valencia)
 - `tests/`: pruebas unitarias
 
-## Dónde editar contenido
-- Textos y navegación bilingüe: `content/copy.ts`
-- Enlaces oficiales y fuentes editoriales: `content/site.ts`
-- Progreso y presupuesto de Valencia 2026: `content/site.ts` (`valenciaFunding`)
+## Assets en GitHub Pages (basePath)
+El proyecto se exporta estático (`output: 'export'`) y usa:
+- `basePath` + `assetPrefix` dinámicos desde `GITHUB_REPOSITORY` en Actions.
+- `NEXT_PUBLIC_BASE_PATH` inyectado desde `next.config.mjs`.
 
-## Cómo cambiar links
-Editar `externalLinks` en `content/site.ts`.
+Para resolver imágenes públicas sin rutas rotas:
+1. Usa siempre `SafeImage` para logo/retratos.
+2. `SafeImage` llama internamente a `withBasePath('/images/...')`.
+3. No armar rutas manuales con `/${repo}` en componentes.
 
-## Cómo agregar fotos y personas
-1. Subir imágenes a `public/`.
-2. Reemplazar placeholders visuales en componentes/páginas.
-3. Editar personas en `content/copy.ts` (`home.people.list`).
+## SafeImage
+`components/ui/SafeImage.tsx` soporta:
+- `src`, `alt`, `className`
+- modo `fill`
+- o `width`/`height`
+- `fallbackLabel` opcional
 
-## Cómo actualizar Valencia 2026
-Editar `valenciaFunding` en `content/site.ts`:
-- `target`
-- `raised`
-- `breakdown`
+Si falla la carga:
+- no se muestra icono roto del navegador
+- se renderiza un fallback visual premium con gradiente + iniciales
+- se conserva el layout
 
-## Build estático (GitHub Pages)
-`next.config.mjs` usa `output: 'export'` + `images.unoptimized` para compatibilidad de despliegue estático.
+## Cómo cargar/reemplazar logo y retratos
+1. Sube/reemplaza archivos en `public/images/`.
+2. Ajusta rutas en `content/copy.ts` (`home.people.list[].image.src`) o en componentes que usen logo.
+3. Mantén nombres consistentes para evitar cambios múltiples.
 
-Además, el sitio ajusta automáticamente `basePath` y `assetPrefix` en GitHub Actions a partir de `GITHUB_REPOSITORY`, y activa `trailingSlash` para mejorar compatibilidad en hosting estático.
+## Valencia 2026: modos `narrative` y `tracked`
+Archivo: `content/site.ts` (`valenciaFunding`).
 
-## Deploy automático con GitHub Actions
-1. Ir a **Settings → Pages** en GitHub.
-2. En **Source**, seleccionar **GitHub Actions**.
-3. Hacer push a `main`.
-4. El workflow `.github/workflows/deploy-pages.yml` instalará dependencias, ejecutará tests, hará build (`next build`) y publicará `out/` en GitHub Pages.
+- `campaignMode: 'narrative'`
+  - no muestra tracker numérico
+  - muestra campaña activa + categorías de apoyo
+  - CTA a GoFundMe e Instagram
 
-No se requieren secrets adicionales para este flujo.
+- `campaignMode: 'tracked'`
+  - requiere `tracked.target`, `tracked.raised`, `tracked.breakdown`, `tracked.nextMilestone`
+  - muestra progreso, porcentaje y restante
 
-## Sesión actual (registro)
-- Se creó una primera versión completa del sitio bilingüe con las páginas solicitadas.
-- Se centralizó contenido editable en archivos TS.
-- Se implementó estructura visual sobria, deportiva y editorial.
-- Se agregó prueba unitaria base para cálculo de avance de Valencia 2026.
-- Se dejó listo el pipeline de GitHub Actions para desplegar en GitHub Pages.
-- Se agregó validación unitaria para la resolución de `basePath`/`assetPrefix` según entorno.
+También se mantienen hechos oficiales editables en `officialFacts`.
 
-- Se corrigió el workflow de GitHub Pages para usar `npm ci` y se versionó `package-lock.json`, evitando fallos por lockfile ausente en Actions.
-- Se añadió `.gitignore` base para excluir `node_modules` y artefactos de build/tests del repositorio.
+## Editar CTA oficiales
+- Instagram y GoFundMe: `content/site.ts` → `externalLinks`
+- Textos de CTA: `content/copy.ts`
 
-- Se implementó un upgrade visual integral de la home y de la capa global de UI (tipografía Archivo + Inter, ritmo editorial, jerarquías premium, CTAs refinados y microinteracciones con reveal progresivo).
-- Se centralizaron tokens visuales (contenedores, spacing, radios, bordes, overlays y timing de motion) en `app/globals.css` y `tailwind.config.ts`.
-- Se introdujo el componente `Reveal` con IntersectionObserver y respeto por `prefers-reduced-motion`, para motion suave sin dependencias externas pesadas.
-- Se robusteció `getValenciaProgress` para acotar el porcentaje a 0–100 y se extendieron pruebas unitarias de Valencia para cubrir el caso de sobre-financiamiento.
-- Se actualizó la versión visible del sitio en footer a `v0.3.0`.
+## Build estático y deploy
+- `next.config.mjs`: `output: 'export'`, `trailingSlash: true`, `images.unoptimized: true`
+- Deploy recomendado: `.github/workflows/deploy-pages.yml` con `npm ci`, `next build` y deploy de `out/`
 
-
-- Se reemplazó el uso de contacto inventado por rutas internas y mensajes de “por confirmar”, evitando correos/formularios no oficiales.
-- Se actualizaron placeholders de personas en ES/EN para mantener contenido editable sin nombres no aprobados.
-- Se ajustó la lógica de avance de Valencia 2026 para soportar datos no configurados (`null`) y mostrar estado pendiente de actualización manual.
-- Se actualizó la versión visible del sitio en footer a `v0.4.0`.
-- Se rediseñó la navegación con menú móvil explícito, targets táctiles de 48px y jerarquía mobile-first.
-- Se incorporó contenido editorial real de liderazgos visibles (Chris, Aaron, Waldo) en home, con estructura formal pública en sección discreta y editable.
-- Se integraron citas editoriales en Home, Valencia 2026 y Súmate sin sobrecargar la narrativa.
-- Se añadieron imágenes locales editables para rostros visibles usando `next/image` con `sizes` para mejor rendimiento móvil.
-- Se actualizó la versión visible del sitio en footer a `v0.5.0`.
-
-- Se ejecutó una limpieza mobile-first de la home (espaciados, jerarquía, tarjetas y CTAs), reduciendo ruido visual y reforzando legibilidad táctil.
-- Se integró un logo SVG local de Disforia FC en header y hero para mejorar reconocimiento de marca en móvil.
-- Se incorporaron citas editoriales por cada persona visible en la sección de rostros.
-- Se actualizó la versión visible del sitio en footer a `v0.6.0`.
-
-- Se ejecutó una corrección editorial y mobile-first estricta: eliminación de placeholders públicos, limpieza ES/EN, refuerzo de CTA reales (Instagram + GoFundMe), y rediseño de Home/Club/Valencia/Apoya/Súmate para mayor credibilidad y acción.
-- Se reforzó la corrección editorial pública: Waldo y Aaron quedaron sin citas no validadas, el bloque de Apoya ahora tiene CTA accionables por tarjeta, y El Club mejora documental + recorrido público con tratamiento visual más editorial.
-
-- Se reemplazó el bloque de “legitimidad” en Home por un bloque de “credibilidad” con evidencia contextual (qué aporta y por qué importa), reduciendo ruido y mejorando claridad para personas nuevas en el sitio.
-- Se añadió validación de contenido para garantizar que cada item de credibilidad tenga título y detalle con valor editorial en ES/EN.
-- Se actualizó la versión del proyecto a `0.6.1`.
-
-- Se redujeron los espacios verticales globales (secciones, hero y footer) para eliminar huecos excesivos y mejorar continuidad visual, especialmente en mobile-first.
+## Scripts
+- `npm test`
+- `npm run build`
