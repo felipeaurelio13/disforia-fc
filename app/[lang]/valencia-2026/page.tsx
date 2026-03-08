@@ -31,7 +31,7 @@ export default function ValenciaPage({ params }: { params: { lang: string } }) {
         <p className="max-w-3xl text-brand-softWhite/85">{t.why}</p>
       </Section>
 
-      <Section title={lang === 'es' ? 'Campaña activa' : 'Active campaign'}>
+      <Section title={lang === 'es' ? 'Campaña activa' : 'Active campaign'} description={lang === 'es' ? 'Si quieres apoyar de forma inmediata, dona en GoFundMe. Es el canal principal para llegar a Valencia 2026.' : 'If you want to support right now, donate on GoFundMe. It is the main funding channel to reach Valencia 2026.'}>
         {isTracked ? (
           <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
             <p className="mb-2 text-sm text-brand-softWhite/85">€{valenciaFunding.tracked!.raised} / €{valenciaFunding.tracked!.target} ({progress}%)</p>
@@ -50,9 +50,9 @@ export default function ValenciaPage({ params }: { params: { lang: string } }) {
         )}
       </Section>
 
-      <Section title={lang === 'es' ? 'Apoyo directo a la campaña' : 'Direct campaign support'}>
+      <Section title={lang === 'es' ? 'Donar ahora' : 'Donate now'}>
         <div className="rounded-2xl border border-brand-magenta/40 bg-brand-magenta/10 p-5">
-          <p className="text-sm leading-relaxed text-brand-softWhite/85">{lang === 'es' ? 'La acción principal de esta campaña es donar por GoFundMe y coordinar apoyos por Instagram.' : 'The primary action is donating through GoFundMe and coordinating support via Instagram.'}</p>
+          <p className="text-sm leading-relaxed text-brand-softWhite/92">{lang === 'es' ? 'Cada aporte en GoFundMe impacta de forma directa la inscripción, traslado y operación del equipo. Instagram queda como canal para coordinar apoyos y alianzas.' : 'Each GoFundMe donation directly impacts registration, travel, and team operations. Instagram remains the channel to coordinate support and partnerships.'}</p>
           <div className="mt-4 flex flex-wrap gap-3">
             <a href={externalLinks.gofundme} target="_blank" rel="noreferrer" className="inline-flex min-h-12 items-center justify-center rounded-full bg-brand-magenta px-5 py-2.5 text-sm font-semibold">
               {t.donate}

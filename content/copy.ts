@@ -72,7 +72,7 @@ export const copy: Record<Locale, Copy> = {
         kicker: 'Desde 2019 · deporte, comunidad y pertenencia',
       },
       credibility: [
-        { title: 'Proyecto activo desde 2019', detail: 'Recorrido deportivo sostenido con presencia pública comprobable.' },
+        { title: 'Primer club deportivo trans y no binario de Chile', detail: 'Pionero desde 2019 con recorrido deportivo público y continuidad comprobable.' },
         { title: 'Entrenamiento y competencia real', detail: 'Fútbol como base y ramas activas en básquet y vóley.' },
         { title: 'Cobertura y archivo público', detail: 'Documental premiado y notas en prensa deportiva y cultural.' },
       ],
@@ -91,7 +91,7 @@ export const copy: Record<Locale, Copy> = {
       },
       valencia: {
         title: 'Rumbo a Gay Games XII València 2026',
-        text: 'Campaña activa para sostener inscripción, viaje y operación del equipo.',
+        text: 'Tu aporte hoy financia inscripción, viaje y operación para competir en Valencia 2026.',
         donate: 'Ir al GoFundMe',
         sponsor: 'Cómo apoyar',
       },
@@ -148,7 +148,7 @@ export const copy: Record<Locale, Copy> = {
       ],
     },
     valencia: {
-      hero: 'Valencia 2026 es un objetivo deportivo y comunitario para representar a Disforia en competencia internacional.',
+      hero: 'Valencia 2026 es una meta concreta: necesitamos donaciones para asegurar inscripción, viaje y operación del equipo.',
       games: 'Gay Games XII València 2026 se realizará entre el 27 de junio y el 4 de julio de 2026.',
       why: 'El cierre de equipos de fútbol es el 1 de abril de 2026. La campaña busca llegar con operación deportiva cubierta.',
       quote: 'el fútbol se convirtió en abrazo, en apoyo, en comunidad y en familia.',
@@ -194,7 +194,7 @@ export const copy: Record<Locale, Copy> = {
         kicker: 'Since 2019 · sport, community, and belonging',
       },
       credibility: [
-        { title: 'Active project since 2019', detail: 'Sustained sports work with public traceability and continuity.' },
+        { title: 'First trans and non-binary sports club in Chile', detail: 'Pioneering project active since 2019 with sustained public track record.' },
         { title: 'Real training and competition', detail: 'Football as the main branch with active basketball and volleyball.' },
         { title: 'Public media record', detail: 'Awarded documentary and consistent sports and cultural press coverage.' },
       ],
@@ -213,7 +213,7 @@ export const copy: Record<Locale, Copy> = {
       },
       valencia: {
         title: 'Road to Gay Games XII València 2026',
-        text: 'Active campaign to cover registration, travel, and team operations.',
+        text: 'Donate today to fund registration, travel, and team operations for Valencia 2026.',
         donate: 'Open GoFundMe',
         sponsor: 'How to support',
       },
@@ -270,9 +270,9 @@ export const copy: Record<Locale, Copy> = {
       ],
     },
     valencia: {
-      hero: 'Valencia 2026 is a sports and community objective to represent Disforia in international competition.',
+      hero: 'Valencia 2026 is a concrete goal: we need donations to secure registration, travel, and team operations.',
       games: 'Gay Games XII València 2026 takes place from June 27 to July 4, 2026.',
-      why: 'Football team registrations close on April 1, 2026. The campaign focuses on reaching the event with operations covered.',
+      why: 'Football team registrations close on April 1, 2026. Donating now is key to arrive with a fully operational squad.',
       quote: 'football became an embrace, support, community, and family.',
       needs: ['Registration', 'Travel', 'Accommodation', 'Operations'],
       donate: 'Donate on GoFundMe',

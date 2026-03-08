@@ -5,6 +5,7 @@ import { SafeImage } from '@/components/ui/SafeImage';
 import { Reveal } from './Reveal';
 import { ButtonLink, Section } from './ui';
 import { localizedPath } from '@/lib/routes';
+import { branchAssetByIndex } from '@/lib/branchAssets';
 
 const currencyFormatter = (lang: Locale) =>
   new Intl.NumberFormat(lang === 'es' ? 'es-CL' : 'en-US', {
@@ -49,6 +50,9 @@ export function HomeSections({ lang }: { lang: Locale }) {
         <div className="grid gap-3 lg:grid-cols-[1.35fr_1fr]">
           <Reveal>
             <article className="h-full rounded-[20px] border border-brand-sky/50 bg-brand-sky/10 p-5 sm:p-6">
+              <div className="relative mb-3 aspect-[16/9] overflow-hidden rounded-xl border border-white/15">
+                <SafeImage src={branchAssetByIndex[0].src} alt={branchAssetByIndex[0].alt} fill sizes="(max-width: 1023px) 92vw, 48vw" className="object-cover" fallbackLabel={t.home.branches.items[0]?.title ?? 'Football'} />
+              </div>
               <p className="font-display text-xs uppercase tracking-[0.16em] text-brand-softWhite/65">{lang === 'es' ? 'Rama principal' : 'Main branch'}</p>
               <h3 className="mt-1.5 font-display text-3xl font-bold tracking-[-0.02em]">{t.home.branches.items[0]?.title}</h3>
               <p className="mt-2.5 text-sm leading-relaxed text-brand-softWhite/82 sm:text-base">{t.home.branches.items[0]?.text}</p>
@@ -58,6 +62,9 @@ export function HomeSections({ lang }: { lang: Locale }) {
             {t.home.branches.items.slice(1).map((branch, index) => (
               <Reveal key={branch.title} delayMs={(index + 1) * 70}>
                 <article className="rounded-[18px] border border-white/10 bg-white/[0.03] p-4">
+                  <div className="relative mb-2.5 aspect-[16/9] overflow-hidden rounded-xl border border-white/10">
+                    <SafeImage src={branchAssetByIndex[index + 1].src} alt={branchAssetByIndex[index + 1].alt} fill sizes="(max-width: 1023px) 92vw, 33vw" className="object-cover" fallbackLabel={branch.title} />
+                  </div>
                   <h3 className="font-display text-xl font-bold tracking-[-0.02em]">{branch.title}</h3>
                   <p className="mt-1.5 text-sm leading-relaxed text-brand-softWhite/80">{branch.text}</p>
                 </article>
@@ -67,14 +74,15 @@ export function HomeSections({ lang }: { lang: Locale }) {
         </div>
       </Section>
 
-      <Section eyebrow="Valencia 2026" title={t.home.valencia.title}>
+      <Section eyebrow="Valencia 2026" title={t.home.valencia.title} description={lang === 'es' ? 'Donar hoy es la acción más directa para que Disforia llegue con equipo completo a Gay Games XII.' : 'Donating today is the most direct action to help Disforia reach Gay Games XII with a full squad.'}>
         <Reveal>
           <div className="rounded-[22px] border border-brand-magenta/45 bg-[linear-gradient(150deg,rgb(179_65_115/0.16),rgb(132_113_157/0.14))] p-5 shadow-surface md:p-6">
+            <p className="mb-3 font-display text-xs uppercase tracking-[0.15em] text-brand-softWhite/65">{lang === 'es' ? 'Disforia FC · Primer club deportivo trans y no binario de Chile' : "Disforia FC · Chile's first trans and non-binary sports club"}</p>
             <div className="grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
               <div>
-                <p className="max-w-2xl text-sm leading-relaxed text-brand-softWhite/88 sm:text-base">{t.home.valencia.text}</p>
+                <p className="max-w-2xl text-sm leading-relaxed text-brand-softWhite/92 sm:text-base">{t.home.valencia.text}</p>
                 <div className="mt-4 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap">
-                  <a href={externalLinks.gofundme} target="_blank" rel="noreferrer" className="inline-flex min-h-12 items-center justify-center rounded-full border border-brand-magenta/65 bg-brand-magenta px-6 py-3 text-center font-display text-sm font-semibold text-white">
+                  <a href={externalLinks.gofundme} target="_blank" rel="noreferrer" className="inline-flex min-h-12 items-center justify-center rounded-full border border-brand-magenta/65 bg-brand-magenta px-6 py-3 text-center font-display text-sm font-semibold text-white shadow-soft hover:-translate-y-0.5">
                     {t.home.valencia.donate}
                   </a>
                   <a href={externalLinks.instagram} target="_blank" rel="noreferrer" className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/24 bg-white/5 px-5 py-3 text-center font-display text-sm font-semibold text-brand-softWhite">
@@ -96,6 +104,7 @@ export function HomeSections({ lang }: { lang: Locale }) {
                 ) : (
                   <>
                     <p className="font-display text-xs uppercase tracking-[0.16em] text-brand-softWhite/65">{valenciaFunding.narrative.status[lang]}</p>
+                    <p className="mt-2 text-sm text-brand-softWhite/84">{lang === 'es' ? 'Meta inmediata: financiar el viaje y la operación mínima del plantel.' : 'Immediate goal: fund travel and minimum operations for the squad.'}</p>
                     <ul className="mt-2 space-y-1.5 text-sm text-brand-softWhite/82">
                       {valenciaFunding.narrative.categories[lang].map((item) => (
                         <li key={item}>• {item}</li>
