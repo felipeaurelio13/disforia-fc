@@ -27,3 +27,5 @@
 
 - Corrección editorial estricta en sitio público: se eliminaron placeholders visibles y versionado público en footer; contacto temporal unificado a Instagram + GoFundMe.
 - Valencia 2026 quedó sin tracker vacío en producción: si no hay montos, se muestra campaña activa sin cifras placeholders.
+
+- En home mobile, reemplazar listas de “credenciales” tipo chip por 2–3 evidencias con título + contexto mejora comprensión y reduce sensación de relleno.

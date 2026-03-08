@@ -10,6 +10,17 @@ describe('editorial content', () => {
     }
   });
 
+
+  it('uses structured credibility content with explicit value statements', () => {
+    for (const lang of ['es', 'en'] as const) {
+      expect(copy[lang].home.credibility).toHaveLength(3);
+      for (const item of copy[lang].home.credibility) {
+        expect(item.title.length).toBeGreaterThan(10);
+        expect(item.detail.length).toBeGreaterThan(20);
+      }
+    }
+  });
+
   it('keeps only approved public quotes for people section', () => {
     const aaronEs = copy.es.home.people.list.find((person) => person.name === 'Aaron Domke');
     const aaronEn = copy.en.home.people.list.find((person) => person.name === 'Aaron Domke');
