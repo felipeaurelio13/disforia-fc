@@ -9,6 +9,5 @@ export function generateStaticParams() {
 export default function PressRoutePage({ params }: { params: { lang: string } }) {
   if (!locales.includes(params.lang as Locale)) notFound();
   const lang = params.lang as Locale;
-  if (lang === 'es') notFound();
   return <PressPageContent lang={lang} />;
 }

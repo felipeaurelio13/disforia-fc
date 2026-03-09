@@ -9,6 +9,5 @@ export function generateStaticParams() {
 export default function DocumentalesPrensaPage({ params }: { params: { lang: string } }) {
   if (!locales.includes(params.lang as Locale)) notFound();
   const lang = params.lang as Locale;
-  if (lang === 'en') notFound();
   return <PressPageContent lang={lang} />;
 }

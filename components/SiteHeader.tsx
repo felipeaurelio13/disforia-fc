@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useMemo, useState } from 'react';
 import { copy } from '@/content/copy';
 import { Locale } from '@/content/site';
-import { localizedPath } from '@/lib/routes';
+import { localizedPath, navItemHref } from '@/lib/routes';
 import { SafeImage } from './ui/SafeImage';
 import { Container } from './ui';
 import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList } from './ui/navigation-menu';
@@ -29,9 +29,9 @@ export function SiteHeader({ lang }: { lang: Locale }) {
           <div className="hidden md:flex md:flex-1 md:justify-center">
             <NavigationMenu>
               <NavigationMenuList className="gap-0.5">
-                {t.nav.map((item) => (
-                  <NavigationMenuItem key={item.route}>
-                    <NavigationMenuLink href={localizedPath(lang, item.route)}>{item.label}</NavigationMenuLink>
+                {t.nav.map((item, i) => (
+                  <NavigationMenuItem key={i}>
+                    <NavigationMenuLink href={navItemHref(lang, item)}>{item.label}</NavigationMenuLink>
                   </NavigationMenuItem>
                 ))}
               </NavigationMenuList>
@@ -39,7 +39,7 @@ export function SiteHeader({ lang }: { lang: Locale }) {
           </div>
 
           <div className="flex items-center gap-1.5">
-            <Link href={localizedPath(lang, 'valencia')} className="hidden min-h-12 items-center rounded-full bg-brand-primary px-4 py-2 text-xs font-semibold text-white shadow-soft hover:scale-[1.01] hover:shadow-lift sm:inline-flex" onClick={() => setMenuOpen(false)}>{t.common.supportCTA}</Link>
+            <a href="#valencia" className="hidden min-h-12 items-center rounded-full bg-brand-primary px-4 py-2 text-xs font-semibold text-white shadow-soft hover:scale-[1.01] hover:shadow-lift sm:inline-flex" onClick={() => setMenuOpen(false)}>{t.common.supportCTA}</a>
             <Link href={switchHref} className="inline-flex min-h-12 min-w-12 items-center justify-center rounded-full border border-brand-softGray bg-brand-surface px-2 text-[11px] font-semibold tracking-[0.08em] text-brand-charcoal hover:border-brand-accent" onClick={() => setMenuOpen(false)}>
               {t.common.switchTo}
             </Link>
@@ -61,14 +61,14 @@ export function SiteHeader({ lang }: { lang: Locale }) {
         <div id="mobile-nav" className="border-t border-brand-softGray bg-brand-bg md:hidden">
           <Container>
             <div className="grid gap-2 pb-3 pt-3">
-              <Link href={localizedPath(lang, 'valencia')} onClick={() => setMenuOpen(false)} className="inline-flex min-h-12 w-full items-center justify-center rounded-full bg-brand-primary px-5 py-2.5 text-sm font-semibold text-white shadow-soft">
+              <a href="#valencia" onClick={() => setMenuOpen(false)} className="inline-flex min-h-12 w-full items-center justify-center rounded-full bg-brand-primary px-5 py-2.5 text-sm font-semibold text-white shadow-soft">
                 {t.common.supportCTA}
-              </Link>
+              </a>
               <nav className="grid gap-2 py-1">
-                {t.nav.map((item) => (
+                {t.nav.map((item, i) => (
                   <Link
-                    key={item.route}
-                    href={localizedPath(lang, item.route)}
+                    key={i}
+                    href={navItemHref(lang, item)}
                     onClick={() => setMenuOpen(false)}
                     className="inline-flex min-h-12 items-center rounded-2xl border border-brand-softGray bg-brand-surface px-3.5 text-sm font-medium text-brand-charcoal"
                   >

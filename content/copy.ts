@@ -1,7 +1,7 @@
-import { externalLinks, Locale } from './site';
+import { externalLinks, Locale, peoplePortraits } from './site';
 import { RouteKey } from '@/lib/routes';
 
-type NavItem = { route: RouteKey; label: string };
+type NavItem = { label: string } & ({ route: RouteKey } | { anchor: string });
 
 type Person = {
   name: string;
@@ -46,7 +46,24 @@ type Copy = {
   };
   footballPage: { title: string; intro: string; training: string; audience: string; join: string; cta: string };
   basketballPage: { title: string; intro: string; training: string; audience: string; join: string; cta: string };
-  pressPage: { title: string; intro: string; documentaryTitle: string; documentaryText: string; pressTitle: string };
+  pressPage: {
+    title: string;
+    intro: string;
+    filmSectionTitle: string;
+    filmShortLabel: string;
+    filmFeatureLabel: string;
+    filmFeatureStatus: string;
+    filmDirector: string;
+    filmFestivals: string;
+    teaserTitle: string;
+    teaserText: string;
+    galleryTitle: string;
+    galleryText: string;
+    pressTitle: string;
+    filmTitle: string;
+    categoryLabels: Record<string, string>;
+    readMore: string;
+  };
   contactPage: { title: string; intro: string; cards: CTAItem[] };
   valencia: {
     hero: string;
@@ -69,14 +86,11 @@ type Copy = {
 export const copy: Record<Locale, Copy> = {
   es: {
     nav: [
-      { route: 'home', label: 'Inicio' },
-      { route: 'club', label: 'Quiénes somos' },
-      { route: 'football', label: 'Fútbol' },
-      { route: 'basketball', label: 'Básquetbol' },
-      { route: 'press', label: 'Documentales y prensa' },
-      { route: 'join', label: 'Participa' },
-      { route: 'support', label: 'Apoya' },
-      { route: 'contact', label: 'Contacto y redes' },
+      { anchor: 'club', label: 'El club' },
+      { anchor: 'branches', label: 'Deporte' },
+      { anchor: 'valencia', label: 'Valencia 2026' },
+      { route: 'press', label: 'Prensa' },
+      { anchor: 'support', label: 'Apoya' },
     ],
     common: { clubName: 'Disforia FC', switchTo: 'EN', supportCTA: 'Donar · Valencia 2026', contactEmail: null },
     home: {
@@ -129,19 +143,19 @@ export const copy: Record<Locale, Copy> = {
             shortName: 'Chris',
             role: 'Fundador de Disforia y principal rostro público del club.',
             quote: 'Es una familia, es un espacio seguro para jugar a la pelota.',
-            image: { src: '/images/chris-erlandsen.svg', alt: 'Christopher Erlandsen en registro editorial de Disforia FC' },
+            image: { src: peoplePortraits.chris.src, alt: peoplePortraits.chris.alt.es },
             featured: true,
           },
           {
             name: 'Aaron Domke',
             role: 'Referente visible en la expansión deportiva y en la rama de básquet.',
-            image: { src: '/images/aaron-domke.svg', alt: 'Aaron Domke en entrenamiento de Disforia FC' },
+            image: { src: peoplePortraits.aaron.src, alt: peoplePortraits.aaron.alt.es },
           },
           {
             name: 'Christofer Waldo Robledo Alfaro',
             shortName: 'Waldo',
             role: 'Integrante visible y vocería pública en actividades del club.',
-            image: { src: '/images/waldo-robledo.svg', alt: 'Waldo Robledo en actividad deportiva de Disforia FC' },
+            image: { src: peoplePortraits.waldo.src, alt: peoplePortraits.waldo.alt.es },
           },
         ],
       },
@@ -190,10 +204,21 @@ export const copy: Record<Locale, Copy> = {
     },
     pressPage: {
       title: 'Documentales y prensa',
-      intro: 'Archivo unificado de contenidos audiovisuales y coberturas periodísticas sobre el club.',
-      documentaryTitle: 'Documental oficial',
-      documentaryText: 'Disforia Fútbol Club retrata el origen del proyecto, su impacto y su dimensión comunitaria.',
+      intro: 'Archivo unificado de contenidos audiovisuales, cobertura periodística y exhibiciones internacionales del documental.',
+      filmSectionTitle: 'El documental',
+      filmShortLabel: 'Cortometraje',
+      filmFeatureLabel: 'Largometraje',
+      filmFeatureStatus: 'En producción',
+      filmDirector: 'Dirección',
+      filmFestivals: 'Festivales y premios',
+      teaserTitle: 'Teaser del largometraje',
+      teaserText: 'Adelanto del largometraje producido por Nicolás Videla para Cinespecie.',
+      galleryTitle: 'Galería',
+      galleryText: 'Registro editorial del equipo, fotogramas del documental y encuentros deportivos.',
       pressTitle: 'Cobertura en medios',
+      filmTitle: 'Catálogos y festivales',
+      categoryLabels: { press: 'Prensa', tv: 'Televisión', sport: 'Deporte', film: 'Cine' },
+      readMore: 'Ver más',
     },
     contactPage: {
       title: 'Contacto y redes',
@@ -242,14 +267,11 @@ export const copy: Record<Locale, Copy> = {
   },
   en: {
     nav: [
-      { route: 'home', label: 'Home' },
-      { route: 'club', label: 'About' },
-      { route: 'football', label: 'Football' },
-      { route: 'basketball', label: 'Basketball' },
-      { route: 'press', label: 'Documentaries & press' },
-      { route: 'join', label: 'Join' },
-      { route: 'support', label: 'Support' },
-      { route: 'contact', label: 'Contact & social' },
+      { anchor: 'club', label: 'About' },
+      { anchor: 'branches', label: 'Sports' },
+      { anchor: 'valencia', label: 'Valencia 2026' },
+      { route: 'press', label: 'Press' },
+      { anchor: 'support', label: 'Support' },
     ],
     common: { clubName: 'Disforia FC', switchTo: 'ES', supportCTA: 'Donate · Valencia 2026', contactEmail: null },
     home: {
@@ -302,19 +324,19 @@ export const copy: Record<Locale, Copy> = {
             shortName: 'Chris',
             role: 'Founder of Disforia and main public face of the club.',
             quote: 'It is a family, a safe space to play football.',
-            image: { src: '/images/chris-erlandsen.svg', alt: 'Christopher Erlandsen in Disforia FC editorial record' },
+            image: { src: peoplePortraits.chris.src, alt: peoplePortraits.chris.alt.en },
             featured: true,
           },
           {
             name: 'Aaron Domke',
             role: 'Visible reference in sports expansion and in the basketball branch.',
-            image: { src: '/images/aaron-domke.svg', alt: 'Aaron Domke during a Disforia FC training context' },
+            image: { src: peoplePortraits.aaron.src, alt: peoplePortraits.aaron.alt.en },
           },
           {
             name: 'Christofer Waldo Robledo Alfaro',
             shortName: 'Waldo',
             role: 'Visible member and public voice in club activities.',
-            image: { src: '/images/waldo-robledo.svg', alt: 'Waldo Robledo in a Disforia FC sports activity' },
+            image: { src: peoplePortraits.waldo.src, alt: peoplePortraits.waldo.alt.en },
           },
         ],
       },
@@ -364,9 +386,20 @@ export const copy: Record<Locale, Copy> = {
     pressPage: {
       title: 'Documentaries and press',
       intro: 'Unified archive of audiovisual content and media coverage about the club.',
-      documentaryTitle: 'Official documentary',
-      documentaryText: 'Disforia Fútbol Club documents the project origin, impact, and community dimension.',
+      filmSectionTitle: 'The documentary',
+      filmShortLabel: 'Short film',
+      filmFeatureLabel: 'Feature film',
+      filmFeatureStatus: 'In production',
+      filmDirector: 'Director',
+      filmFestivals: 'Festivals and awards',
+      teaserTitle: 'Feature film teaser',
+      teaserText: 'Preview of the feature film produced by Nicolás Videla for Cinespecie.',
+      galleryTitle: 'Gallery',
+      galleryText: 'Editorial records of the team, documentary stills, and sports encounters.',
       pressTitle: 'Media coverage',
+      filmTitle: 'Catalogues and festivals',
+      categoryLabels: { press: 'Press', tv: 'Television', sport: 'Sport', film: 'Film' },
+      readMore: 'Read more',
     },
     contactPage: {
       title: 'Contact and social channels',

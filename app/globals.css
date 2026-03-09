@@ -12,7 +12,7 @@
 
   --container-main: 1220px;
   --container-narrow: 860px;
-  --space-section: 36px;
+  --space-section: 24px;
   --radius-card: 18px;
   --radius-pill: 9999px;
   --transition-ui: 220ms ease-out;
@@ -20,13 +20,13 @@
 
 @media (min-width: 768px) {
   :root {
-    --space-section: 56px;
+    --space-section: 36px;
   }
 }
 
 @media (min-width: 1024px) {
   :root {
-    --space-section: 72px;
+    --space-section: 48px;
   }
 }
 
@@ -74,6 +74,22 @@ button {
 
 .section-shell {
   padding-block: var(--space-section);
+}
+
+.section-group {
+  padding-block: calc(var(--space-section) * 0.75);
+}
+
+.section-group > .section-shell {
+  padding-block: calc(var(--space-section) * 0.4);
+}
+
+.section-group > .section-shell:first-child {
+  padding-top: 0;
+}
+
+.section-group > .section-shell:last-child {
+  padding-bottom: 0;
 }
 
 .card-surface {

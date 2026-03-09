@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { PropsWithChildren } from 'react';
 
-type SectionProps = PropsWithChildren<{ title?: string; eyebrow?: string; description?: string; narrow?: boolean; className?: string }>;
+type SectionProps = PropsWithChildren<{ id?: string; title?: string; eyebrow?: string; description?: string; narrow?: boolean; className?: string }>;
 type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'text';
 
 export function Container({ children, narrow = false }: PropsWithChildren<{ narrow?: boolean }>) {
@@ -32,9 +32,9 @@ export function Card({ children, className = '' }: PropsWithChildren<{ className
   return <article className={`card-surface p-4 sm:p-5 ${className}`.trim()}>{children}</article>;
 }
 
-export function Section({ title, eyebrow, description, children, narrow, className = '' }: SectionProps) {
+export function Section({ id, title, eyebrow, description, children, narrow, className = '' }: SectionProps) {
   return (
-    <section className={`section-shell ${className}`.trim()}>
+    <section id={id} className={`section-shell ${id ? 'scroll-mt-20' : ''} ${className}`.trim()}>
       <Container narrow={narrow}>
         <SectionHeader title={title} eyebrow={eyebrow} description={description} />
         <div className={`${title || description || eyebrow ? 'mt-6 md:mt-7' : ''}`.trim()}>{children}</div>

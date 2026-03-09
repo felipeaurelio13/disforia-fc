@@ -18,3 +18,10 @@ export function localizedPath(lang: Locale, route: RouteKey) {
   const slug = localizedSlugs[route][lang];
   return slug ? `/${lang}/${slug}` : `/${lang}`;
 }
+
+type NavItem = { label: string } & ({ route: RouteKey } | { anchor: string });
+
+export function navItemHref(lang: Locale, item: NavItem): string {
+  if ('anchor' in item) return `/${lang}#${item.anchor}`;
+  return localizedPath(lang, item.route);
+}
