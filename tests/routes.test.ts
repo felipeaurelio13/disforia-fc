@@ -3,11 +3,21 @@ import { localizedPath } from '@/lib/routes';
 
 describe('localized routes parity', () => {
   it('keeps the same navigation architecture in both locales', () => {
-    const esRoutes = copy.es.nav.map((item) => item.route);
-    const enRoutes = copy.en.nav.map((item) => item.route);
+    const esKeys = copy.es.nav.map((item) =>
+      'route' in item ? `route:${item.route}` : `anchor:${item.anchor}`,
+    );
+    const enKeys = copy.en.nav.map((item) =>
+      'route' in item ? `route:${item.route}` : `anchor:${item.anchor}`,
+    );
 
-    expect(esRoutes).toEqual(enRoutes);
-    expect(esRoutes).toEqual(['home', 'club', 'football', 'basketball', 'press', 'join', 'support', 'contact']);
+    expect(esKeys).toEqual(enKeys);
+    expect(esKeys).toEqual([
+      'anchor:club',
+      'anchor:branches',
+      'anchor:valencia',
+      'route:press',
+      'anchor:support',
+    ]);
   });
 
   it('uses localized slugs for each route key', () => {
