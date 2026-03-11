@@ -72,28 +72,42 @@ export const documentary = {
   },
 } as const;
 
-/* ── People portraits ──
- *  Assigned from Galio editorial (Valpa, 2024) based on article section placement.
- *  To change a portrait, just swap the `src` path below.
- *  Available individual portraits in /public/images/prensa/:
- *    galio-full-4.jpg  (football pitch, red hair — Chris's section)
- *    galio-full-7.jpg  (two players by goal)
- *    galio-full-32.jpg (basketball + trans flag — Aaron's section)
- *    galio-full-46.jpg (goalkeeper, buzz cut — football)
- *  Group photos: galio-full-13.jpg · galio-full-30.jpg · galio-full-55.jpg
+/* ── Branch images ──
+ *  One representative photo per branch, used on the home page branches section.
+ *  Swap `src` paths to update.
  */
-export const peoplePortraits: Record<string, { src: string; alt: Record<Locale, string> }> = {
-  chris: {
-    src: '/images/prensa/chris.jpg',
-    alt: { es: 'Christopher Erlandsen, fundador de Disforia FC, con la camiseta número 10', en: 'Christopher Erlandsen, founder of Disforia FC, wearing the number 10 jersey' },
+export const branchImages: Record<string, { src: string; alt: Record<Locale, string> }> = {
+  football: {
+    src: '/images/prensa/galio-06.jpg',
+    alt: { es: 'Equipo de fútbol de Disforia FC en círculo mostrando camisetas', en: 'Disforia FC football team in circle showing jerseys' },
   },
-  aaron: {
-    src: '/images/prensa/galio-full-32.jpg',
-    alt: { es: 'Aaron Domke, líder de la rama de básquetbol de Disforia FC', en: 'Aaron Domke, leader of the Disforia FC basketball branch' },
+  basketball: {
+    src: '/images/prensa/galio-01.jpg',
+    alt: { es: 'Jugadores de básquetbol de Disforia FC con bandera trans', en: 'Disforia FC basketball players with trans flag' },
   },
-  waldo: {
-    src: '/images/prensa/galio-full-46.jpg',
-    alt: { es: 'Waldo Robledo, integrante de Disforia FC', en: 'Waldo Robledo, member of Disforia FC' },
+  volleyball: {
+    src: '/images/prensa/galio-full-55.jpg',
+    alt: { es: 'Integrantes de Disforia FC en foto grupal', en: 'Disforia FC members in group photo' },
+  },
+};
+
+/* ── Directiva portraits ──
+ *  Board members shown on the home page.
+ *  Replace placeholder images and alt text once real photos are available.
+ *  Available group photos: galio-full-13.jpg · galio-full-30.jpg · galio-full-55.jpg
+ */
+export const directivaPortraits: Record<string, { src: string; alt: Record<Locale, string> }> = {
+  presidente: {
+    src: '/images/prensa/galio-full-13.jpg',
+    alt: { es: 'Presidente/a de Disforia FC', en: 'President of Disforia FC' },
+  },
+  secretario: {
+    src: '/images/prensa/galio-full-30.jpg',
+    alt: { es: 'Secretario/a de Disforia FC', en: 'Secretary of Disforia FC' },
+  },
+  tesorero: {
+    src: '/images/prensa/galio-full-7.jpg',
+    alt: { es: 'Tesorero/a de Disforia FC', en: 'Treasurer of Disforia FC' },
   },
 };
 

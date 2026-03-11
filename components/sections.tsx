@@ -2,8 +2,9 @@ import { Reveal } from '@/components/Reveal';
 import { Badge, Card, Section } from '@/components/ui';
 import { SafeImage } from '@/components/ui/SafeImage';
 import { copy } from '@/content/copy';
-import { externalLinks, Locale, valenciaFunding } from '@/content/site';
+import { branchImages, externalLinks, Locale, valenciaFunding } from '@/content/site';
 import { getValenciaProgress } from '@/lib/valencia';
+import { Clock, MapPin, Instagram } from 'lucide-react';
 
 export function HomeSections({ lang }: { lang: Locale }) {
   const t = copy[lang];
@@ -61,15 +62,34 @@ export function HomeSections({ lang }: { lang: Locale }) {
         {/* Branches */}
         <Section id="branches" title={t.home.branches.title}>
           <div className="grid gap-4 md:grid-cols-3">
-            {t.home.branches.items.map((branch, i) => (
-              <Reveal key={branch.title} delayMs={i * 80}>
-                <Card className={`h-full ${branch.featured ? 'border-brand-primary/30 bg-brand-primary/5' : ''}`}>
-                  <h3 className="font-display text-xl font-semibold text-brand-charcoal">{branch.title}</h3>
-                  <p className="mt-2.5 text-sm leading-relaxed text-brand-text/80">{branch.text}</p>
-                  {branch.featured ? <div className="mt-3"><Badge>{lang === 'es' ? 'Rama principal' : 'Main branch'}</Badge></div> : null}
-                </Card>
-              </Reveal>
-            ))}
+            {t.home.branches.items.map((branch, i) => {
+              const imageKeys = ['football', 'basketball', 'volleyball'] as const;
+              const img = branchImages[imageKeys[i]];
+              return (
+                <Reveal key={branch.title} delayMs={i * 80}>
+                  <Card className={`h-full ${branch.featured ? 'border-brand-primary/30 bg-brand-primary/5' : ''}`}>
+                    {img && (
+                      <div className="relative mb-3 aspect-[16/10] overflow-hidden rounded-xl">
+                        <SafeImage src={img.src} alt={img.alt[lang]} fill sizes="(max-width: 767px) 92vw, (max-width: 1279px) 31vw, 380px" className="object-cover" fallbackLabel={branch.title} />
+                      </div>
+                    )}
+                    <h3 className="font-display text-xl font-semibold text-brand-charcoal">{branch.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-brand-text/80">{branch.text}</p>
+                    <div className="mt-3 space-y-2 text-sm text-brand-text/75">
+                      <p className="flex items-center gap-2"><Clock className="h-4 w-4 shrink-0 text-brand-lavender" />{branch.schedule}</p>
+                      <p className="flex items-center gap-2"><MapPin className="h-4 w-4 shrink-0 text-brand-lavender" />{branch.location}</p>
+                    </div>
+                    <div className="mt-3 flex items-center gap-2">
+                      <a href={branch.instagramUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 rounded-full border border-brand-lavender/30 bg-brand-lavender/5 px-3 py-1.5 text-xs font-semibold text-brand-lavender hover:bg-brand-lavender/10">
+                        <Instagram className="h-3.5 w-3.5" />
+                        {branch.instagram}
+                      </a>
+                      {branch.featured ? <Badge>{lang === 'es' ? 'Rama principal' : 'Main branch'}</Badge> : null}
+                    </div>
+                  </Card>
+                </Reveal>
+              );
+            })}
           </div>
         </Section>
       </div>
@@ -162,18 +182,17 @@ export function HomeSections({ lang }: { lang: Locale }) {
           </div>
         </Section>
 
-        {/* People */}
-        <Section id="people" title={t.home.people.title} description={t.home.people.intro}>
+        {/* Directiva */}
+        <Section id="directiva" title={t.home.people.title} description={t.home.people.intro}>
           <div className="grid gap-4 md:grid-cols-3">
             {t.home.people.list.map((person, index) => (
-              <Reveal key={person.name} delayMs={index * 80}>
-                <Card className={`h-full ${person.featured ? 'md:col-span-2' : ''}`}>
+              <Reveal key={`${person.role}-${index}`} delayMs={index * 80}>
+                <Card className="h-full">
                   <div className="relative mb-3 aspect-[16/10] overflow-hidden rounded-2xl">
-                    <SafeImage src={person.image.src} alt={person.image.alt} fill sizes="(max-width: 767px) 92vw, (max-width: 1279px) 31vw, 380px" className="object-cover" fallbackLabel={person.shortName ?? person.name} priority={index === 0} />
+                    <SafeImage src={person.image.src} alt={person.image.alt} fill sizes="(max-width: 767px) 92vw, (max-width: 1279px) 31vw, 380px" className="object-cover" fallbackLabel={person.role} />
                   </div>
-                  <p className="font-display text-lg font-semibold tracking-tight text-brand-charcoal sm:text-xl">{person.shortName ? `${person.name} (${person.shortName})` : person.name}</p>
+                  <p className="font-display text-lg font-semibold tracking-tight text-brand-charcoal sm:text-xl">{person.name}</p>
                   <p className="mt-1.5 text-sm text-brand-text/84">{person.role}</p>
-                  {person.quote ? <blockquote className="mt-2.5 border-l-2 border-brand-primary/70 pl-3 text-sm italic text-brand-text/80">&ldquo;{person.quote}&rdquo;</blockquote> : null}
                 </Card>
               </Reveal>
             ))}

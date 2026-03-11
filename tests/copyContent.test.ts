@@ -1,12 +1,11 @@
 import { copy } from '@/content/copy';
 
 describe('editorial content', () => {
-  it('includes key public people on home for both locales', () => {
+  it('includes directiva roles on home for both locales', () => {
     for (const lang of ['es', 'en'] as const) {
-      const names = copy[lang].home.people.list.map((person) => person.name);
-      expect(names).toContain('Christopher Erlandsen');
-      expect(names).toContain('Aaron Domke');
-      expect(names).toContain('Christofer Waldo Robledo Alfaro');
+      const roles = copy[lang].home.people.list.map((person) => person.role);
+      expect(roles).toHaveLength(3);
+      expect(roles.every((r) => r.length > 0)).toBe(true);
     }
   });
 
@@ -21,11 +20,12 @@ describe('editorial content', () => {
     }
   });
 
-  it('keeps only approved public quotes for people section', () => {
-    const aaronEs = copy.es.home.people.list.find((person) => person.name === 'Aaron Domke');
-    const aaronEn = copy.en.home.people.list.find((person) => person.name === 'Aaron Domke');
-    expect(aaronEs?.quote).toBeUndefined();
-    expect(aaronEn?.quote).toBeUndefined();
+  it('directiva members have no quotes', () => {
+    for (const lang of ['es', 'en'] as const) {
+      for (const person of copy[lang].home.people.list) {
+        expect(person.quote).toBeUndefined();
+      }
+    }
   });
 
 
@@ -39,8 +39,6 @@ describe('editorial content', () => {
   it('keeps required quotes in their intended sections', () => {
     expect(copy.es.home.about.quote).toBe('Es una familia, es un espacio seguro para jugar a la pelota.');
     expect(copy.en.valencia.quote).toBe('football became an embrace, support, community, and family.');
-    expect(copy.es.home.people.list.find((person) => person.shortName === 'Waldo')?.quote).toBeUndefined();
-    expect(copy.en.home.people.list.find((person) => person.shortName === 'Waldo')?.quote).toBeUndefined();
   });
 
   it('removes forbidden placeholder strings from public copy', () => {

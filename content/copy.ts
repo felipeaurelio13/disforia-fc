@@ -1,4 +1,4 @@
-import { externalLinks, Locale, peoplePortraits } from './site';
+import { externalLinks, Locale, directivaPortraits } from './site';
 import { RouteKey } from '@/lib/routes';
 
 type NavItem = { label: string } & ({ route: RouteKey } | { anchor: string });
@@ -26,7 +26,7 @@ type Copy = {
     hero: { title: string; subtitle: string; primary: string; secondary: string; kicker: string };
     credibility: { title: string; detail: string }[];
     about: { title: string; body: string; quote: string };
-    branches: { title: string; items: { title: string; text: string; featured?: boolean }[] };
+    branches: { title: string; items: { title: string; text: string; featured?: boolean; schedule: string; location: string; instagram: string; instagramUrl: string }[] };
     impact: { title: string; intro: string; items: { title: string; text: string }[] };
     valencia: { title: string; text: string; donate: string; sponsor: string };
     people: { title: string; intro: string; list: Person[] };
@@ -114,9 +114,9 @@ export const copy: Record<Locale, Copy> = {
       branches: {
         title: 'Ramas deportivas',
         items: [
-          { title: 'Fútbol', text: 'Rama principal con entrenamientos regulares, juego competitivo y preparación para torneos.', featured: true },
-          { title: 'Básquetbol', text: 'Rama activa con entrenamientos periódicos y enfoque comunitario-deportivo.' },
-          { title: 'Vóley', text: 'Rama en desarrollo y articulación progresiva de entrenamientos.' },
+          { title: 'Fútbol', text: 'Rama principal con entrenamientos regulares, juego competitivo y preparación para torneos.', featured: true, schedule: 'Lunes y Miércoles 19:00–21:00', location: 'Lugar por confirmar', instagram: '@disforia_fc', instagramUrl: externalLinks.instagramFootball },
+          { title: 'Básquetbol', text: 'Rama activa con entrenamientos periódicos y enfoque comunitario-deportivo.', schedule: 'Martes y Jueves 19:00–21:00', location: 'Lugar por confirmar', instagram: '@disforiabskt', instagramUrl: externalLinks.instagramBasket },
+          { title: 'Vóley', text: 'Rama en desarrollo y articulación progresiva de entrenamientos.', schedule: 'Horario por confirmar', location: 'Lugar por confirmar', instagram: '@disforiavoley', instagramUrl: externalLinks.instagramVolleyball },
         ],
       },
       impact: {
@@ -135,27 +135,23 @@ export const copy: Record<Locale, Copy> = {
         sponsor: 'Cómo apoyar',
       },
       people: {
-        title: 'Rostros del club',
-        intro: 'Personas que hoy sostienen el proyecto en cancha y comunidad.',
+        title: 'Directiva',
+        intro: 'Personas que lideran la gestión del club.',
         list: [
           {
-            name: 'Christopher Erlandsen',
-            shortName: 'Chris',
-            role: 'Fundador de Disforia y principal rostro público del club.',
-            quote: 'Es una familia, es un espacio seguro para jugar a la pelota.',
-            image: { src: peoplePortraits.chris.src, alt: peoplePortraits.chris.alt.es },
-            featured: true,
+            name: 'Nombre por confirmar',
+            role: 'Presidente/a',
+            image: { src: directivaPortraits.presidente.src, alt: directivaPortraits.presidente.alt.es },
           },
           {
-            name: 'Aaron Domke',
-            role: 'Referente visible en la expansión deportiva y en la rama de básquet.',
-            image: { src: peoplePortraits.aaron.src, alt: peoplePortraits.aaron.alt.es },
+            name: 'Nombre por confirmar',
+            role: 'Secretario/a',
+            image: { src: directivaPortraits.secretario.src, alt: directivaPortraits.secretario.alt.es },
           },
           {
-            name: 'Christofer Waldo Robledo Alfaro',
-            shortName: 'Waldo',
-            role: 'Integrante visible y vocería pública en actividades del club.',
-            image: { src: peoplePortraits.waldo.src, alt: peoplePortraits.waldo.alt.es },
+            name: 'Nombre por confirmar',
+            role: 'Tesorero/a',
+            image: { src: directivaPortraits.tesorero.src, alt: directivaPortraits.tesorero.alt.es },
           },
         ],
       },
@@ -177,7 +173,7 @@ export const copy: Record<Locale, Copy> = {
       values: ['Cuidado colectivo', 'Competencia con pertenencia', 'Orgullo trans y no binario'],
       history: 'El origen público del club se registra desde 2019, con fútbol como base y expansión sostenida hacia otras ramas.',
       documentary: { title: 'Disforia Fútbol Club', text: 'Documental sobre el origen del club y su recorrido deportivo-comunitario.', award: 'Premio del Público · FIDOCS 2022', cta: 'Ver en CineChile' },
-      people: { title: 'Personas del club', intro: 'Chris aparece como fundador y rostro principal; Aaron y Waldo como referentes visibles del proceso deportivo.' },
+      people: { title: 'Directiva del club', intro: 'Equipo directivo que lidera la gestión y proyección del club.' },
       timeline: [
         { year: '2019', event: 'Inicio público de Disforia FC en Chile, con fútbol como rama principal.' },
         { year: '2021', event: 'Coberturas nacionales comienzan a visibilizar el proyecto.' },
@@ -295,9 +291,9 @@ export const copy: Record<Locale, Copy> = {
       branches: {
         title: 'Sports branches',
         items: [
-          { title: 'Football', text: 'Main branch with regular training, competitive play, and tournament preparation.', featured: true },
-          { title: 'Basketball', text: 'Active branch with periodic training and a community-sport focus.' },
-          { title: 'Volleyball', text: 'Branch in development with progressive training articulation.' },
+          { title: 'Football', text: 'Main branch with regular training, competitive play, and tournament preparation.', featured: true, schedule: 'Monday & Wednesday 7:00–9:00 PM', location: 'Location TBC', instagram: '@disforia_fc', instagramUrl: externalLinks.instagramFootball },
+          { title: 'Basketball', text: 'Active branch with periodic training and a community-sport focus.', schedule: 'Tuesday & Thursday 7:00–9:00 PM', location: 'Location TBC', instagram: '@disforiabskt', instagramUrl: externalLinks.instagramBasket },
+          { title: 'Volleyball', text: 'Branch in development with progressive training articulation.', schedule: 'Schedule TBC', location: 'Location TBC', instagram: '@disforiavoley', instagramUrl: externalLinks.instagramVolleyball },
         ],
       },
       impact: {
@@ -316,27 +312,23 @@ export const copy: Record<Locale, Copy> = {
         sponsor: 'How to support',
       },
       people: {
-        title: 'People of the club',
-        intro: 'People currently sustaining the project in sport and community.',
+        title: 'Board',
+        intro: 'People leading the club\'s management.',
         list: [
           {
-            name: 'Christopher Erlandsen',
-            shortName: 'Chris',
-            role: 'Founder of Disforia and main public face of the club.',
-            quote: 'It is a family, a safe space to play football.',
-            image: { src: peoplePortraits.chris.src, alt: peoplePortraits.chris.alt.en },
-            featured: true,
+            name: 'Name TBC',
+            role: 'President',
+            image: { src: directivaPortraits.presidente.src, alt: directivaPortraits.presidente.alt.en },
           },
           {
-            name: 'Aaron Domke',
-            role: 'Visible reference in sports expansion and in the basketball branch.',
-            image: { src: peoplePortraits.aaron.src, alt: peoplePortraits.aaron.alt.en },
+            name: 'Name TBC',
+            role: 'Secretary',
+            image: { src: directivaPortraits.secretario.src, alt: directivaPortraits.secretario.alt.en },
           },
           {
-            name: 'Christofer Waldo Robledo Alfaro',
-            shortName: 'Waldo',
-            role: 'Visible member and public voice in club activities.',
-            image: { src: peoplePortraits.waldo.src, alt: peoplePortraits.waldo.alt.en },
+            name: 'Name TBC',
+            role: 'Treasurer',
+            image: { src: directivaPortraits.tesorero.src, alt: directivaPortraits.tesorero.alt.en },
           },
         ],
       },
@@ -358,7 +350,7 @@ export const copy: Record<Locale, Copy> = {
       values: ['Collective care', 'Competition with belonging', 'Trans and non-binary pride'],
       history: 'The club’s public origin dates back to 2019, with football as the base and sustained growth into other branches.',
       documentary: { title: 'Disforia Fútbol Club', text: 'Documentary about the club origin and its community-sports journey.', award: 'Audience Award · FIDOCS 2022', cta: 'View on CineChile' },
-      people: { title: 'People of the club', intro: 'Chris appears as founder and main public face; Aaron and Waldo as visible references in the process.' },
+      people: { title: 'Club board', intro: 'Leadership team managing the club\'s direction and operations.' },
       timeline: [
         { year: '2019', event: 'Public launch of Disforia FC in Chile with football as core branch.' },
         { year: '2021', event: 'National media started covering the project.' },
