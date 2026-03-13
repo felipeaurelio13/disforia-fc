@@ -58,3 +58,16 @@ it('includes valencia transparency and faq blocks for both locales', () => {
     expect(copy[lang].valencia.faq.length).toBeGreaterThan(0);
   }
 });
+
+it('includes a five-step achievements roadmap for both locales', () => {
+  for (const lang of ['es', 'en'] as const) {
+    const roadmap = copy[lang].home.roadmap;
+    expect(roadmap.title.length).toBeGreaterThan(10);
+    expect(roadmap.milestones).toHaveLength(5);
+    for (const milestone of roadmap.milestones) {
+      expect(milestone.year).toMatch(/^\d{4}$/);
+      expect(milestone.title.length).toBeGreaterThan(8);
+      expect(milestone.detail.length).toBeGreaterThan(30);
+    }
+  }
+});

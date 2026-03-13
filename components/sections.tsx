@@ -1,4 +1,5 @@
 import { Reveal } from '@/components/Reveal';
+import { AchievementsRoadmap } from '@/components/AchievementsRoadmap';
 import { Badge, Card, Section } from '@/components/ui';
 import { SafeImage } from '@/components/ui/SafeImage';
 import { copy } from '@/content/copy';
@@ -69,8 +70,8 @@ export function HomeSections({ lang }: { lang: Locale }) {
                 <Reveal key={branch.title} delayMs={i * 80}>
                   <Card className={`h-full ${branch.featured ? 'border-brand-primary/30 bg-brand-primary/5' : ''}`}>
                     {img && (
-                      <div className="relative mb-3 aspect-[16/10] overflow-hidden rounded-xl">
-                        <SafeImage src={img.src} alt={img.alt[lang]} fill sizes="(max-width: 767px) 92vw, (max-width: 1279px) 31vw, 380px" className="object-cover" fallbackLabel={branch.title} />
+                      <div className="relative mb-3 aspect-square overflow-hidden rounded-xl bg-white">
+                        <SafeImage src={img.src} alt={img.alt[lang]} fill sizes="(max-width: 767px) 92vw, (max-width: 1279px) 31vw, 380px" className="object-contain p-2" fallbackLabel={branch.title} />
                       </div>
                     )}
                     <h3 className="font-display text-xl font-semibold text-brand-charcoal">{branch.title}</h3>
@@ -84,7 +85,6 @@ export function HomeSections({ lang }: { lang: Locale }) {
                         <Instagram className="h-3.5 w-3.5" />
                         {branch.instagram}
                       </a>
-                      {branch.featured ? <Badge>{lang === 'es' ? 'Rama principal' : 'Main branch'}</Badge> : null}
                     </div>
                   </Card>
                 </Reveal>
@@ -168,18 +168,10 @@ export function HomeSections({ lang }: { lang: Locale }) {
       {/* ── Journey & Community group ── */}
       <div className="section-group bg-brand-lavender/[0.04]">
         {/* Timeline */}
-        <Section id="timeline" title={lang === 'es' ? 'Recorrido público' : 'Public journey'} description={t.club.history}>
-          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
-            {t.club.timeline.map((item, i) => (
-              <Reveal key={item.year} delayMs={i * 60}>
-                <article className="relative h-full overflow-hidden rounded-2xl border border-brand-softGray bg-brand-surface p-4">
-                  <div className="absolute left-0 top-0 h-full w-1 bg-brand-accent/70" aria-hidden="true" />
-                  <p className="pl-2 font-display text-xs font-semibold uppercase tracking-[0.1em] text-brand-lavender">{item.year}</p>
-                  <p className="mt-2 pl-2 text-sm leading-relaxed text-brand-text/80">{item.event}</p>
-                </article>
-              </Reveal>
-            ))}
-          </div>
+        <Section id="timeline" title={t.home.roadmap.title} description={t.home.roadmap.intro}>
+          <Reveal>
+            <AchievementsRoadmap lang={lang} milestones={t.home.roadmap.milestones} />
+          </Reveal>
         </Section>
 
         {/* Directiva */}

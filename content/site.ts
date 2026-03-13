@@ -78,16 +78,16 @@ export const documentary = {
  */
 export const branchImages: Record<string, { src: string; alt: Record<Locale, string> }> = {
   football: {
-    src: '/images/prensa/galio-06.jpg',
-    alt: { es: 'Equipo de fútbol de Disforia FC en círculo mostrando camisetas', en: 'Disforia FC football team in circle showing jerseys' },
+    src: '/images/logo_disforia_futbol.jpeg',
+    alt: { es: 'Logo de la rama de fútbol de Disforia FC', en: 'Disforia FC football branch logo' },
   },
   basketball: {
-    src: '/images/prensa/galio-01.jpg',
-    alt: { es: 'Jugadores de básquetbol de Disforia FC con bandera trans', en: 'Disforia FC basketball players with trans flag' },
+    src: '/images/logo_disforia_basket.jpeg',
+    alt: { es: 'Logo de la rama de básquetbol de Disforia FC', en: 'Disforia FC basketball branch logo' },
   },
   volleyball: {
-    src: '/images/prensa/galio-full-55.jpg',
-    alt: { es: 'Integrantes de Disforia FC en foto grupal', en: 'Disforia FC members in group photo' },
+    src: '/images/logo_disforia_voley.jpeg',
+    alt: { es: 'Logo de la rama de vóley de Disforia FC', en: 'Disforia FC volleyball branch logo' },
   },
 };
 

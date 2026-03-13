@@ -28,6 +28,7 @@ type Copy = {
     about: { title: string; body: string; quote: string };
     branches: { title: string; items: { title: string; text: string; featured?: boolean; schedule: string; location: string; instagram: string; instagramUrl: string }[] };
     impact: { title: string; intro: string; items: { title: string; text: string }[] };
+    roadmap: { title: string; intro: string; milestones: { year: string; title: string; detail: string }[] };
     valencia: { title: string; text: string; donate: string; sponsor: string };
     people: { title: string; intro: string; list: Person[] };
     press: { title: string; links: { title: string; href: string; description: string; cta: string }[] };
@@ -126,6 +127,37 @@ export const copy: Record<Locale, Copy> = {
           { title: 'Deportivo', text: 'Entrenamientos sostenidos y participación competitiva.' },
           { title: 'Comunitario', text: 'Espacio seguro con nombre, pronombres y cuidados colectivos.' },
           { title: 'Público', text: 'Cobertura en prensa y presencia en conversaciones sobre inclusión deportiva.' },
+        ],
+      },
+      roadmap: {
+        title: 'Recorrido de logros de Disforia',
+        intro: 'Hitos deportivos, culturales y de incidencia pública que muestran cómo crece el club año tras año.',
+        milestones: [
+          {
+            year: '2019',
+            title: 'Nace Disforia FC en Chile',
+            detail: 'Comienza el primer club deportivo trans y no binario del país con una rama inicial de fútbol.',
+          },
+          {
+            year: '2021',
+            title: 'Visibilidad en medios nacionales',
+            detail: 'La cobertura periodística instala públicamente la urgencia de espacios deportivos seguros para personas trans.',
+          },
+          {
+            year: '2022',
+            title: 'Premio del Público en FIDOCS',
+            detail: 'El documental Disforia Fútbol Club recibe reconocimiento y amplía el alcance cultural del proyecto.',
+          },
+          {
+            year: '2024',
+            title: 'Consolidación de ramas activas',
+            detail: 'Se fortalece la estructura deportiva del club con fútbol, básquetbol y desarrollo sostenido de vóley.',
+          },
+          {
+            year: '2026',
+            title: 'Rumbo a Gay Games XII Valencia',
+            detail: 'La campaña internacional proyecta representación chilena trans y no binaria en un escenario deportivo global.',
+          },
         ],
       },
       valencia: {
@@ -303,6 +335,37 @@ export const copy: Record<Locale, Copy> = {
           { title: 'Sports', text: 'Sustained training and competitive participation.' },
           { title: 'Community', text: 'Safe space with names, pronouns, and collective care.' },
           { title: 'Public', text: 'Press coverage and visibility in inclusive-sport conversations.' },
+        ],
+      },
+      roadmap: {
+        title: 'Disforia achievements roadmap',
+        intro: 'Sports, cultural, and advocacy milestones that map how the club keeps growing each year.',
+        milestones: [
+          {
+            year: '2019',
+            title: 'Disforia FC launches in Chile',
+            detail: 'The first trans and non-binary sports club in the country starts with football as its initial branch.',
+          },
+          {
+            year: '2021',
+            title: 'National media visibility grows',
+            detail: 'Press coverage places the need for safe sports spaces for trans people in public conversation.',
+          },
+          {
+            year: '2022',
+            title: 'FIDOCS Audience Award',
+            detail: 'The documentary Disforia Fútbol Club earns recognition and expands the project cultural reach.',
+          },
+          {
+            year: '2024',
+            title: 'Active branches become stronger',
+            detail: 'Football and basketball consolidate while volleyball keeps progressing through community training.',
+          },
+          {
+            year: '2026',
+            title: 'Road to Gay Games XII Valencia',
+            detail: 'An international campaign pushes trans and non-binary Chilean representation on a global sports stage.',
+          },
         ],
       },
       valencia: {
