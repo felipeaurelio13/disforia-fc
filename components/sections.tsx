@@ -1,15 +1,16 @@
 import { Reveal } from '@/components/Reveal';
 import { AchievementsRoadmap } from '@/components/AchievementsRoadmap';
-import { ActionLink, Badge, ButtonLink, Card, Section } from '@/components/ui';
+import { ActionLink, Badge, Card, Section } from '@/components/ui';
 import { SafeImage } from '@/components/ui/SafeImage';
 import { copy } from '@/content/copy';
-import { branchImages, externalLinks, Locale, pressCoverage, valenciaFunding } from '@/content/site';
+import { branchImages, documentary, externalLinks, Locale, pressCoverage, valenciaFunding } from '@/content/site';
 import { localizedPath } from '@/lib/routes';
 import { getValenciaProgress } from '@/lib/valencia';
-import { Clock, Film, Image as ImageIcon, Instagram, MapPin, Newspaper } from 'lucide-react';
+import { ArrowUpRight, CalendarPlus, Check, CircleDollarSign, Clock, Dumbbell, Film, HandHeart, Handshake, HeartHandshake, Instagram, MapPin, Megaphone, Newspaper } from 'lucide-react';
 
 export function HomeSections({ lang }: { lang: Locale }) {
   const t = copy[lang];
+  const shortFilm = documentary.shortFilm;
   const clubPillars = [
     { title: lang === 'es' ? 'Misión' : 'Mission', text: t.club.mission },
     { title: lang === 'es' ? 'Visión' : 'Vision', text: t.club.vision },
@@ -59,12 +60,58 @@ export function HomeSections({ lang }: { lang: Locale }) {
     .filter((year) => Number.isFinite(year))
     .sort((a, b) => a - b);
   const archiveCategories = [...new Set(pressCoverage.map((item) => t.pressPage.categoryLabels[item.category] ?? item.category))];
+  const archiveCoverageSummary =
+    archiveCategories.length > 2
+      ? `${archiveCategories.slice(0, 2).join(' · ')} +${archiveCategories.length - 2}`
+      : archiveCategories.join(' · ');
   const archiveSpan = archiveYears.length ? `${archiveYears[0]}-${archiveYears[archiveYears.length - 1]}` : null;
   const pressBasePath = localizedPath(lang, 'press');
-  const pressQuickLinks = [
-    { href: `${pressBasePath}#film`, label: t.pressPage.filmSectionTitle, icon: Film },
-    { href: `${pressBasePath}#gallery`, label: t.pressPage.galleryTitle, icon: ImageIcon },
-    { href: `${pressBasePath}#coverage`, label: t.pressPage.pressTitle, icon: Newspaper },
+  const valenciaSectionDescription = `${valenciaFunding.officialFacts.games[lang]} · ${valenciaFunding.officialFacts.dates[lang]}`;
+  const supportCardMeta = [
+    {
+      icon: CircleDollarSign,
+      cardClass: 'border-brand-primary/18 bg-white',
+      tone: 'accent' as const,
+      ctaVariant: 'primary' as const,
+      ctaClass: 'gap-2',
+    },
+    {
+      icon: Handshake,
+      cardClass: 'border-brand-softGray/80 bg-white',
+      tone: 'default' as const,
+      ctaVariant: 'secondary' as const,
+      ctaClass: 'gap-2',
+    },
+    {
+      icon: Megaphone,
+      cardClass: 'border-brand-softGray/80 bg-white',
+      tone: 'default' as const,
+      ctaVariant: 'ghost' as const,
+      ctaClass: 'gap-2',
+    },
+  ];
+  const joinCardMeta = [
+    {
+      icon: Dumbbell,
+      cardClass: 'border-brand-softGray/80 bg-white',
+      tone: 'default' as const,
+      ctaVariant: 'secondary' as const,
+      ctaClass: 'gap-2',
+    },
+    {
+      icon: HeartHandshake,
+      cardClass: 'border-brand-softGray/80 bg-white',
+      tone: 'default' as const,
+      ctaVariant: 'ghost' as const,
+      ctaClass: 'gap-2',
+    },
+    {
+      icon: CalendarPlus,
+      cardClass: 'border-brand-softGray/80 bg-white',
+      tone: 'default' as const,
+      ctaVariant: 'ghost' as const,
+      ctaClass: 'gap-2',
+    },
   ];
 
   return (
@@ -191,53 +238,81 @@ export function HomeSections({ lang }: { lang: Locale }) {
         {/* Documentary */}
         <Section id="documentary" title={lang === 'es' ? 'El club en pantalla' : 'The club on screen'}>
           <Reveal>
-            <div className="overflow-hidden rounded-[28px] border border-brand-lavender/24 bg-[linear-gradient(135deg,rgba(8,8,10,0.98),rgba(34,19,49,0.96)_54%,rgba(131,92,163,0.92))] p-5 shadow-lift sm:p-6 lg:p-7">
-              <div className="grid gap-6 lg:grid-cols-[minmax(0,0.88fr)_minmax(340px,1.12fr)] lg:items-center">
+            <div className="overflow-hidden rounded-[30px] border border-brand-lavender/18 bg-[linear-gradient(135deg,#09090d_0%,#171127_48%,#5f527f_100%)] p-5 shadow-lift sm:p-6 lg:p-7">
+              <div className="grid gap-6 lg:grid-cols-[minmax(0,0.88fr)_minmax(360px,1.12fr)] lg:items-center xl:gap-8">
                 <div className="text-white">
-                  <div className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/8 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-white/82">
+                  <div className="inline-flex items-center gap-2 rounded-full border border-white/28 bg-white/[0.12] px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-white shadow-[0_8px_24px_rgba(0,0,0,0.18)]">
                     <Film className="h-3.5 w-3.5" />
-                    {lang === 'es' ? 'Cortometraje documental' : 'Documentary short film'}
+                    {lang === 'es' ? shortFilm.format : shortFilm.formatEn}
                   </div>
-                  <h3 className="mt-4 max-w-[14ch] font-display text-[2rem] font-semibold leading-[1.04] tracking-[-0.03em] text-white sm:text-[2.35rem]">
+                  <h3 className="mt-4 max-w-[12ch] font-display text-[2rem] font-semibold leading-[1.02] tracking-[-0.03em] text-white sm:text-[2.4rem] lg:text-[2.7rem]">
                     {t.club.documentary.title}
                   </h3>
                   <p className="mt-4 max-w-[34ch] text-sm leading-relaxed text-white/78 sm:text-base">
                     {t.club.documentary.text}
                   </p>
 
-                  <div className="mt-5 flex flex-wrap gap-2.5">
-                    <span className="inline-flex items-center rounded-full border border-brand-sky/30 bg-brand-sky/12 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-brand-offWhite">
+                  <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-white/66">
+                    <span>{shortFilm.year}</span>
+                    <span className="h-1 w-1 rounded-full bg-white/30" aria-hidden="true" />
+                    <span>{shortFilm.duration}</span>
+                    <span className="h-1 w-1 rounded-full bg-white/30" aria-hidden="true" />
+                    <span>{shortFilm.director}</span>
+                  </div>
+
+                  <div className="mt-4 flex flex-wrap gap-2.5">
+                    <span className="inline-flex items-center rounded-full border border-brand-sky/45 bg-brand-sky/18 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-white shadow-[0_8px_24px_rgba(0,0,0,0.16)]">
                       {t.club.documentary.award}
-                    </span>
-                    <span className="inline-flex items-center rounded-full border border-white/12 bg-white/6 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-white/76">
-                      {lang === 'es' ? 'Archivo audiovisual' : 'Audiovisual archive'}
                     </span>
                   </div>
 
-                  <div className="mt-6">
-                    <ActionLink href={externalLinks.documentary} external className="bg-white text-brand-charcoal hover:bg-white/92">
+                  <div className="mt-6 flex flex-wrap gap-3">
+                    <ActionLink
+                      href={externalLinks.documentary}
+                      external
+                      variant="ghost"
+                      className="border-white/10 bg-white text-brand-charcoal hover:border-white/20 hover:bg-white/92"
+                    >
                       {t.club.documentary.cta}
+                    </ActionLink>
+                    <ActionLink
+                      href={externalLinks.documentaryChileDoc}
+                      external
+                      variant="ghost"
+                      className="border-white/28 bg-white/[0.12] text-white hover:border-white/36 hover:bg-white/[0.18]"
+                    >
+                      {lang === 'es' ? 'Ficha en ChileDoc' : 'View on ChileDoc'}
                     </ActionLink>
                   </div>
                 </div>
 
                 <div className="relative">
-                  <div className="absolute inset-6 rounded-[28px] bg-brand-sky/20 blur-3xl" aria-hidden="true" />
-                  <div className="relative overflow-hidden rounded-[24px] border border-white/12 bg-black p-3 shadow-[0_24px_60px_rgba(0,0,0,0.35)] sm:p-4">
-                    <div className="mb-3 flex items-center justify-between rounded-full border border-white/10 bg-white/6 px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.14em] text-white/68">
-                      <span>{lang === 'es' ? 'Fotograma' : 'Still frame'}</span>
-                      <span>FIDOCS 2022</span>
-                    </div>
-                    <div className="relative aspect-[16/10] overflow-hidden rounded-[18px]">
+                  <div className="absolute inset-10 rounded-[32px] bg-brand-sky/10 blur-3xl" aria-hidden="true" />
+                  <div className="relative overflow-hidden rounded-[26px] border border-white/14 bg-black/28 p-3 shadow-[0_24px_60px_rgba(0,0,0,0.28)] sm:p-4">
+                    <div className="relative aspect-[16/10] overflow-hidden rounded-[20px]">
                       <SafeImage
-                        src="/images/prensa/cinhomo-fotograma.jpg"
+                        src={shortFilm.still}
                         alt={lang === 'es' ? 'Fotograma del documental Disforia Fútbol Club' : 'Still from Disforia Fútbol Club documentary'}
                         fill
                         className="object-cover"
-                        sizes="(max-width: 767px) 92vw, (max-width: 1279px) 42vw, 560px"
+                        sizes="(max-width: 767px) 92vw, (max-width: 1279px) 52vw, 640px"
                         fallbackLabel="Documental"
                       />
-                      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.06),rgba(0,0,0,0.38))]" />
+                      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.08),rgba(0,0,0,0.42))]" />
+                      <div className="absolute left-4 top-4 inline-flex items-center rounded-full border border-white/24 bg-black/55 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-white backdrop-blur-sm">
+                        {lang === 'es' ? 'Fotograma oficial' : 'Official still'}
+                      </div>
+                      <div className="absolute inset-x-0 bottom-0 flex flex-wrap items-end justify-between gap-3 p-4">
+                        <div>
+                          <p className="font-display text-lg font-semibold leading-tight text-white sm:text-[1.35rem]">{shortFilm.title}</p>
+                          <p className="mt-1 text-xs uppercase tracking-[0.12em] text-white/70">
+                            {lang === 'es' ? 'Dir. Inti Lorca' : 'Dir. Inti Lorca'}
+                          </p>
+                        </div>
+                        <span className="rounded-full border border-white/24 bg-black/55 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-white">
+                          FIDOCS 2022
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -247,34 +322,129 @@ export function HomeSections({ lang }: { lang: Locale }) {
         </Section>
 
         {/* Valencia 2026 */}
-        <Section id="valencia" title={t.home.valencia.title} description={t.home.valencia.text}>
+        <Section id="valencia" title={t.home.valencia.title} description={valenciaSectionDescription}>
           <Reveal>
-            <div className="grid gap-4 lg:grid-cols-2">
-              <Card>
-                <Badge>Valencia 2026</Badge>
-                <p className="mt-3 text-sm text-brand-text/86 sm:text-base">{t.home.valencia.text}</p>
-                <div className="mt-5 flex flex-wrap gap-2.5">
-                  <ActionLink href={externalLinks.gofundme} external>{t.home.valencia.donate}</ActionLink>
-                  <ActionLink href={externalLinks.instagram} external variant="ghost">Instagram</ActionLink>
+            <div className="grid gap-4 xl:grid-cols-[minmax(0,1.08fr)_minmax(320px,0.92fr)]">
+              <Card className="border-brand-primary/16 bg-white/92 p-5 sm:p-6 lg:p-7">
+                <div className="flex flex-wrap items-center gap-2.5">
+                  <Badge>{t.home.valencia.badge}</Badge>
+                  <span className="inline-flex items-center rounded-full border border-black/8 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.12em] text-brand-text/58">
+                    {valenciaFunding.officialFacts.dates[lang]}
+                  </span>
+                </div>
+
+                <p className="mt-5 max-w-[20ch] text-balance font-display text-[1.65rem] font-semibold leading-[1.12] tracking-[-0.03em] text-brand-charcoal sm:text-[2rem] lg:text-[2.2rem]">
+                  {t.home.valencia.text}
+                </p>
+
+                <div className="mt-6 grid gap-3 border-t border-brand-softGray/80 pt-5 sm:grid-cols-2">
+                  <div>
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-brand-text/48">
+                      {lang === 'es' ? 'Fechas oficiales' : 'Official dates'}
+                    </p>
+                    <p className="mt-2 text-sm leading-relaxed text-brand-charcoal">
+                      {valenciaFunding.officialFacts.dates[lang]}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-brand-text/48">
+                      {lang === 'es' ? 'Cierre fútbol' : 'Football deadline'}
+                    </p>
+                    <p className="mt-2 text-sm leading-relaxed text-brand-charcoal">
+                      {valenciaFunding.officialFacts.footballDeadline[lang]}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="mt-6 flex flex-wrap gap-2.5">
+                  <ActionLink href={externalLinks.gofundme} external className="gap-2">
+                    {t.home.valencia.donate}
+                    <ArrowUpRight className="h-4 w-4" />
+                  </ActionLink>
+                  <ActionLink href={externalLinks.instagram} external variant="ghost" className="gap-2">
+                    <Instagram className="h-4 w-4" />
+                    {t.home.valencia.instagram}
+                  </ActionLink>
                 </div>
               </Card>
-              <Card>
+
+              <Card className="border-black/8 bg-white/88 p-5 sm:p-6">
                 {isTracked ? (
-                  <>
-                    <Badge>{lang === 'es' ? 'Progreso' : 'Progress'}</Badge>
-                    <p className="mt-2 font-display text-4xl font-semibold text-brand-charcoal">{percentage}%</p>
-                    <p className="mt-1 text-sm text-brand-text/75">{`${format.format(valenciaFunding.tracked!.raised)} / ${format.format(valenciaFunding.tracked!.target)}`}</p>
-                    <div className="mt-4 h-2.5 overflow-hidden rounded-full bg-brand-softGray"><div className="h-full rounded-full bg-brand-accent" style={{ width: `${percentage ?? 0}%` }} /></div>
-                    <p className="mt-3 text-sm text-brand-text/82">{lang === 'es' ? 'Faltan por financiar:' : 'Still to fund:'} <span className="font-semibold text-brand-charcoal">{format.format(remaining!)}</span></p>
-                  </>
+                  <div>
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-brand-primary/82">
+                      {t.home.valencia.progressLabel}
+                    </p>
+                    <div className="mt-3 flex flex-wrap items-end justify-between gap-3">
+                      <p className="font-display text-4xl font-semibold tracking-tight text-brand-charcoal">
+                        {percentage}%
+                      </p>
+                      <p className="text-sm font-medium text-brand-text/64">
+                        {`${format.format(valenciaFunding.tracked!.raised)} / ${format.format(valenciaFunding.tracked!.target)}`}
+                      </p>
+                    </div>
+                    <div className="mt-4 h-2 overflow-hidden rounded-full bg-brand-softGray">
+                      <div className="h-full rounded-full bg-brand-accent" style={{ width: `${percentage ?? 0}%` }} />
+                    </div>
+                    <p className="mt-3 text-sm text-brand-text/82">
+                      {t.home.valencia.remainingLabel}{' '}
+                      <span className="font-semibold text-brand-charcoal">{format.format(remaining!)}</span>
+                    </p>
+                  </div>
                 ) : (
-                  <>
+                  <div>
                     <Badge>{valenciaFunding.narrative.status[lang]}</Badge>
-                    <ul className="mt-3 space-y-2 text-sm text-brand-text/82">
-                      {valenciaFunding.narrative.categories[lang].map((item) => <li key={item}>• {item}</li>)}
-                    </ul>
-                  </>
+                    <p className="mt-3 text-sm leading-relaxed text-brand-text/78">
+                      {t.home.valencia.supportIntro}
+                    </p>
+                  </div>
                 )}
+
+                <div className="mt-6 border-t border-brand-softGray/80 pt-5">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-brand-lavender/82">
+                    {t.home.valencia.supportTitle}
+                  </p>
+
+                  <ol className="mt-4 space-y-4">
+                    {t.home.valencia.supportItems.map((item, index) => {
+                      return (
+                        <li key={item.title} className="flex items-start gap-3.5">
+                          <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-lavender/[0.08] text-[11px] font-semibold text-brand-lavender">
+                            {index + 1}
+                          </span>
+                          <div>
+                            <h3 className="font-display text-[1.02rem] font-semibold tracking-tight text-brand-charcoal">
+                              {item.title}
+                            </h3>
+                            <p className="mt-1.5 text-sm leading-relaxed text-brand-text/76">
+                              {item.text}
+                            </p>
+                          </div>
+                        </li>
+                      );
+                    })}
+                  </ol>
+                </div>
+
+                <div className="mt-6 border-t border-brand-softGray/80 pt-5">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-brand-text/52">
+                    {t.home.valencia.officialTitle}
+                  </p>
+                  <div className="mt-3 space-y-2 text-sm text-brand-text/78">
+                    <p className="flex items-start gap-2.5">
+                      <CalendarPlus className="mt-0.5 h-4 w-4 shrink-0 text-brand-primary" />
+                      <span>{valenciaFunding.officialFacts.dates[lang]}</span>
+                    </p>
+                    <p className="flex items-start gap-2.5">
+                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-brand-lavender" />
+                      <span>{valenciaFunding.officialFacts.footballDeadline[lang]}</span>
+                    </p>
+                  </div>
+                  <div className="mt-4">
+                    <ActionLink href={externalLinks.gayGames} external variant="text" className="min-h-0">
+                      {t.home.valencia.officialCta}
+                    </ActionLink>
+                  </div>
+                </div>
               </Card>
             </div>
           </Reveal>
@@ -310,196 +480,145 @@ export function HomeSections({ lang }: { lang: Locale }) {
         {/* Press */}
         <Section id="press" title={t.home.press.title} eyebrow={t.home.press.eyebrow} description={t.home.press.intro}>
           <Reveal>
-            <div className="overflow-hidden rounded-[28px] border border-brand-lavender/20 bg-[radial-gradient(circle_at_top_right,rgba(137,194,227,0.2),transparent_40%),linear-gradient(180deg,rgba(255,255,255,0.98),rgba(248,246,251,0.96))] p-4 shadow-soft sm:p-5 lg:p-6">
-              <div className="grid grid-cols-5 overflow-hidden rounded-full border border-brand-softGray/80 bg-white/80">
-                {['#5BCEFA', '#F5A9B8', '#FFFFFF', '#F5A9B8', '#5BCEFA'].map((color) => (
-                  <span key={color} className="h-2" style={{ backgroundColor: color }} aria-hidden="true" />
-                ))}
-              </div>
-
-              <div className="mt-5 flex flex-col gap-4 border-b border-brand-softGray/70 pb-5 lg:flex-row lg:items-end lg:justify-between">
+            <div className="overflow-hidden rounded-[28px] border border-brand-softGray/80 bg-white/88 p-4 shadow-soft sm:p-5 lg:p-6">
+              <div className="mb-4 flex flex-col gap-3 border-b border-brand-softGray/70 pb-4 lg:flex-row lg:items-end lg:justify-between">
                 <div className="max-w-2xl">
-                  <div className="inline-flex items-center gap-2 rounded-full border border-brand-lavender/20 bg-white/75 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-brand-lavender/85">
-                    <Newspaper className="h-3.5 w-3.5" />
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-brand-lavender/80">
                     {t.home.press.featuredLabel}
-                  </div>
-                  <p className="mt-3 text-sm leading-relaxed text-brand-text/76 sm:text-[0.95rem]">{t.home.press.featuredIntro}</p>
+                  </p>
+                  <p className="mt-1 text-sm leading-relaxed text-brand-text/72">{t.home.press.featuredIntro}</p>
                 </div>
-                <div className="w-full lg:w-auto">
-                  <ButtonLink href={pressBasePath} variant="secondary">{t.home.press.archiveCta}</ButtonLink>
-                </div>
+                <ActionLink href={pressBasePath} variant="secondary" className="w-full lg:w-auto">
+                  {t.home.press.archiveCta}
+                </ActionLink>
               </div>
 
-              <div className="mt-5 grid gap-4 xl:grid-cols-[minmax(0,1.2fr)_minmax(320px,0.8fr)]">
+              <div className="grid gap-4 xl:grid-cols-[minmax(0,1.08fr)_minmax(320px,0.92fr)] xl:items-stretch">
                 {featuredPressItem ? (
-                  <article className="group relative min-h-[320px] overflow-hidden rounded-[24px] border border-black/10 bg-black shadow-lift sm:min-h-[420px]">
+                  <article className="group relative overflow-hidden rounded-[24px] border border-black/10 bg-white shadow-soft">
                     <a href={featuredPressItem.href} target="_blank" rel="noreferrer" className="absolute inset-0 z-10" aria-label={`${featuredPressItem.source}: ${featuredPressItem.headline}`} />
-                    {featuredPressItem.coverage?.thumbnail ? (
-                      <SafeImage
-                        src={featuredPressItem.coverage.thumbnail}
-                        alt={featuredPressItem.headline}
-                        fill
-                        sizes="(max-width: 1279px) 100vw, 58vw"
-                        className="object-cover transition-transform duration-700 group-hover:scale-105"
-                        fallbackLabel={featuredPressItem.source}
-                      />
-                    ) : null}
-                    <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.12),rgba(0,0,0,0.54)_42%,rgba(0,0,0,0.9))]" />
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(131,92,163,0.38),transparent_38%)]" />
-
-                    <div className="relative flex h-full flex-col justify-between p-4 sm:p-6">
-                      <header className="flex flex-wrap items-start justify-between gap-3 text-white">
-                        <div className="flex flex-wrap items-center gap-2">
-                          {featuredPressItem.categoryLabel ? (
-                            <span className="inline-flex items-center rounded-full border border-white/20 bg-white/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-white/95">
-                              {featuredPressItem.categoryLabel}
-                            </span>
-                          ) : null}
-                          {featuredPressItem.year ? (
-                            <span className="rounded-full border border-white/15 bg-black/25 px-2.5 py-1 text-[11px] font-medium text-white/78">
-                              {featuredPressItem.year}
-                            </span>
-                          ) : null}
-                        </div>
+                    <div className="relative aspect-[16/10] overflow-hidden bg-brand-softGray/20">
+                      {featuredPressItem.coverage?.thumbnail ? (
+                        <SafeImage
+                          src={featuredPressItem.coverage.thumbnail}
+                          alt={featuredPressItem.headline}
+                          fill
+                          sizes="(max-width: 1279px) 100vw, 54vw"
+                          className="object-cover transition-transform duration-700 group-hover:scale-105"
+                          fallbackLabel={featuredPressItem.source}
+                        />
+                      ) : null}
+                    </div>
+                    <div className="p-4 sm:p-5 lg:p-6">
+                      <header className="flex flex-wrap items-center gap-x-3 gap-y-2">
+                        <span className="inline-flex items-center gap-2 rounded-full border border-brand-lavender/18 bg-brand-lavender/[0.05] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-brand-lavender">
+                          <Newspaper className="h-3.5 w-3.5" />
+                          {t.home.press.featuredLabel}
+                        </span>
+                        {featuredPressItem.categoryLabel ? (
+                          <span className="inline-flex items-center rounded-full border border-brand-softGray/80 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-brand-text/72">
+                            {featuredPressItem.categoryLabel}
+                          </span>
+                        ) : null}
+                        {featuredPressItem.year ? (
+                          <span className="text-[11px] font-medium text-brand-text/54">
+                            {featuredPressItem.year}
+                          </span>
+                        ) : null}
                         {featuredPressItem.dateLabel ? (
-                          <time dateTime={featuredPressItem.coverage?.date} className="text-[11px] font-medium uppercase tracking-[0.12em] text-white/66">
+                          <time dateTime={featuredPressItem.coverage?.date} className="text-[11px] font-medium text-brand-text/54">
                             {featuredPressItem.dateLabel}
                           </time>
                         ) : null}
                       </header>
 
-                      <div className="max-w-2xl">
-                        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-white/66">
+                      <div className="mt-4 max-w-2xl">
+                        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-brand-lavender/72">
                           {featuredPressItem.source}
                         </p>
-                        <h3 className="mt-2 max-w-xl text-balance font-display text-[1.5rem] font-semibold leading-[1.02] tracking-tight text-white sm:text-[2.45rem]">
+                        <h3 className="mt-2 max-w-xl text-balance font-display text-[1.35rem] font-semibold leading-[1.08] tracking-tight text-brand-charcoal sm:text-[1.65rem] lg:text-[1.9rem]">
                           {featuredPressItem.headline}
                         </h3>
-                        <p className="mt-3 max-w-xl text-sm leading-relaxed text-white/80 sm:text-base">
+                        <p className="mt-3 max-w-xl text-sm leading-relaxed text-brand-text/76 sm:text-[0.98rem]">
                           {featuredPressItem.summary}
                         </p>
-                        <p className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-white">
+                        <p className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-brand-magenta">
                           {featuredPressItem.cta}
-                          <span aria-hidden="true" className="transition-transform duration-200 group-hover:translate-x-1">↗</span>
+                          <span aria-hidden="true" className="transition-transform duration-200 group-hover:translate-x-1">→</span>
                         </p>
                       </div>
                     </div>
                   </article>
                 ) : null}
 
-                <div className="rounded-[24px] border border-brand-softGray/75 bg-white/78 p-4 sm:p-5">
-                  <div className="flex items-center justify-between gap-3 border-b border-brand-softGray/70 pb-3">
-                    <div>
-                      <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-brand-lavender/80">
-                        {t.home.press.secondaryTitle}
-                      </p>
-                      <p className="mt-1 text-sm text-brand-text/68">{t.home.press.secondaryIntro}</p>
+                <div className="flex h-full flex-col rounded-[24px] border border-brand-softGray/75 bg-brand-bg/48 p-4 sm:p-5">
+                  <div className="border-b border-brand-softGray/70 pb-3">
+                    <div className="flex items-start justify-between gap-3">
+                      <div>
+                        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-brand-lavender/80">
+                          {t.home.press.secondaryTitle}
+                        </p>
+                        <p className="mt-1 text-sm leading-relaxed text-brand-text/72">{t.home.press.secondaryIntro}</p>
+                      </div>
+                      <span className="text-[11px] font-medium uppercase tracking-[0.12em] text-brand-text/45">
+                        {secondaryPressItems.length} / {homePressItems.length}
+                      </span>
                     </div>
-                    <span className="text-[11px] font-medium uppercase tracking-[0.12em] text-brand-text/45">
-                      {secondaryPressItems.length} / {homePressItems.length}
-                    </span>
                   </div>
 
-                  <ol className="mt-4 space-y-4">
+                  <ol className="mt-4 space-y-3">
                     {secondaryPressItems.map((link, index) => (
                       <Reveal key={link.source} delayMs={index * 80}>
                         <li className="list-none">
-                          <article className="group relative overflow-hidden rounded-[20px] border border-brand-softGray/80 bg-white shadow-soft transition-all duration-200 ease-out hover:-translate-y-1 hover:border-brand-lavender/35 hover:shadow-lift">
+                          <article className="group relative overflow-hidden rounded-[20px] border border-brand-softGray/80 bg-white transition-all duration-200 ease-out hover:border-brand-lavender/28 hover:shadow-soft">
                             <a href={link.href} target="_blank" rel="noreferrer" className="absolute inset-0 z-10" aria-label={`${link.source}: ${link.headline}`} />
-                            <div className="grid min-h-[208px] gap-0 md:grid-cols-[92px_minmax(0,1fr)]">
-                              <div className="flex items-end justify-between border-b border-brand-softGray/70 bg-[linear-gradient(180deg,rgba(131,92,163,0.12),rgba(137,194,227,0.06))] px-4 py-3 md:flex-col md:items-start md:justify-between md:border-b-0 md:border-r">
-                                <span className="font-display text-[2rem] font-semibold leading-none tracking-tight text-brand-charcoal/92">
+                            <div className="p-4 sm:p-5">
+                              <header className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                                <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-brand-text/50">
                                   {String(index + 1).padStart(2, '0')}
                                 </span>
-                                {link.categoryLabel ? (
-                                  <span className="inline-flex items-center rounded-full border border-brand-magenta/20 bg-brand-magenta/7 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.1em] text-brand-magenta">
-                                    {link.categoryLabel}
-                                  </span>
+                                <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-brand-lavender/72">
+                                  {link.source}
+                                </p>
+                                {link.dateLabel ? (
+                                  <time dateTime={link.coverage?.date} className="text-[11px] tabular-nums text-brand-text/50">
+                                    {link.dateLabel}
+                                  </time>
                                 ) : null}
-                              </div>
+                              </header>
 
-                              <div className="grid gap-3 p-4 sm:gap-4 sm:p-5">
-                                {link.coverage?.thumbnail ? (
-                                  <div className="relative aspect-[16/10] overflow-hidden rounded-[16px] bg-brand-softGray/20 sm:aspect-[16/9]">
-                                    <SafeImage
-                                      src={link.coverage.thumbnail}
-                                      alt={link.headline}
-                                      fill
-                                      sizes="(max-width: 1279px) 100vw, 24vw"
-                                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                                      fallbackLabel={link.source}
-                                    />
-                                  </div>
-                                ) : null}
-
-                                <header className="flex flex-wrap items-center gap-x-3 gap-y-1">
-                                  <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-brand-lavender/72">
-                                    {link.source}
-                                  </p>
-                                  {link.dateLabel ? (
-                                    <time dateTime={link.coverage?.date} className="text-[11px] tabular-nums text-brand-text/50">
-                                      {link.dateLabel}
-                                    </time>
-                                  ) : null}
-                                </header>
-
-                                <div>
-                                  <h3 className="text-balance font-display text-[1.02rem] font-semibold leading-tight text-brand-charcoal transition-colors group-hover:text-brand-magenta sm:text-[1.15rem]">
-                                    {link.headline}
-                                  </h3>
-                                  <p className="mt-2 text-sm leading-relaxed text-brand-text/76">
-                                    {link.summary}
-                                  </p>
-                                </div>
-
-                                <p className="text-sm font-semibold text-brand-magenta transition-colors group-hover:text-brand-lavender">
-                                  {link.cta} →
+                              <div className="mt-2.5">
+                                <h3 className="text-balance font-display text-[1.02rem] font-semibold leading-tight text-brand-charcoal transition-colors group-hover:text-brand-magenta sm:text-[1.08rem]">
+                                  {link.headline}
+                                </h3>
+                                <p className="mt-1.5 text-sm leading-relaxed text-brand-text/76">
+                                  {link.summary}
                                 </p>
                               </div>
+
+                              <p className="mt-3 text-sm font-semibold text-brand-magenta transition-colors group-hover:text-brand-lavender">
+                                {link.cta} →
+                              </p>
                             </div>
                           </article>
                         </li>
                       </Reveal>
                     ))}
                   </ol>
-                </div>
-              </div>
 
-              <div className="mt-4 grid gap-3 border-t border-brand-softGray/70 pt-4 sm:grid-cols-3">
-                <div className="rounded-[18px] border border-brand-softGray/80 bg-white/72 px-4 py-3">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-brand-lavender/72">{t.home.press.stats.span}</p>
-                  <p className="mt-1 font-display text-xl font-semibold text-brand-charcoal">{archiveSpan ?? '2019-'}</p>
-                </div>
-                <div className="rounded-[18px] border border-brand-softGray/80 bg-white/72 px-4 py-3">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-brand-lavender/72">{t.home.press.stats.references}</p>
-                  <p className="mt-1 font-display text-xl font-semibold text-brand-charcoal">{pressCoverage.length}</p>
-                </div>
-                <div className="rounded-[18px] border border-brand-softGray/80 bg-white/72 px-4 py-3">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-brand-lavender/72">{t.home.press.stats.coverage}</p>
-                  <p className="mt-1 text-sm leading-relaxed text-brand-text/78">{archiveCategories.join(' · ')}</p>
-                </div>
-              </div>
-
-              <div className="mt-4 rounded-[22px] border border-brand-lavender/16 bg-[linear-gradient(135deg,rgba(131,92,163,0.08),rgba(137,194,227,0.08))] p-4 sm:p-5">
-                <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
-                  <div className="max-w-2xl">
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-brand-lavender/80">{t.home.press.continuationLabel}</p>
-                    <p className="mt-2 text-sm leading-relaxed text-brand-text/76">{t.home.press.continuationIntro}</p>
-                  </div>
-                  <div className="flex flex-wrap gap-2.5">
-                    {pressQuickLinks.map((item) => {
-                      const Icon = item.icon;
-                      return (
-                        <a
-                          key={item.href}
-                          href={item.href}
-                          className="inline-flex min-h-12 items-center gap-2 rounded-full border border-white/70 bg-white/86 px-4 py-2 text-sm font-semibold text-brand-charcoal shadow-soft hover:border-brand-lavender/30 hover:text-brand-lavender"
-                        >
-                          <Icon className="h-4 w-4" />
-                          {item.label}
-                        </a>
-                      );
-                    })}
+                  <div className="mt-4 grid gap-2 sm:grid-cols-3">
+                    <div className="rounded-[18px] border border-brand-softGray/80 bg-white px-4 py-3">
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-brand-lavender/72">{t.home.press.stats.span}</p>
+                      <p className="mt-1 font-display text-lg font-semibold text-brand-charcoal">{archiveSpan ?? '2019-'}</p>
+                    </div>
+                    <div className="rounded-[18px] border border-brand-softGray/80 bg-white px-4 py-3">
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-brand-lavender/72">{t.home.press.stats.references}</p>
+                      <p className="mt-1 font-display text-lg font-semibold text-brand-charcoal">{pressCoverage.length}</p>
+                    </div>
+                    <div className="rounded-[18px] border border-brand-softGray/80 bg-white px-4 py-3">
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-brand-lavender/72">{t.home.press.stats.coverage}</p>
+                      <p className="mt-1 text-sm leading-relaxed text-brand-text/78">{archiveCoverageSummary}</p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -512,37 +631,59 @@ export function HomeSections({ lang }: { lang: Locale }) {
       <div className="section-group">
         {/* Support */}
         <Section id="support" title={t.home.support.title}>
-          <p className="mb-6 max-w-3xl text-brand-text/80">{t.supportPage.intro}</p>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {t.supportPage.cards.map((card, index) => (
-              <Reveal key={card.title} delayMs={index * 80}>
-                <Card className="h-full" tone={index === 0 ? 'accent' : 'default'}>
-                  <h3 className="font-display text-lg font-semibold text-brand-charcoal">{card.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-brand-text/80">{card.text}</p>
-                  <ActionLink href={card.href} external={card.external} variant="ghost" className="mt-4 self-start text-brand-text/90">
-                    {card.cta}
-                  </ActionLink>
-                </Card>
-              </Reveal>
-            ))}
+          <p className="mb-6 max-w-3xl text-brand-text/78">{t.supportPage.intro}</p>
+          <div className="grid gap-4 md:grid-cols-3">
+            {t.supportPage.cards.map((card, index) => {
+              const meta = supportCardMeta[index] ?? supportCardMeta[supportCardMeta.length - 1];
+              const Icon = meta.icon;
+
+              return (
+                <Reveal key={card.title} delayMs={index * 80}>
+                  <Card className={`flex h-full flex-col ${meta.cardClass}`.trim()} tone={meta.tone}>
+                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-brand-softGray/80 bg-brand-bg text-brand-charcoal">
+                      <Icon className="h-4.5 w-4.5" />
+                    </span>
+                    <h3 className="mt-4 font-display text-[1.35rem] font-semibold leading-tight text-brand-charcoal">
+                      {card.title}
+                    </h3>
+                    <p className="mt-2 flex-1 text-sm leading-relaxed text-brand-text/78">{card.text}</p>
+                    <ActionLink href={card.href} external={card.external} variant={meta.ctaVariant} className={`mt-5 self-start ${meta.ctaClass}`.trim()}>
+                      {card.cta}
+                      <ArrowUpRight className="h-4 w-4" />
+                    </ActionLink>
+                  </Card>
+                </Reveal>
+              );
+            })}
           </div>
         </Section>
 
         {/* Join */}
         <Section id="join" title={t.home.join.title}>
-          <p className="mb-6 max-w-3xl text-brand-text/80">{t.joinPage.intro}</p>
+          <p className="mb-6 max-w-3xl text-brand-text/78">{t.joinPage.intro}</p>
           <div className="grid gap-4 md:grid-cols-3">
-            {t.joinPage.cards.map((card, index) => (
-              <Reveal key={card.title} delayMs={index * 80}>
-                <Card className="h-full">
-                  <h3 className="font-display text-lg font-semibold text-brand-charcoal">{card.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-brand-text/80">{card.text}</p>
-                  <ActionLink href={card.href} external variant="ghost" className="mt-4 self-start text-brand-text/90">
-                    {card.cta}
-                  </ActionLink>
-                </Card>
-              </Reveal>
-            ))}
+            {t.joinPage.cards.map((card, index) => {
+              const meta = joinCardMeta[index] ?? joinCardMeta[joinCardMeta.length - 1];
+              const Icon = meta.icon;
+
+              return (
+                <Reveal key={card.title} delayMs={index * 80}>
+                  <Card className={`flex h-full flex-col ${meta.cardClass}`.trim()} tone={meta.tone}>
+                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-brand-softGray/80 bg-brand-bg text-brand-charcoal">
+                      <Icon className="h-4.5 w-4.5" />
+                    </span>
+                    <h3 className="mt-4 font-display text-[1.35rem] font-semibold leading-tight text-brand-charcoal">
+                      {card.title}
+                    </h3>
+                    <p className="mt-2 flex-1 text-sm leading-relaxed text-brand-text/78">{card.text}</p>
+                    <ActionLink href={card.href} external={card.external} variant={meta.ctaVariant} className={`mt-5 self-start ${meta.ctaClass}`.trim()}>
+                      {card.cta}
+                      <ArrowUpRight className="h-4 w-4" />
+                    </ActionLink>
+                  </Card>
+                </Reveal>
+              );
+            })}
           </div>
         </Section>
       </div>

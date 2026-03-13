@@ -22,13 +22,38 @@ type Copy = {
     supportCTA: string;
     contactEmail: string | null;
   };
+  footer: {
+    badge: string;
+    description: string;
+    note: string;
+    navTitle: string;
+    campaignEyebrow: string;
+    campaignTitle: string;
+    campaignText: string;
+    instagramCta: string;
+    joinCta: string;
+  };
   home: {
     hero: { title: string; subtitle: string; primary: string; secondary: string; kicker: string };
     about: { title: string; body: string; quote: string };
     branches: { title: string; items: { key: BranchKey; title: string; text: string; featured?: boolean; schedule: string; location: string; instagram: string; instagramUrl: string }[] };
     impact: { title: string; intro: string; items: { title: string; text: string }[] };
     roadmap: { title: string; intro: string; milestones: { year: string; title: string; detail: string }[] };
-    valencia: { title: string; text: string; donate: string; sponsor: string };
+    valencia: {
+      title: string;
+      text: string;
+      donate: string;
+      sponsor: string;
+      badge: string;
+      instagram: string;
+      supportTitle: string;
+      supportIntro: string;
+      supportItems: { title: string; text: string }[];
+      officialTitle: string;
+      officialCta: string;
+      progressLabel: string;
+      remainingLabel: string;
+    };
     people: { title: string; intro: string; list: Person[] };
     press: {
       title: string;
@@ -110,6 +135,17 @@ export const copy: Record<Locale, Copy> = {
       { anchor: 'support', label: 'Apoya' },
     ],
     common: { clubName: 'Disforia FC', switchTo: 'EN', supportCTA: 'Donar · Valencia 2026', contactEmail: null },
+    footer: {
+      badge: 'Desde 2019',
+      description: 'Primer club deportivo trans y no binario de Chile. Entrenamos, competimos y construimos pertenencia.',
+      note: 'De la cancha a la incidencia pública, el club sostiene deporte, comunidad y representación rumbo a Valencia 2026.',
+      navTitle: 'Explorar',
+      campaignEyebrow: 'Campaña activa',
+      campaignTitle: 'Rumbo a Valencia 2026',
+      campaignText: 'El aporte actual financia inscripción, traslados y operación deportiva para representar a Chile con un equipo trans y no binario.',
+      instagramCta: 'Escribir por Instagram',
+      joinCta: 'Cómo participar',
+    },
     home: {
       hero: {
         title: 'Disforia FC: deporte trans y no binario con orgullo, cuidado y competencia.',
@@ -176,6 +212,28 @@ export const copy: Record<Locale, Copy> = {
         text: 'Cada aporte nos acerca a representar a Chile con un equipo trans y no binario. Tu donación financia inscripción, traslado y operación deportiva.',
         donate: 'Donar ahora en GoFundMe',
         sponsor: 'Cómo apoyar',
+        badge: 'Valencia 2026',
+        instagram: 'Seguir campaña en Instagram',
+        supportTitle: 'Tu aporte mueve esto',
+        supportIntro: 'La campaña financia lo imprescindible para competir, viajar y sostener la operación del equipo durante el proceso rumbo a Valencia.',
+        supportItems: [
+          {
+            title: 'Inscripción del equipo',
+            text: 'Asegura cupos, registro oficial y entrada del plantel que representará a Chile.',
+          },
+          {
+            title: 'Traslado y estadía',
+            text: 'Ayuda a cubrir viaje internacional, movilidad local y base de alojamiento.',
+          },
+          {
+            title: 'Operación deportiva',
+            text: 'Sostiene implementación, coordinación y preparación competitiva del equipo.',
+          },
+        ],
+        officialTitle: 'Datos clave del torneo',
+        officialCta: 'Ver sitio oficial de Gay Games',
+        progressLabel: 'Meta financiada',
+        remainingLabel: 'Por financiar',
       },
       people: {
         title: 'Directiva',
@@ -327,6 +385,17 @@ export const copy: Record<Locale, Copy> = {
       { anchor: 'support', label: 'Support' },
     ],
     common: { clubName: 'Disforia FC', switchTo: 'ES', supportCTA: 'Donate · Valencia 2026', contactEmail: null },
+    footer: {
+      badge: 'Since 2019',
+      description: 'Chile’s first trans and non-binary sports club. We train, compete, and build belonging.',
+      note: 'From the pitch to public advocacy, the club sustains sport, community, and representation on the road to Valencia 2026.',
+      navTitle: 'Explore',
+      campaignEyebrow: 'Active campaign',
+      campaignTitle: 'Road to Valencia 2026',
+      campaignText: 'Current support funds registration, travel, and team operations so a trans and non-binary squad can represent Chile.',
+      instagramCta: 'Message on Instagram',
+      joinCta: 'How to join',
+    },
     home: {
       hero: {
         title: 'Disforia FC: trans and non-binary sport with pride, care, and competition.',
@@ -393,6 +462,28 @@ export const copy: Record<Locale, Copy> = {
         text: 'Every contribution helps us represent Chile with a trans and non-binary squad. Your donation funds registration, travel, and team operations.',
         donate: 'Donate now on GoFundMe',
         sponsor: 'How to support',
+        badge: 'Valencia 2026',
+        instagram: 'Follow the campaign on Instagram',
+        supportTitle: 'What your support unlocks',
+        supportIntro: 'The campaign covers the essentials to compete, travel, and sustain team operations throughout the road to Valencia.',
+        supportItems: [
+          {
+            title: 'Team registration',
+            text: 'Secures roster slots, official registration, and entry for the squad representing Chile.',
+          },
+          {
+            title: 'Travel and stay',
+            text: 'Helps cover international travel, local mobility, and a base for accommodation.',
+          },
+          {
+            title: 'Sports operations',
+            text: 'Supports equipment, coordination, and the team’s competitive preparation.',
+          },
+        ],
+        officialTitle: 'Key event facts',
+        officialCta: 'View the official Gay Games site',
+        progressLabel: 'Funded goal',
+        remainingLabel: 'Still to fund',
       },
       people: {
         title: 'Board',
