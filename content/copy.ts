@@ -1,4 +1,4 @@
-import { externalLinks, Locale, directivaPortraits } from './site';
+import { BranchKey, directivaPortraits, externalLinks, Locale } from './site';
 import { RouteKey } from '@/lib/routes';
 
 type NavItem = { label: string } & ({ route: RouteKey } | { anchor: string });
@@ -24,14 +24,30 @@ type Copy = {
   };
   home: {
     hero: { title: string; subtitle: string; primary: string; secondary: string; kicker: string };
-    credibility: { title: string; detail: string }[];
     about: { title: string; body: string; quote: string };
-    branches: { title: string; items: { title: string; text: string; featured?: boolean; schedule: string; location: string; instagram: string; instagramUrl: string }[] };
+    branches: { title: string; items: { key: BranchKey; title: string; text: string; featured?: boolean; schedule: string; location: string; instagram: string; instagramUrl: string }[] };
     impact: { title: string; intro: string; items: { title: string; text: string }[] };
     roadmap: { title: string; intro: string; milestones: { year: string; title: string; detail: string }[] };
     valencia: { title: string; text: string; donate: string; sponsor: string };
     people: { title: string; intro: string; list: Person[] };
-    press: { title: string; links: { title: string; href: string; description: string; cta: string }[] };
+    press: {
+      title: string;
+      eyebrow: string;
+      intro: string;
+      featuredLabel: string;
+      featuredIntro: string;
+      secondaryTitle: string;
+      secondaryIntro: string;
+      archiveCta: string;
+      continuationLabel: string;
+      continuationIntro: string;
+      stats: {
+        span: string;
+        references: string;
+        coverage: string;
+      };
+      links: { title: string; href: string; description: string; cta: string }[];
+    };
     support: { title: string; paths: string[] };
     join: { title: string; paths: string[] };
   };
@@ -102,11 +118,6 @@ export const copy: Record<Locale, Copy> = {
         secondary: 'Dona para Valencia 2026',
         kicker: 'Desde 2019 · deporte, comunidad y pertenencia',
       },
-      credibility: [
-        { title: 'Primer club deportivo trans y no binario de Chile', detail: 'Proyecto pionero con continuidad pública y comunitaria desde 2019.' },
-        { title: 'Entrenamiento y competencia real', detail: 'Ramas activas de fútbol y básquetbol, con expansión de otras disciplinas.' },
-        { title: 'Documental y cobertura en medios', detail: 'Archivo público en prensa deportiva, cultural y documental premiado.' },
-      ],
       about: {
         title: 'Por qué nació Disforia FC',
         body: 'Nacimos porque muchas personas trans y no binarias fueron excluidas del deporte formal. Disforia FC responde con entrenamiento, cuidado colectivo y competencia real en un espacio seguro.',
@@ -115,9 +126,9 @@ export const copy: Record<Locale, Copy> = {
       branches: {
         title: 'Ramas deportivas',
         items: [
-          { title: 'Fútbol', text: 'Rama principal con entrenamientos regulares, juego competitivo y preparación para torneos.', featured: true, schedule: 'Lunes y Miércoles 19:00–21:00', location: 'Lugar por confirmar', instagram: '@disforia_fc', instagramUrl: externalLinks.instagramFootball },
-          { title: 'Básquetbol', text: 'Rama activa con entrenamientos periódicos y enfoque comunitario-deportivo.', schedule: 'Martes y Jueves 19:00–21:00', location: 'Lugar por confirmar', instagram: '@disforiabskt', instagramUrl: externalLinks.instagramBasket },
-          { title: 'Vóley', text: 'Rama en desarrollo y articulación progresiva de entrenamientos.', schedule: 'Horario por confirmar', location: 'Lugar por confirmar', instagram: '@disforiavoley', instagramUrl: externalLinks.instagramVolleyball },
+          { key: 'football', title: 'Fútbol', text: 'Rama principal con entrenamientos regulares, juego competitivo y preparación para torneos.', featured: true, schedule: 'Lunes y Miércoles 19:00–21:00', location: 'Lugar por confirmar', instagram: '@disforia_fc', instagramUrl: externalLinks.instagramFootball },
+          { key: 'basketball', title: 'Básquetbol', text: 'Rama activa con entrenamientos periódicos y enfoque comunitario-deportivo.', schedule: 'Martes y Jueves 19:00–21:00', location: 'Lugar por confirmar', instagram: '@disforiabskt', instagramUrl: externalLinks.instagramBasket },
+          { key: 'volleyball', title: 'Vóley', text: 'Rama en desarrollo y articulación progresiva de entrenamientos.', schedule: 'Horario por confirmar', location: 'Lugar por confirmar', instagram: '@disforiavoley', instagramUrl: externalLinks.instagramVolleyball },
         ],
       },
       impact: {
@@ -130,33 +141,33 @@ export const copy: Record<Locale, Copy> = {
         ],
       },
       roadmap: {
-        title: 'Recorrido de logros de Disforia',
-        intro: 'Hitos deportivos, culturales y de incidencia pública que muestran cómo crece el club año tras año.',
+        title: 'Hitos cronológicos de Disforia FC',
+        intro: 'Recorrido deportivo y social de un club pionero trans y no binario en Chile, con impacto que ya se reconoce a nivel latinoamericano.',
         milestones: [
           {
             year: '2019',
-            title: 'Nace Disforia FC en Chile',
-            detail: 'Comienza el primer club deportivo trans y no binario del país con una rama inicial de fútbol.',
+            title: 'Fundación y crecimiento inicial',
+            detail: 'Chris Erlandsen inicia el equipo con 6 jugadores, suben a 18 en pocas semanas y se consolida una rotación cercana a 200 personas entre 15 y 45 años.',
           },
           {
             year: '2021',
-            title: 'Visibilidad en medios nacionales',
-            detail: 'La cobertura periodística instala públicamente la urgencia de espacios deportivos seguros para personas trans.',
+            title: 'Cortometraje con alcance iberoamericano',
+            detail: 'Se estrena el cortometraje Disforia Fútbol Club de Inti Lorca y entra al circuito de Premios Platino en Madrid, amplificando su visibilidad internacional.',
           },
           {
             year: '2022',
-            title: 'Premio del Público en FIDOCS',
-            detail: 'El documental Disforia Fútbol Club recibe reconocimiento y amplía el alcance cultural del proyecto.',
+            title: 'Alianzas visibles y premios en festivales',
+            detail: 'Participan en el Día de la Visibilidad Trans con Universidad Católica y el corto es reconocido en Festival de Cine Sin Límites, Diverso Cinema y Resistencia Film Fest.',
+          },
+          {
+            year: '2023',
+            title: 'Título histórico en São Paulo',
+            detail: 'Ganan el Campeonato LGBT+ de fútbol 7 en Brasil, considerado el primer torneo nacional exclusivo para personas trans, y reciben reconocimiento en el Congreso Nacional.',
           },
           {
             year: '2024',
-            title: 'Consolidación de ramas activas',
-            detail: 'Se fortalece la estructura deportiva del club con fútbol, básquetbol y desarrollo sostenido de vóley.',
-          },
-          {
-            year: '2026',
-            title: 'Rumbo a Gay Games XII Valencia',
-            detail: 'La campaña internacional proyecta representación chilena trans y no binaria en un escenario deportivo global.',
+            title: 'Expansión multideporte y consolidación',
+            detail: 'Se fortalecen básquet y vóley, crece la cobertura en TNT Sports y No Es Para Tanto, y en 2025 Disforia Seniors obtiene el Primer Campeonato Trans.',
           },
         ],
       },
@@ -189,6 +200,20 @@ export const copy: Record<Locale, Copy> = {
       },
       press: {
         title: 'Documentales y prensa destacados',
+        eyebrow: 'Archivo editorial',
+        intro: 'Notas, reportajes y coberturas que han registrado el origen, la expansión y la visibilidad pública de Disforia FC.',
+        featuredLabel: 'Cobertura destacada',
+        featuredIntro: 'Una portada principal y dos recortes clave para entender cómo Disforia FC entró en la conversación pública.',
+        secondaryTitle: 'Más prensa seleccionada',
+        secondaryIntro: 'Notas que ampliaron el contexto deportivo, cultural y regional del proyecto.',
+        archiveCta: 'Ver archivo completo',
+        continuationLabel: 'Sigue en prensa',
+        continuationIntro: 'La página completa reúne documental, teaser, galería y archivo editorial en un recorrido continuo.',
+        stats: {
+          span: 'Ventana editorial',
+          references: 'Referencias',
+          coverage: 'Cobertura',
+        },
         links: [
           { title: 'The Clinic', href: 'https://www.theclinic.cl/2021/09/10/disforia-futbol-club-un-espacio-deportivo-seguro-para-personas-trans-y-no-binarias/', description: 'Origen del club y necesidad de espacios deportivos seguros.', cta: 'Leer nota completa' },
           { title: 'Galio', href: 'https://galio.cl/2024/06/28/disforia-club-el-1-equipo-deportivo-para-personas-trans-y-no-binarias-de-chile/', description: 'Cobertura de consolidación pública del proyecto.', cta: 'Ver cobertura' },
@@ -310,11 +335,6 @@ export const copy: Record<Locale, Copy> = {
         secondary: 'Donate for Valencia 2026',
         kicker: 'Since 2019 · sport, community, and belonging',
       },
-      credibility: [
-        { title: 'First trans and non-binary sports club in Chile', detail: 'Pioneering project with sustained public and community continuity since 2019.' },
-        { title: 'Real training and competition', detail: 'Active football and basketball branches, plus growing disciplines.' },
-        { title: 'Documentary and media coverage', detail: 'Public archive across sports/cultural media and an awarded documentary.' },
-      ],
       about: {
         title: 'Why Disforia FC was born',
         body: 'We were born because many trans and non-binary people were excluded from formal sport. Disforia FC responds with training, collective care, and real competition in a safe space.',
@@ -323,9 +343,9 @@ export const copy: Record<Locale, Copy> = {
       branches: {
         title: 'Sports branches',
         items: [
-          { title: 'Football', text: 'Main branch with regular training, competitive play, and tournament preparation.', featured: true, schedule: 'Monday & Wednesday 7:00–9:00 PM', location: 'Location TBC', instagram: '@disforia_fc', instagramUrl: externalLinks.instagramFootball },
-          { title: 'Basketball', text: 'Active branch with periodic training and a community-sport focus.', schedule: 'Tuesday & Thursday 7:00–9:00 PM', location: 'Location TBC', instagram: '@disforiabskt', instagramUrl: externalLinks.instagramBasket },
-          { title: 'Volleyball', text: 'Branch in development with progressive training articulation.', schedule: 'Schedule TBC', location: 'Location TBC', instagram: '@disforiavoley', instagramUrl: externalLinks.instagramVolleyball },
+          { key: 'football', title: 'Football', text: 'Main branch with regular training, competitive play, and tournament preparation.', featured: true, schedule: 'Monday & Wednesday 7:00–9:00 PM', location: 'Location TBC', instagram: '@disforia_fc', instagramUrl: externalLinks.instagramFootball },
+          { key: 'basketball', title: 'Basketball', text: 'Active branch with periodic training and a community-sport focus.', schedule: 'Tuesday & Thursday 7:00–9:00 PM', location: 'Location TBC', instagram: '@disforiabskt', instagramUrl: externalLinks.instagramBasket },
+          { key: 'volleyball', title: 'Volleyball', text: 'Branch in development with progressive training articulation.', schedule: 'Schedule TBC', location: 'Location TBC', instagram: '@disforiavoley', instagramUrl: externalLinks.instagramVolleyball },
         ],
       },
       impact: {
@@ -338,33 +358,33 @@ export const copy: Record<Locale, Copy> = {
         ],
       },
       roadmap: {
-        title: 'Disforia achievements roadmap',
-        intro: 'Sports, cultural, and advocacy milestones that map how the club keeps growing each year.',
+        title: 'Disforia FC chronological milestones',
+        intro: 'A sports and social timeline of a pioneering trans and non-binary club in Chile with growing impact across Latin America.',
         milestones: [
           {
             year: '2019',
-            title: 'Disforia FC launches in Chile',
-            detail: 'The first trans and non-binary sports club in the country starts with football as its initial branch.',
+            title: 'Foundation and early growth',
+            detail: 'Chris Erlandsen launches the team with 6 players, grows to 18 within weeks, and builds a football rotation close to 200 people aged 15 to 45.',
           },
           {
             year: '2021',
-            title: 'National media visibility grows',
-            detail: 'Press coverage places the need for safe sports spaces for trans people in public conversation.',
+            title: 'Short film reaches Ibero-American circuit',
+            detail: 'Inti Lorca releases the Disforia Fútbol Club short film, later connected to the Platino Awards circuit in Madrid and broader international visibility.',
           },
           {
             year: '2022',
-            title: 'FIDOCS Audience Award',
-            detail: 'The documentary Disforia Fútbol Club earns recognition and expands the project cultural reach.',
+            title: 'Public alliances and festival recognition',
+            detail: 'The club joins Trans Visibility Day at Universidad Católica while the short film is awarded in Festival de Cine Sin Límites, Diverso Cinema, and Resistencia Film Fest.',
+          },
+          {
+            year: '2023',
+            title: 'Historic title in São Paulo',
+            detail: 'Disforia wins the LGBT+ 7-a-side tournament in Brazil, described as the first national trans-exclusive tournament, and is recognized in Chile’s National Congress.',
           },
           {
             year: '2024',
-            title: 'Active branches become stronger',
-            detail: 'Football and basketball consolidate while volleyball keeps progressing through community training.',
-          },
-          {
-            year: '2026',
-            title: 'Road to Gay Games XII Valencia',
-            detail: 'An international campaign pushes trans and non-binary Chilean representation on a global sports stage.',
+            title: 'Multisport expansion and consolidation',
+            detail: 'Basketball and volleyball branches scale up, media exposure grows through TNT Sports and No Es Para Tanto, and in 2025 Disforia Seniors wins the first trans championship.',
           },
         ],
       },
@@ -397,6 +417,20 @@ export const copy: Record<Locale, Copy> = {
       },
       press: {
         title: 'Featured documentaries and press',
+        eyebrow: 'Editorial archive',
+        intro: 'Articles, features, and coverage documenting the origin, growth, and public visibility of Disforia FC.',
+        featuredLabel: 'Featured coverage',
+        featuredIntro: 'One lead story and two key clippings showing how Disforia FC entered the public conversation.',
+        secondaryTitle: 'More selected press',
+        secondaryIntro: 'Stories that expanded the project sports, cultural, and regional context.',
+        archiveCta: 'View full archive',
+        continuationLabel: 'Continue in press',
+        continuationIntro: 'The full page brings together the documentary, teaser, gallery, and editorial archive in one continuous flow.',
+        stats: {
+          span: 'Editorial span',
+          references: 'References',
+          coverage: 'Coverage',
+        },
         links: [
           { title: 'The Clinic', href: 'https://www.theclinic.cl/2021/09/10/disforia-futbol-club-un-espacio-deportivo-seguro-para-personas-trans-y-no-binarias/', description: 'Club origin and need for safe sports spaces.', cta: 'Read full article' },
           { title: 'Galio', href: 'https://galio.cl/2024/06/28/disforia-club-el-1-equipo-deportivo-para-personas-trans-y-no-binarias-de-chile/', description: 'Coverage of current public consolidation.', cta: 'View coverage' },

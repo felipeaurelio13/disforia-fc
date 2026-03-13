@@ -1,4 +1,4 @@
-import { Card, Section } from '@/components/ui';
+import { ActionLink, Card, Section } from '@/components/ui';
 import { copy } from '@/content/copy';
 import { Locale } from '@/content/site';
 
@@ -16,7 +16,7 @@ export function ContactPageContent({ lang }: { lang: Locale }) {
             <Card key={card.title}>
               <h3 className="font-display text-lg font-semibold">{card.title}</h3>
               <p className="mt-2 text-sm text-brand-text/80">{card.text}</p>
-              <a href={card.href} target="_blank" rel="noreferrer" className="mt-3 inline-flex min-h-12 items-center rounded-full border border-brand-softGray bg-brand-bg px-4 py-2 text-sm font-semibold text-brand-text/90">{card.cta}</a>
+              <ActionLink href={card.href} external variant="ghost" className="mt-3 self-start text-brand-text/90">{card.cta}</ActionLink>
             </Card>
           ))}
         </div>

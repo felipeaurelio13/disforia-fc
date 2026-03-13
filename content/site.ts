@@ -72,11 +72,13 @@ export const documentary = {
   },
 } as const;
 
+export type BranchKey = 'football' | 'basketball' | 'volleyball';
+
 /* ── Branch images ──
  *  One representative photo per branch, used on the home page branches section.
  *  Swap `src` paths to update.
  */
-export const branchImages: Record<string, { src: string; alt: Record<Locale, string> }> = {
+export const branchImages: Record<BranchKey, { src: string; alt: Record<Locale, string> }> = {
   football: {
     src: '/images/logo_disforia_futbol.jpeg',
     alt: { es: 'Logo de la rama de fútbol de Disforia FC', en: 'Disforia FC football branch logo' },

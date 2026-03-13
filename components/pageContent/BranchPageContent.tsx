@@ -1,7 +1,7 @@
 import { SafeImage } from '@/components/ui/SafeImage';
-import { Card, Section } from '@/components/ui';
+import { ActionLink, Card, Section } from '@/components/ui';
 import { copy } from '@/content/copy';
-import { externalLinks, Locale } from '@/content/site';
+import { BranchKey, Locale } from '@/content/site';
 import { Clock, MapPin, Instagram } from 'lucide-react';
 
 const branchHeroImages: Record<'footballPage' | 'basketballPage', { src: string; alt: Record<Locale, string> }> = {
@@ -21,16 +21,17 @@ const branchHeroImages: Record<'footballPage' | 'basketballPage', { src: string;
   },
 };
 
-const branchIndex: Record<'footballPage' | 'basketballPage', number> = {
-  footballPage: 0,
-  basketballPage: 1,
+const branchKeyByPage: Record<'footballPage' | 'basketballPage', BranchKey> = {
+  footballPage: 'football',
+  basketballPage: 'basketball',
 };
 
 export function BranchPageContent({ lang, branch }: { lang: Locale; branch: 'footballPage' | 'basketballPage' }) {
   const t = copy[lang][branch];
   const hero = branchHeroImages[branch];
-  const branchData = copy[lang].home.branches.items[branchIndex[branch]];
-  const igUrl = branch === 'footballPage' ? externalLinks.instagramFootball : externalLinks.instagramBasket;
+  const branchData = copy[lang].home.branches.items.find((item) => item.key === branchKeyByPage[branch]);
+
+  if (!branchData) return null;
 
   return (
     <>
@@ -64,10 +65,10 @@ export function BranchPageContent({ lang, branch }: { lang: Locale; branch: 'foo
             <MapPin className="h-4 w-4 text-brand-lavender" />
             {branchData.location}
           </span>
-          <a href={igUrl} target="_blank" rel="noreferrer" className="ml-auto inline-flex items-center gap-1.5 rounded-full border border-brand-lavender/30 bg-brand-lavender/5 px-3 py-1.5 text-xs font-semibold text-brand-lavender hover:bg-brand-lavender/10">
+          <ActionLink href={branchData.instagramUrl} external variant="ghost" className="ml-auto min-h-0 gap-1.5 border-brand-lavender/30 bg-brand-lavender/5 px-3 py-1.5 text-xs text-brand-lavender hover:bg-brand-lavender/10">
             <Instagram className="h-3.5 w-3.5" />
             {branchData.instagram}
-          </a>
+          </ActionLink>
         </div>
       </Section>
 
@@ -79,10 +80,10 @@ export function BranchPageContent({ lang, branch }: { lang: Locale; branch: 'foo
         </div>
       </Section>
       <Section>
-        <a href={igUrl} target="_blank" rel="noreferrer" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-brand-primary px-5 py-2.5 text-sm font-semibold text-white">
+        <ActionLink href={branchData.instagramUrl} external className="gap-2">
           <Instagram className="h-4 w-4" />
           {t.cta}
-        </a>
+        </ActionLink>
       </Section>
     </>
   );

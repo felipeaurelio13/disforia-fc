@@ -1,6 +1,6 @@
 import { createElement } from 'react';
 import { render, screen } from '@testing-library/react';
-import { Badge, ButtonLink, SectionHeader } from '@/components/ui';
+import { ActionLink, Badge, ButtonLink, SectionHeader } from '@/components/ui';
 
 describe('UI primitives', () => {
   it('renders section header content when provided', () => {
@@ -20,5 +20,13 @@ describe('UI primitives', () => {
 
     expect(screen.getByText('Tag')).toBeTruthy();
     expect(screen.getByRole('link', { name: /Ir/ })).toBeTruthy();
+  });
+
+  it('renders external action links with secure target attributes', () => {
+    render(createElement(ActionLink, { href: 'https://example.com', external: true }, 'External'));
+
+    const link = screen.getByRole('link', { name: 'External' });
+    expect(link.getAttribute('target')).toBe('_blank');
+    expect(link.getAttribute('rel')).toBe('noreferrer');
   });
 });

@@ -3,6 +3,7 @@ import { PropsWithChildren } from 'react';
 
 type SectionProps = PropsWithChildren<{ id?: string; title?: string; eyebrow?: string; description?: string; narrow?: boolean; className?: string }>;
 type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'text';
+type CardTone = 'default' | 'tint' | 'accent';
 
 export function Container({ children, narrow = false }: PropsWithChildren<{ narrow?: boolean }>) {
   return <div className={`mx-auto w-full px-4 sm:px-6 md:px-8 lg:px-10 ${narrow ? 'max-w-narrow' : 'max-w-container'}`}>{children}</div>;
@@ -28,8 +29,17 @@ export function SectionHeader({ title, eyebrow, description }: Omit<SectionProps
   );
 }
 
-export function Card({ children, className = '' }: PropsWithChildren<{ className?: string }>) {
-  return <article className={`card-surface p-4 sm:p-5 ${className}`.trim()}>{children}</article>;
+export function Card({
+  children,
+  className = '',
+  interactive = false,
+  tone = 'default',
+}: PropsWithChildren<{ className?: string; interactive?: boolean; tone?: CardTone }>) {
+  return (
+    <article className={`card-surface p-4 sm:p-5 ${className}`.trim()} data-interactive={interactive} data-tone={tone}>
+      {children}
+    </article>
+  );
 }
 
 export function Section({ id, title, eyebrow, description, children, narrow, className = '' }: SectionProps) {
@@ -53,11 +63,34 @@ const buttonStyles: Record<ButtonVariant, string> = {
   text: 'group inline-flex min-h-12 items-center gap-2 text-sm font-semibold text-brand-lavender hover:text-brand-magenta',
 };
 
-export function ButtonLink({ href, children, variant = 'primary' }: PropsWithChildren<{ href: string; variant?: ButtonVariant }>) {
+type ActionLinkProps = PropsWithChildren<{
+  href: string;
+  variant?: ButtonVariant;
+  className?: string;
+  external?: boolean;
+}>;
+
+export function ActionLink({ href, children, variant = 'primary', className = '', external }: ActionLinkProps) {
+  const resolvedExternal = external ?? /^https?:\/\//.test(href);
+  const classes = `${buttonStyles[variant]} ${className}`.trim();
+
+  if (resolvedExternal) {
+    return (
+      <a href={href} target="_blank" rel="noreferrer" className={classes}>
+        {children}
+        {variant === 'text' ? <span aria-hidden="true" className="translate-x-0 transition-transform duration-200 ease-out group-hover:translate-x-1">→</span> : null}
+      </a>
+    );
+  }
+
   return (
-    <Link href={href} className={buttonStyles[variant]}>
+    <Link href={href} className={classes}>
       {children}
       {variant === 'text' ? <span aria-hidden="true" className="translate-x-0 transition-transform duration-200 ease-out group-hover:translate-x-1">→</span> : null}
     </Link>
   );
+}
+
+export function ButtonLink(props: ActionLinkProps) {
+  return <ActionLink {...props} />;
 }

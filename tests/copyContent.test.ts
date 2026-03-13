@@ -10,12 +10,12 @@ describe('editorial content', () => {
   });
 
 
-  it('uses structured credibility content with explicit value statements', () => {
+  it('uses structured impact content with explicit value statements', () => {
     for (const lang of ['es', 'en'] as const) {
-      expect(copy[lang].home.credibility).toHaveLength(3);
-      for (const item of copy[lang].home.credibility) {
-        expect(item.title.length).toBeGreaterThan(10);
-        expect(item.detail.length).toBeGreaterThan(20);
+      expect(copy[lang].home.impact.items).toHaveLength(3);
+      for (const item of copy[lang].home.impact.items) {
+        expect(item.title.length).toBeGreaterThan(5);
+        expect(item.text.length).toBeGreaterThan(20);
       }
     }
   });
@@ -30,8 +30,8 @@ describe('editorial content', () => {
 
 
   it('reinforces first-club positioning and direct donation message', () => {
-    expect(copy.es.home.credibility[0]?.title).toContain('Primer club');
-    expect(copy.en.home.credibility[0]?.title).toContain('First trans and non-binary sports club');
+    expect(copy.es.home.hero.subtitle).toContain('primer club deportivo');
+    expect(copy.en.home.hero.subtitle).toContain('first sports club');
     expect(copy.es.home.valencia.text).toContain('Cada aporte');
     expect(copy.en.home.valencia.text).toContain('Every contribution');
   });
@@ -69,5 +69,12 @@ it('includes a five-step achievements roadmap for both locales', () => {
       expect(milestone.title.length).toBeGreaterThan(8);
       expect(milestone.detail.length).toBeGreaterThan(30);
     }
+  }
+});
+
+it('uses stable branch keys for shared branch content', () => {
+  for (const lang of ['es', 'en'] as const) {
+    const keys = copy[lang].home.branches.items.map((item) => item.key);
+    expect(keys).toEqual(['football', 'basketball', 'volleyball']);
   }
 });

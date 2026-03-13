@@ -29,7 +29,7 @@ export function PressPageContent({ lang }: { lang: Locale }) {
       </Section>
 
       {/* ── Documentary ── */}
-      <Section title={p.filmSectionTitle}>
+      <Section id="film" title={p.filmSectionTitle}>
         <div className="grid gap-5 lg:grid-cols-[280px_1fr]">
           {/* Poster */}
           <div className="relative mx-auto aspect-[370/516] w-full max-w-[280px] overflow-hidden rounded-2xl shadow-lift lg:mx-0">
@@ -111,7 +111,7 @@ export function PressPageContent({ lang }: { lang: Locale }) {
       </Section>
 
       {/* ── Teaser ── */}
-      <Section title={p.teaserTitle}>
+      <Section id="teaser" title={p.teaserTitle}>
         <p className="mb-5 max-w-3xl text-sm text-brand-text/80">{p.teaserText}</p>
         <div className="max-w-3xl">
           <VideoEmbed
@@ -127,13 +127,13 @@ export function PressPageContent({ lang }: { lang: Locale }) {
       </Section>
 
       {/* ── Gallery ── */}
-      <Section title={p.galleryTitle}>
+      <Section id="gallery" title={p.galleryTitle}>
         <p className="mb-5 max-w-3xl text-sm text-brand-text/80">{p.galleryText}</p>
         <PressGallery items={pressGallery} lang={lang} />
       </Section>
 
       {/* ── Press coverage ── */}
-      <Section title={p.pressTitle}>
+      <Section id="coverage" title={p.pressTitle}>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {pressItems.map((item) => (
             <PressCard
@@ -148,7 +148,7 @@ export function PressPageContent({ lang }: { lang: Locale }) {
       </Section>
 
       {/* ── Film catalogues & festivals ── */}
-      <Section title={p.filmTitle}>
+      <Section id="catalogues" title={p.filmTitle}>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {filmItems.map((item) => (
             <PressCard

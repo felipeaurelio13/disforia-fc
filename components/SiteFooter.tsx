@@ -2,7 +2,8 @@ import Link from 'next/link';
 import { copy } from '@/content/copy';
 import { externalLinks, Locale } from '@/content/site';
 import { navItemHref } from '@/lib/routes';
-import { Badge, Container, Separator } from './ui';
+import { ActionLink, Badge, Container, Separator } from './ui';
+import packageJson from '@/package.json';
 
 export function SiteFooter({ lang }: { lang: Locale }) {
   const t = copy[lang];
@@ -35,11 +36,11 @@ export function SiteFooter({ lang }: { lang: Locale }) {
 
             <div className="space-y-3">
               <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-brand-lavender/80">{lang === 'es' ? 'Valencia 2026' : 'Valencia 2026'}</p>
-              <a href={externalLinks.instagram} target="_blank" className="inline-flex min-h-11 items-center text-sm text-brand-charcoal/80 hover:text-brand-magenta sm:text-base" rel="noreferrer">Instagram</a>
+              <ActionLink href={externalLinks.instagram} external variant="text" className="min-h-11 text-brand-charcoal/80 hover:text-brand-magenta sm:text-base">Instagram</ActionLink>
               <div>
-                <a href={externalLinks.gofundme} target="_blank" rel="noreferrer" className="inline-flex min-h-12 items-center rounded-full bg-brand-primary px-5 py-2.5 text-sm font-semibold text-white shadow-soft hover:scale-[1.02] hover:shadow-lift">
+                <ActionLink href={externalLinks.gofundme} external>
                   {t.common.supportCTA}
-                </a>
+                </ActionLink>
               </div>
             </div>
           </div>
@@ -47,7 +48,7 @@ export function SiteFooter({ lang }: { lang: Locale }) {
           <div className="my-4"><Separator /></div>
           <div className="flex flex-col gap-1.5 text-xs text-brand-charcoal/60 sm:flex-row sm:items-center sm:justify-between">
             <p>&copy; Disforia FC</p>
-            <p className="tracking-[0.08em]">Release 0.9.1</p>
+            <p className="tracking-[0.08em]">Release {packageJson.version}</p>
           </div>
         </div>
       </Container>

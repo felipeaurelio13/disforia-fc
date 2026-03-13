@@ -1,4 +1,4 @@
-import { Card, Section } from '@/components/ui';
+import { ActionLink, Card, Section } from '@/components/ui';
 import { copy } from '@/content/copy';
 import { externalLinks, Locale } from '@/content/site';
 
@@ -13,29 +13,24 @@ export function SupportPageContent({ lang }: { lang: Locale }) {
       <Section>
         <div className="grid gap-3 sm:grid-cols-2">
           {t.cards.map((card, index) => (
-            <Card key={card.title} className={index === 0 ? 'border-brand-primary/35 bg-brand-primary/10' : ''}>
+            <Card key={card.title} tone={index === 0 ? 'accent' : 'default'}>
               <h3 className="font-display text-lg font-semibold text-brand-charcoal">{card.title}</h3>
               <p className="mt-1.5 text-sm text-brand-text/80">{card.text}</p>
-              <a
-                href={card.href}
-                target={card.external ? '_blank' : undefined}
-                rel={card.external ? 'noreferrer' : undefined}
-                className="mt-3 inline-flex min-h-12 items-center rounded-full border border-brand-softGray bg-brand-bg px-4 py-2 text-sm font-semibold text-brand-text/90"
-              >
+              <ActionLink href={card.href} external={card.external} variant="ghost" className="mt-3 self-start text-brand-text/90">
                 {card.cta}
-              </a>
+              </ActionLink>
             </Card>
           ))}
         </div>
       </Section>
       <Section title={lang === 'es' ? 'Canal activo' : 'Active channel'}>
         <div className="flex flex-wrap gap-2.5">
-          <a href={externalLinks.instagram} target="_blank" rel="noreferrer" className="inline-flex min-h-12 items-center rounded-full border border-brand-primary/65 bg-brand-primary px-5 py-2.5 text-sm font-semibold text-white">
+          <ActionLink href={externalLinks.instagram} external>
             {lang === 'es' ? 'Escríbenos por Instagram' : 'Message us on Instagram'}
-          </a>
-          <a href={externalLinks.gofundme} target="_blank" rel="noreferrer" className="inline-flex min-h-12 items-center rounded-full border border-brand-softGray bg-brand-bg px-5 py-2.5 text-sm font-semibold text-brand-text">
+          </ActionLink>
+          <ActionLink href={externalLinks.gofundme} external variant="ghost" className="text-brand-text">
             GoFundMe
-          </a>
+          </ActionLink>
         </div>
       </Section>
     </>

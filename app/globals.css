@@ -16,6 +16,7 @@
   --radius-card: 18px;
   --radius-pill: 9999px;
   --transition-ui: 220ms ease-out;
+  --focus-ring: rgb(137 194 227 / 0.5);
 }
 
 @media (min-width: 768px) {
@@ -64,12 +65,19 @@ h2 {
 
 a,
 button {
-  transition: all var(--transition-ui);
+  transition:
+    color var(--transition-ui),
+    background-color var(--transition-ui),
+    border-color var(--transition-ui),
+    transform var(--transition-ui),
+    box-shadow var(--transition-ui),
+    opacity var(--transition-ui);
 }
 
 :focus-visible {
   outline: 2px solid var(--color-sky);
   outline-offset: 2px;
+  box-shadow: 0 0 0 4px var(--focus-ring);
 }
 
 .section-shell {
@@ -100,10 +108,22 @@ button {
   transition: transform var(--transition-ui), box-shadow var(--transition-ui), border-color var(--transition-ui);
 }
 
-.card-surface:hover {
-  transform: translateY(-4px);
-  border-color: rgb(132 113 157 / 0.35);
-  box-shadow: 0 14px 30px rgb(17 17 17 / 0.1);
+.card-surface[data-tone='tint'] {
+  background: rgb(131 92 163 / 0.06);
+  border-color: rgb(131 92 163 / 0.18);
+}
+
+.card-surface[data-tone='accent'] {
+  background: rgb(189 43 113 / 0.08);
+  border-color: rgb(189 43 113 / 0.22);
+}
+
+@media (hover: hover) {
+  .card-surface[data-interactive='true']:hover {
+    transform: translateY(-4px);
+    border-color: rgb(132 113 157 / 0.35);
+    box-shadow: 0 14px 30px rgb(17 17 17 / 0.1);
+  }
 }
 
 .nav-link {

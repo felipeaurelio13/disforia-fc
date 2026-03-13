@@ -31,4 +31,11 @@ describe('SiteHeader', () => {
     fireEvent.click(closeButton);
     expect(document.getElementById('mobile-nav')).toBeNull();
   });
+
+  it('points valencia CTA to the localized home anchor', () => {
+    render(createElement(SiteHeader, { lang: 'en' }));
+
+    const supportLink = screen.getByRole('link', { name: copy.en.common.supportCTA });
+    expect(supportLink.getAttribute('href')).toBe('/en#valencia');
+  });
 });

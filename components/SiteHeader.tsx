@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import { copy } from '@/content/copy';
 import { Locale } from '@/content/site';
 import { localizedPath, navItemHref } from '@/lib/routes';
@@ -12,7 +12,8 @@ import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuL
 export function SiteHeader({ lang }: { lang: Locale }) {
   const t = copy[lang];
   const [menuOpen, setMenuOpen] = useState(false);
-  const switchHref = useMemo(() => (lang === 'es' ? '/en' : '/es'), [lang]);
+  const switchHref = lang === 'es' ? '/en' : '/es';
+  const valenciaHref = `${localizedPath(lang, 'home')}#valencia`;
 
   return (
     <header className="sticky top-0 z-50 border-b border-brand-softGray/90 bg-brand-bg/95 backdrop-blur">
@@ -39,7 +40,7 @@ export function SiteHeader({ lang }: { lang: Locale }) {
           </div>
 
           <div className="flex items-center gap-1.5">
-            <a href="#valencia" className="hidden min-h-12 items-center rounded-full bg-brand-primary px-4 py-2 text-xs font-semibold text-white shadow-soft hover:scale-[1.01] hover:shadow-lift sm:inline-flex" onClick={() => setMenuOpen(false)}>{t.common.supportCTA}</a>
+            <Link href={valenciaHref} className="hidden min-h-12 items-center rounded-full bg-brand-primary px-4 py-2 text-xs font-semibold text-white shadow-soft hover:scale-[1.01] hover:shadow-lift sm:inline-flex" onClick={() => setMenuOpen(false)}>{t.common.supportCTA}</Link>
             <Link href={switchHref} className="inline-flex min-h-12 min-w-12 items-center justify-center rounded-full border border-brand-softGray bg-brand-surface px-2 text-[11px] font-semibold tracking-[0.08em] text-brand-charcoal hover:border-brand-accent" onClick={() => setMenuOpen(false)}>
               {t.common.switchTo}
             </Link>
@@ -61,9 +62,9 @@ export function SiteHeader({ lang }: { lang: Locale }) {
         <div id="mobile-nav" className="border-t border-brand-softGray bg-brand-bg md:hidden">
           <Container>
             <div className="grid gap-2 pb-3 pt-3">
-              <a href="#valencia" onClick={() => setMenuOpen(false)} className="inline-flex min-h-12 w-full items-center justify-center rounded-full bg-brand-primary px-5 py-2.5 text-sm font-semibold text-white shadow-soft">
+              <Link href={valenciaHref} onClick={() => setMenuOpen(false)} className="inline-flex min-h-12 w-full items-center justify-center rounded-full bg-brand-primary px-5 py-2.5 text-sm font-semibold text-white shadow-soft">
                 {t.common.supportCTA}
-              </a>
+              </Link>
               <nav className="grid gap-2 py-1">
                 {t.nav.map((item, i) => (
                   <Link
