@@ -1,14 +1,19 @@
+'use client';
+
+import { useState } from 'react';
 import { Reveal } from '@/components/Reveal';
 import { AchievementsRoadmap } from '@/components/AchievementsRoadmap';
 import { ActionLink, Badge, Card, Section } from '@/components/ui';
 import { SafeImage } from '@/components/ui/SafeImage';
 import { copy } from '@/content/copy';
-import { branchImages, documentary, externalLinks, Locale, pressCoverage, valenciaFunding } from '@/content/site';
+import { branchGalleries, branchImages, documentary, externalLinks, Locale, pressCoverage, valenciaFunding, BranchKey } from '@/content/site';
 import { localizedPath } from '@/lib/routes';
 import { getValenciaProgress } from '@/lib/valencia';
 import { ArrowUpRight, CalendarPlus, Check, CircleDollarSign, Clock, Dumbbell, Film, HandHeart, Handshake, HeartHandshake, Instagram, MapPin, Megaphone, Newspaper } from 'lucide-react';
 
 export function HomeSections({ lang }: { lang: Locale }) {
+  const [openGallery, setOpenGallery] = useState<BranchKey | null>(null);
+  const [galleryIndex, setGalleryIndex] = useState(0);
   const t = copy[lang];
   const shortFilm = documentary.shortFilm;
   const clubPillars = [
@@ -190,9 +195,18 @@ export function HomeSections({ lang }: { lang: Locale }) {
                 <Reveal key={branch.title} delayMs={i * 80}>
                   <Card className="flex h-full flex-col overflow-hidden p-4 sm:p-5" tone={branch.featured ? 'accent' : 'default'}>
                     {img && (
-                      <div className={`relative mb-4 aspect-[4/3] overflow-hidden rounded-[20px] border ${meta.imagePanelClass}`}>
-                        <SafeImage src={img.src} alt={img.alt[lang]} fill sizes="(max-width: 767px) 92vw, (max-width: 1279px) 31vw, 380px" className="object-contain p-4" fallbackLabel={branch.title} />
-                      </div>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setOpenGallery(branch.key);
+                          setGalleryIndex(0);
+                        }}
+                        className="block w-full text-left"
+                      >
+                        <div className={`relative mb-4 aspect-[4/3] overflow-hidden rounded-[20px] border cursor-pointer transition-all hover:shadow-md hover:scale-105 ${meta.imagePanelClass}`}>
+                          <SafeImage src={img.src} alt={img.alt[lang]} fill sizes="(max-width: 767px) 92vw, (max-width: 1279px) 31vw, 380px" className="object-contain p-4" fallbackLabel={branch.title} />
+                        </div>
+                      </button>
                     )}
                     <div className="flex flex-1 flex-col">
                       <div className="flex items-start justify-between gap-3">
@@ -687,6 +701,77 @@ export function HomeSections({ lang }: { lang: Locale }) {
           </div>
         </Section>
       </div>
+
+      {/* Gallery Modal */}
+      {openGallery && branchGalleries[openGallery] && branchGalleries[openGallery].length > 0 && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm"
+          onClick={() => setOpenGallery(null)}
+          role="dialog"
+          aria-modal="true"
+        >
+          {/* Close button */}
+          <button
+            type="button"
+            onClick={() => setOpenGallery(null)}
+            className="absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white/90 backdrop-blur-sm transition-colors hover:bg-white/20"
+            aria-label={lang === 'es' ? 'Cerrar' : 'Close'}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M18 6 6 18" />
+              <path d="m6 6 12 12" />
+            </svg>
+          </button>
+
+          {/* Previous button */}
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              setGalleryIndex((prev) => (prev - 1 + branchGalleries[openGallery].length) % branchGalleries[openGallery].length);
+            }}
+            className="absolute left-3 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white/90 backdrop-blur-sm transition-colors hover:bg-white/20"
+            aria-label={lang === 'es' ? 'Anterior' : 'Previous'}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="m15 18-6-6 6-6" />
+            </svg>
+          </button>
+
+          {/* Next button */}
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              setGalleryIndex((prev) => (prev + 1) % branchGalleries[openGallery].length);
+            }}
+            className="absolute right-3 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white/10 text-white/90 backdrop-blur-sm transition-colors hover:bg-white/20"
+            aria-label={lang === 'es' ? 'Siguiente' : 'Next'}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="m9 18 6-6-6-6" />
+            </svg>
+          </button>
+
+          {/* Image container */}
+          <div className="relative mx-auto flex max-h-[85vh] w-full max-w-[90vw] flex-col items-center justify-center px-4" onClick={(e) => e.stopPropagation()}>
+            <SafeImage
+              src={branchGalleries[openGallery][galleryIndex].src}
+              alt={branchGalleries[openGallery][galleryIndex].alt[lang]}
+              width={1024}
+              height={683}
+              className="max-h-[85vh] w-auto rounded-lg object-contain"
+              sizes="90vw"
+            />
+            <div className="mt-4 flex flex-col items-center justify-between gap-2 text-sm text-white/70 sm:flex-row">
+              <span>{branchGalleries[openGallery][galleryIndex].credit}</span>
+              <span className="tabular-nums">
+                {galleryIndex + 1} / {branchGalleries[openGallery].length}
+              </span>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }

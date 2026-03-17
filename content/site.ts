@@ -415,6 +415,40 @@ export const pressCoverage: PressItem[] = [
   },
 ];
 
+/* ── Branch galleries ──
+ *  Photo galleries for each sports branch.
+ *  Update image paths as official branch photos become available.
+ */
+export const branchGalleries: Record<BranchKey, GalleryItem[]> = {
+  football: [
+    { src: '/images/fotos futbol/5d559979-7181-4333-a74a-cb41761b1157.jpg', alt: { es: 'Equipo de fútbol de Disforia FC', en: 'Disforia FC football team' }, credit: 'Disforia FC' },
+    { src: '/images/fotos futbol/DISFORIA 2.jpg', alt: { es: 'Entrenamiento del equipo de fútbol', en: 'Football team training' }, credit: 'Disforia FC' },
+    { src: '/images/fotos futbol/disofira 1.jpg', alt: { es: 'Momento de partido de Disforia FC', en: 'Disforia FC match moment' }, credit: 'Disforia FC' },
+    { src: '/images/fotos futbol/DSC04113.JPG', alt: { es: 'Jugadores de Disforia FC en acción', en: 'Disforia FC players in action' }, credit: 'Disforia FC' },
+    { src: '/images/fotos futbol/WhatsApp Image 2026-02-15 at 11.22.10 AM.jpeg', alt: { es: 'Equipo celebrando en el campo', en: 'Team celebrating on the field' }, credit: 'Disforia FC' },
+    { src: '/images/fotos futbol/WhatsApp Image 2026-02-22 at 12.29.57 PM.jpeg', alt: { es: 'Jugadores durante el partido', en: 'Players during match' }, credit: 'Disforia FC' },
+    { src: '/images/fotos futbol/WhatsApp Image 2026-03-01 at 11.40.35 AM (1).jpeg', alt: { es: 'Momento del entrenamiento de fútbol', en: 'Football training moment' }, credit: 'Disforia FC' },
+    { src: '/images/prensa/galio-02.jpg', alt: { es: 'Jugador de fútbol con camiseta Disforia FC', en: 'Football player wearing Disforia FC jersey' }, credit: 'Galio / Valpa' },
+    { src: '/images/prensa/galio-04.jpg', alt: { es: 'Dos futbolistas posando junto al arco', en: 'Two footballers posing by the goal' }, credit: 'Galio / Valpa' },
+    { src: '/images/prensa/galio-08.jpg', alt: { es: 'Futbolista de espaldas mostrando camiseta en cancha', en: 'Football player from behind showing jersey on pitch' }, credit: 'Galio / Valpa' },
+    { src: '/images/prensa/cruzados-visita-uc.jpg', alt: { es: 'Disforia FC en visita a Universidad Católica', en: 'Disforia FC visiting Universidad Católica' }, credit: 'Cruzados UC' },
+    { src: '/images/prensa/cruzados-franja.jpg', alt: { es: 'Futbolistas de la UC compartieron con jugadores trans', en: 'UC footballers shared time with trans players' }, credit: 'Cruzados UC' },
+    { src: '/images/prensa/cinhomo-fotograma.jpg', alt: { es: 'Vista aérea del equipo en cancha', en: 'Aerial view of team on the pitch' }, credit: 'Cinespecie / CINHOMO' },
+  ],
+  basketball: [
+    { src: '/images/prensa/galio-01.jpg', alt: { es: 'Jugadores de básquetbol con bandera trans en las gradas', en: 'Basketball players with trans flag in the stands' }, credit: 'Galio / Valpa' },
+    { src: '/images/prensa/galio-05.jpg', alt: { es: 'Retrato con balón de básquetbol y bandera trans', en: 'Portrait with basketball and trans flag' }, credit: 'Galio / Valpa' },
+    { src: '/images/prensa/galio-09.jpg', alt: { es: 'Retrato con balón de básquetbol y bandera trans de fondo', en: 'Portrait with basketball and trans flag in background' }, credit: 'Galio / Valpa' },
+    { src: '/images/prensa/galio-11.jpg', alt: { es: 'Retrato en gradas con balón de básquetbol', en: 'Portrait in the stands with basketball' }, credit: 'Galio / Valpa' },
+  ],
+  volleyball: [
+    { src: '/images/prensa/galio-03.jpg', alt: { es: 'Equipo de voleibol en sesión fotográfica', en: 'Volleyball team in photo session' }, credit: 'Galio / Valpa' },
+    { src: '/images/prensa/galio-06.jpg', alt: { es: 'Equipo en círculo mostrando camisetas con nombres', en: 'Team in circle showing jerseys with names' }, credit: 'Galio / Valpa' },
+    { src: '/images/prensa/galio-10.jpg', alt: { es: 'Pies y sombras del equipo junto al balón', en: 'Team feet and shadows next to the ball' }, credit: 'Galio / Valpa' },
+    { src: '/images/prensa/galio-07.jpg', alt: { es: 'Jugador sentado en la cancha', en: 'Player sitting on the pitch' }, credit: 'Galio / Valpa' },
+  ],
+};
+
 export const editorialSources = pressCoverage.map((item) => item.href);
 
 type CampaignMode = 'narrative' | 'tracked';
