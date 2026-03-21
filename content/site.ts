@@ -442,10 +442,11 @@ export const branchGalleries: Record<BranchKey, GalleryItem[]> = {
     { src: '/images/prensa/galio-11.jpg', alt: { es: 'Retrato en gradas con balón de básquetbol', en: 'Portrait in the stands with basketball' }, credit: 'Galio / Valpa' },
   ],
   volleyball: [
-    { src: '/images/prensa/galio-03.jpg', alt: { es: 'Equipo de voleibol en sesión fotográfica', en: 'Volleyball team in photo session' }, credit: 'Galio / Valpa' },
-    { src: '/images/prensa/galio-06.jpg', alt: { es: 'Equipo en círculo mostrando camisetas con nombres', en: 'Team in circle showing jerseys with names' }, credit: 'Galio / Valpa' },
-    { src: '/images/prensa/galio-10.jpg', alt: { es: 'Pies y sombras del equipo junto al balón', en: 'Team feet and shadows next to the ball' }, credit: 'Galio / Valpa' },
-    { src: '/images/prensa/galio-07.jpg', alt: { es: 'Jugador sentado en la cancha', en: 'Player sitting on the pitch' }, credit: 'Galio / Valpa' },
+    { src: '/images/fotos voley/WhatsApp Image 2026-03-17 at 10.07.26 PM (1).jpeg', alt: { es: 'Equipo de voleibol en acción', en: 'Volleyball team in action' }, credit: 'Disforia FC' },
+    { src: '/images/fotos voley/WhatsApp Image 2026-03-17 at 10.07.26 PM (2).jpeg', alt: { es: 'Momento de voleibol de Disforia', en: 'Disforia volleyball moment' }, credit: 'Disforia FC' },
+    { src: '/images/fotos voley/WhatsApp Image 2026-03-17 at 10.07.26 PM.jpeg', alt: { es: 'Sesión de voleibol del equipo', en: 'Team volleyball session' }, credit: 'Disforia FC' },
+    { src: '/images/fotos voley/WhatsApp Image 2026-03-17 at 10.07.27 PM (1).jpeg', alt: { es: 'Equipo de voleibol - momento del juego', en: 'Volleyball team - game moment' }, credit: 'Disforia FC' },
+    { src: '/images/fotos voley/WhatsApp Image 2026-03-17 at 10.07.27 PM.jpeg', alt: { es: 'Voleibol - acción en cancha', en: 'Volleyball - court action' }, credit: 'Disforia FC' },
   ],
 };
 

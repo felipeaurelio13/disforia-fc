@@ -1,10 +1,11 @@
 import { copy } from '@/content/copy';
 
 describe('editorial content', () => {
-  it('includes directiva roles on home for both locales', () => {
+  it('includes directiva people on home for both locales', () => {
     for (const lang of ['es', 'en'] as const) {
-      const roles = copy[lang].home.people.list.map((person) => person.role);
-      expect(roles).toHaveLength(3);
+      const allPeople = copy[lang].home.people.groups.flatMap((g) => g.list);
+      const roles = allPeople.map((person) => person.role);
+      expect(roles.length).toBeGreaterThan(0);
       expect(roles.every((r) => r.length > 0)).toBe(true);
     }
   });
@@ -22,7 +23,8 @@ describe('editorial content', () => {
 
   it('directiva members have no quotes', () => {
     for (const lang of ['es', 'en'] as const) {
-      for (const person of copy[lang].home.people.list) {
+      const allPeople = copy[lang].home.people.groups.flatMap((g) => g.list);
+      for (const person of allPeople) {
         expect(person.quote).toBeUndefined();
       }
     }

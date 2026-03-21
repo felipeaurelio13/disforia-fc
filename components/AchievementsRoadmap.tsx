@@ -55,7 +55,7 @@ export function AchievementsRoadmap({ lang, milestones }: AchievementsRoadmapPro
   const timelineViewportRef = useRef<HTMLDivElement>(null);
   const cardsViewportRef = useRef<HTMLOListElement>(null);
 
-  const { milestonesMeta, points, backbonePath, handleDistance, viewWidth, viewHeight } = useMemo(() => {
+  const { milestonesMeta, points, backbonePath, handleDistance, viewWidth, viewHeight, generateLanePath } = useMemo(() => {
     const timelineHeight = 486;
     const topY = 162;
     const bottomY = 332;
@@ -114,6 +114,12 @@ export function AchievementsRoadmap({ lang, milestones }: AchievementsRoadmapPro
         .y((point) => point.y)
         .curve(curveCatmullRom.alpha(0.8))(points) ?? '';
 
+    const generateLanePath = (lanePoints: Point[]) =>
+      line<Point>()
+        .x((point) => point.x)
+        .y((point) => point.y)
+        .curve(curveCatmullRom.alpha(0.8))(lanePoints) ?? '';
+
     return {
       milestonesMeta,
       points,
@@ -121,6 +127,7 @@ export function AchievementsRoadmap({ lang, milestones }: AchievementsRoadmapPro
       handleDistance,
       viewWidth: timelineWidth,
       viewHeight: timelineHeight,
+      generateLanePath,
     };
   }, [visibleMilestones]);
 
@@ -244,36 +251,60 @@ export function AchievementsRoadmap({ lang, milestones }: AchievementsRoadmapPro
               <filter id={shadowFilterId} x="-20%" y="-25%" width="140%" height="170%">
                 <feDropShadow dx="0" dy="10" stdDeviation="8" floodOpacity="0.14" />
               </filter>
+              <linearGradient id="transGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stopColor="#5BCEFA" />
+                <stop offset="25%" stopColor="#F5A9B8" />
+                <stop offset="50%" stopColor="#FFFFFF" />
+                <stop offset="75%" stopColor="#F5A9B8" />
+                <stop offset="100%" stopColor="#5BCEFA" />
+              </linearGradient>
             </defs>
 
-            <path d={backbonePath} fill="none" stroke="rgba(0,0,0,0.1)" strokeWidth="84" strokeLinecap="round" />
+            {/* Pista de atletismo - 3 carriles unidos: Amarillo, Blanco, Púrpura (Bandera no binaria) */}
+            {[0, 1, 2].map((laneIndex) => {
+              const LANE_COLORS = ['#FCF433', '#FFFFFF', '#9C4DC4'];
+              const laneColor = LANE_COLORS[laneIndex];
+              const laneOffset = (laneIndex - 1) * 14; // Sin espaciado, pegadas
 
-            {points.slice(0, -1).map((point, index) => {
-              const next = points[index + 1];
-              const segmentColor = milestonesMeta[index]?.trackColor ?? TRANS_FLAG_COLORS[index % TRANS_FLAG_COLORS.length];
-              const isActiveSegment = activeIndex === index || activeIndex === index + 1;
+              const lanePoints = points.map((p) => ({ x: p.x, y: p.y + laneOffset }));
+              const lanePath = generateLanePath(lanePoints);
+
               return (
-                <g key={`${point.x}-${next.x}`} filter={`url(#${shadowFilterId})`}>
+                <g key={`lane-${laneIndex}`}>
                   <path
-                    d={buildSegmentPath(point, next, handleDistance)}
+                    d={lanePath}
                     fill="none"
-                    stroke={segmentColor}
-                    strokeWidth={isActiveSegment ? 66 : 58}
+                    stroke={laneColor}
+                    strokeWidth="14"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    opacity={isActiveSegment ? 1 : 0.64}
-                    style={{ transition: 'opacity 220ms ease-out, stroke-width 220ms ease-out' }}
+                    opacity="1"
                   />
-                  {isActiveSegment ? (
+                </g>
+              );
+            })}
+
+            {/* Línea central para referencia */}
+            <path d={backbonePath} fill="none" stroke="rgba(0,0,0,0.05)" strokeWidth="1" strokeLinecap="round" strokeDasharray="4,2" />
+
+            {/* Segmentos con colores activos */}
+            {points.slice(0, -1).map((point, index) => {
+              const next = points[index + 1];
+              const segmentColor = milestonesMeta[index]?.markerColor ?? TRANS_FLAG_COLORS[index % TRANS_FLAG_COLORS.length];
+              const isActiveSegment = activeIndex === index || activeIndex === index + 1;
+              return (
+                <g key={`segment-${point.x}-${next.x}`}>
+                  {isActiveSegment && (
                     <path
                       d={buildSegmentPath(point, next, handleDistance)}
                       fill="none"
-                      stroke="rgba(255,255,255,0.34)"
-                      strokeWidth="8"
+                      stroke={segmentColor}
+                      strokeWidth="4"
                       strokeLinecap="round"
                       strokeLinejoin="round"
+                      opacity="0.8"
                     />
-                  ) : null}
+                  )}
                 </g>
               );
             })}

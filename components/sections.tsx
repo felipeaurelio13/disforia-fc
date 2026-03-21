@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Reveal } from '@/components/Reveal';
 import { AchievementsRoadmap } from '@/components/AchievementsRoadmap';
 import { ActionLink, Badge, Card, Section } from '@/components/ui';
@@ -9,11 +9,32 @@ import { copy } from '@/content/copy';
 import { branchGalleries, branchImages, documentary, externalLinks, Locale, pressCoverage, valenciaFunding, BranchKey } from '@/content/site';
 import { localizedPath } from '@/lib/routes';
 import { getValenciaProgress } from '@/lib/valencia';
-import { ArrowUpRight, CalendarPlus, Check, CircleDollarSign, Clock, Dumbbell, Film, HandHeart, Handshake, HeartHandshake, Instagram, MapPin, Megaphone, Newspaper } from 'lucide-react';
+import { ArrowUpRight, CalendarPlus, Check, CircleDollarSign, Clock, Dumbbell, Film, HandHeart, Handshake, HeartHandshake, Images, Instagram, MapPin, Megaphone, Newspaper } from 'lucide-react';
 
 export function HomeSections({ lang }: { lang: Locale }) {
   const [openGallery, setOpenGallery] = useState<BranchKey | null>(null);
   const [galleryIndex, setGalleryIndex] = useState(0);
+  
+  // Keyboard navigation for gallery
+  useEffect(() => {
+    if (!openGallery || !branchGalleries[openGallery]) return;
+    
+    const currentGallery = branchGalleries[openGallery];
+    
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === 'Escape') {
+        setOpenGallery(null);
+      } else if (e.key === 'ArrowLeft') {
+        setGalleryIndex((prev) => (prev - 1 + currentGallery.length) % currentGallery.length);
+      } else if (e.key === 'ArrowRight') {
+        setGalleryIndex((prev) => (prev + 1) % currentGallery.length);
+      }
+    }
+    
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [openGallery]);
+  
   const t = copy[lang];
   const shortFilm = documentary.shortFilm;
   const clubPillars = [
@@ -201,10 +222,13 @@ export function HomeSections({ lang }: { lang: Locale }) {
                           setOpenGallery(branch.key);
                           setGalleryIndex(0);
                         }}
-                        className="block w-full text-left"
+                        className="block w-full text-left group"
                       >
                         <div className={`relative mb-4 aspect-[4/3] overflow-hidden rounded-[20px] border cursor-pointer transition-all hover:shadow-md hover:scale-105 ${meta.imagePanelClass}`}>
                           <SafeImage src={img.src} alt={img.alt[lang]} fill sizes="(max-width: 767px) 92vw, (max-width: 1279px) 31vw, 380px" className="object-contain p-4" fallbackLabel={branch.title} />
+                          <div className="absolute inset-0 flex items-center justify-center bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity rounded-[18px]">
+                            <Images className="h-8 w-8 text-white drop-shadow-lg" />
+                          </div>
                         </div>
                       </button>
                     )}
@@ -339,127 +363,146 @@ export function HomeSections({ lang }: { lang: Locale }) {
         <Section id="valencia" title={t.home.valencia.title} description={valenciaSectionDescription}>
           <Reveal>
             <div className="grid gap-4 xl:grid-cols-[minmax(0,1.08fr)_minmax(320px,0.92fr)]">
-              <Card className="border-brand-primary/16 bg-white/92 p-5 sm:p-6 lg:p-7">
-                <div className="flex flex-wrap items-center gap-2.5">
-                  <Badge>{t.home.valencia.badge}</Badge>
-                  <span className="inline-flex items-center rounded-full border border-black/8 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.12em] text-brand-text/58">
-                    {valenciaFunding.officialFacts.dates[lang]}
-                  </span>
+              {/* Left column: Video + Progress */}
+              <div className="space-y-4">
+                {/* Video Promocional */}
+                <div className="overflow-hidden rounded-[28px] border border-brand-lavender/25 bg-brand-lavender/5">
+                  <div className="relative aspect-video bg-black">
+                    <iframe
+                      src="https://www.youtube.com/embed/6rSvdeNxDzU"
+                      title="Gay Games XII Valencia 2026 - Official Video"
+                      className="h-full w-full"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  </div>
                 </div>
 
-                <p className="mt-5 max-w-[20ch] text-balance font-display text-[1.65rem] font-semibold leading-[1.12] tracking-[-0.03em] text-brand-charcoal sm:text-[2rem] lg:text-[2.2rem]">
-                  {t.home.valencia.text}
-                </p>
+                {/* Progress Section */}
+                <Card className="border-black/8 bg-white/88 p-5 sm:p-6">
+                  {isTracked ? (
+                    <div>
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-brand-primary/82">
+                        {t.home.valencia.progressLabel}
+                      </p>
+                      <div className="mt-3 flex flex-wrap items-end justify-between gap-3">
+                        <p className="font-display text-4xl font-semibold tracking-tight text-brand-charcoal">
+                          {percentage}%
+                        </p>
+                        <p className="text-sm font-medium text-brand-text/64">
+                          {`${format.format(valenciaFunding.tracked!.raised)} / ${format.format(valenciaFunding.tracked!.target)}`}
+                        </p>
+                      </div>
+                      <div className="mt-4 h-2 overflow-hidden rounded-full bg-brand-softGray">
+                        <div className="h-full rounded-full bg-brand-accent" style={{ width: `${percentage ?? 0}%` }} />
+                      </div>
+                      <p className="mt-3 text-sm text-brand-text/82">
+                        {t.home.valencia.remainingLabel}{' '}
+                        <span className="font-semibold text-brand-charcoal">{format.format(remaining!)}</span>
+                      </p>
+                    </div>
+                  ) : (
+                    <div>
+                      <Badge>{valenciaFunding.narrative.status[lang]}</Badge>
+                      <p className="mt-3 text-sm leading-relaxed text-brand-text/78">
+                        {t.home.valencia.supportIntro}
+                      </p>
+                    </div>
+                  )}
 
-                <div className="mt-6 grid gap-3 border-t border-brand-softGray/80 pt-5 sm:grid-cols-2">
-                  <div>
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-brand-text/48">
-                      {lang === 'es' ? 'Fechas oficiales' : 'Official dates'}
+                  <div className="mt-6 border-t border-brand-softGray/80 pt-5">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-brand-lavender/82">
+                      {t.home.valencia.supportTitle}
                     </p>
-                    <p className="mt-2 text-sm leading-relaxed text-brand-charcoal">
+
+                    <ol className="mt-4 space-y-4">
+                      {t.home.valencia.supportItems.map((item, index) => {
+                        return (
+                          <li key={item.title} className="flex items-start gap-3.5">
+                            <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-lavender/[0.08] text-[11px] font-semibold text-brand-lavender">
+                              {index + 1}
+                            </span>
+                            <div>
+                              <h3 className="font-display text-[1.02rem] font-semibold tracking-tight text-brand-charcoal">
+                                {item.title}
+                              </h3>
+                              <p className="mt-1.5 text-sm leading-relaxed text-brand-text/76">
+                                {item.text}
+                              </p>
+                            </div>
+                          </li>
+                        );
+                      })}
+                    </ol>
+                  </div>
+
+                  <div className="mt-6 border-t border-brand-softGray/80 pt-5">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-brand-text/52">
+                      {t.home.valencia.officialTitle}
+                    </p>
+                    <div className="mt-3 space-y-2 text-sm text-brand-text/78">
+                      <p className="flex items-start gap-2.5">
+                        <CalendarPlus className="mt-0.5 h-4 w-4 shrink-0 text-brand-primary" />
+                        <span>{valenciaFunding.officialFacts.dates[lang]}</span>
+                      </p>
+                      <p className="flex items-start gap-2.5">
+                        <Check className="mt-0.5 h-4 w-4 shrink-0 text-brand-lavender" />
+                        <span>{valenciaFunding.officialFacts.footballDeadline[lang]}</span>
+                      </p>
+                    </div>
+                    <div className="mt-4">
+                      <ActionLink href={externalLinks.gayGames} external variant="text" className="min-h-0">
+                        {t.home.valencia.officialCta}
+                      </ActionLink>
+                    </div>
+                  </div>
+                </Card>
+              </div>
+
+              <div className="space-y-4">
+                <Card className="border-brand-primary/16 bg-white/92 p-5 sm:p-6 lg:p-7">
+                  <div className="flex flex-wrap items-center gap-2.5">
+                    <Badge>{t.home.valencia.badge}</Badge>
+                    <span className="inline-flex items-center rounded-full border border-black/8 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.12em] text-brand-text/58">
                       {valenciaFunding.officialFacts.dates[lang]}
-                    </p>
+                    </span>
                   </div>
-                  <div>
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-brand-text/48">
-                      {lang === 'es' ? 'Cierre fútbol' : 'Football deadline'}
-                    </p>
-                    <p className="mt-2 text-sm leading-relaxed text-brand-charcoal">
-                      {valenciaFunding.officialFacts.footballDeadline[lang]}
-                    </p>
-                  </div>
-                </div>
 
-                <div className="mt-6 flex flex-wrap gap-2.5">
-                  <ActionLink href={externalLinks.gofundme} external className="gap-2">
-                    {t.home.valencia.donate}
-                    <ArrowUpRight className="h-4 w-4" />
-                  </ActionLink>
-                  <ActionLink href={externalLinks.instagram} external variant="ghost" className="gap-2">
-                    <Instagram className="h-4 w-4" />
-                    {t.home.valencia.instagram}
-                  </ActionLink>
-                </div>
-              </Card>
-
-              <Card className="border-black/8 bg-white/88 p-5 sm:p-6">
-                {isTracked ? (
-                  <div>
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-brand-primary/82">
-                      {t.home.valencia.progressLabel}
-                    </p>
-                    <div className="mt-3 flex flex-wrap items-end justify-between gap-3">
-                      <p className="font-display text-4xl font-semibold tracking-tight text-brand-charcoal">
-                        {percentage}%
-                      </p>
-                      <p className="text-sm font-medium text-brand-text/64">
-                        {`${format.format(valenciaFunding.tracked!.raised)} / ${format.format(valenciaFunding.tracked!.target)}`}
-                      </p>
-                    </div>
-                    <div className="mt-4 h-2 overflow-hidden rounded-full bg-brand-softGray">
-                      <div className="h-full rounded-full bg-brand-accent" style={{ width: `${percentage ?? 0}%` }} />
-                    </div>
-                    <p className="mt-3 text-sm text-brand-text/82">
-                      {t.home.valencia.remainingLabel}{' '}
-                      <span className="font-semibold text-brand-charcoal">{format.format(remaining!)}</span>
-                    </p>
-                  </div>
-                ) : (
-                  <div>
-                    <Badge>{valenciaFunding.narrative.status[lang]}</Badge>
-                    <p className="mt-3 text-sm leading-relaxed text-brand-text/78">
-                      {t.home.valencia.supportIntro}
-                    </p>
-                  </div>
-                )}
-
-                <div className="mt-6 border-t border-brand-softGray/80 pt-5">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-brand-lavender/82">
-                    {t.home.valencia.supportTitle}
+                  <p className="mt-5 max-w-[20ch] text-balance font-display text-[1.65rem] font-semibold leading-[1.12] tracking-[-0.03em] text-brand-charcoal sm:text-[2rem] lg:text-[2.2rem]">
+                    {t.home.valencia.text}
                   </p>
 
-                  <ol className="mt-4 space-y-4">
-                    {t.home.valencia.supportItems.map((item, index) => {
-                      return (
-                        <li key={item.title} className="flex items-start gap-3.5">
-                          <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-lavender/[0.08] text-[11px] font-semibold text-brand-lavender">
-                            {index + 1}
-                          </span>
-                          <div>
-                            <h3 className="font-display text-[1.02rem] font-semibold tracking-tight text-brand-charcoal">
-                              {item.title}
-                            </h3>
-                            <p className="mt-1.5 text-sm leading-relaxed text-brand-text/76">
-                              {item.text}
-                            </p>
-                          </div>
-                        </li>
-                      );
-                    })}
-                  </ol>
-                </div>
-
-                <div className="mt-6 border-t border-brand-softGray/80 pt-5">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-brand-text/52">
-                    {t.home.valencia.officialTitle}
-                  </p>
-                  <div className="mt-3 space-y-2 text-sm text-brand-text/78">
-                    <p className="flex items-start gap-2.5">
-                      <CalendarPlus className="mt-0.5 h-4 w-4 shrink-0 text-brand-primary" />
-                      <span>{valenciaFunding.officialFacts.dates[lang]}</span>
-                    </p>
-                    <p className="flex items-start gap-2.5">
-                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-brand-lavender" />
-                      <span>{valenciaFunding.officialFacts.footballDeadline[lang]}</span>
-                    </p>
+                  <div className="mt-6 grid gap-3 border-t border-brand-softGray/80 pt-5 sm:grid-cols-2">
+                    <div>
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-brand-text/48">
+                        {lang === 'es' ? 'Fechas oficiales' : 'Official dates'}
+                      </p>
+                      <p className="mt-2 text-sm leading-relaxed text-brand-charcoal">
+                        {valenciaFunding.officialFacts.dates[lang]}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-brand-text/48">
+                        {lang === 'es' ? 'Cierre fútbol' : 'Football deadline'}
+                      </p>
+                      <p className="mt-2 text-sm leading-relaxed text-brand-charcoal">
+                        {valenciaFunding.officialFacts.footballDeadline[lang]}
+                      </p>
+                    </div>
                   </div>
-                  <div className="mt-4">
-                    <ActionLink href={externalLinks.gayGames} external variant="text" className="min-h-0">
-                      {t.home.valencia.officialCta}
+
+                  <div className="mt-6 flex flex-wrap gap-2.5">
+                    <ActionLink href={externalLinks.gofundme} external className="gap-2">
+                      {t.home.valencia.donate}
+                      <ArrowUpRight className="h-4 w-4" />
+                    </ActionLink>
+                    <ActionLink href={externalLinks.instagram} external variant="ghost" className="gap-2">
+                      <Instagram className="h-4 w-4" />
+                      {t.home.valencia.instagram}
                     </ActionLink>
                   </div>
-                </div>
-              </Card>
+                </Card>
+              </div>
             </div>
           </Reveal>
         </Section>
@@ -476,17 +519,52 @@ export function HomeSections({ lang }: { lang: Locale }) {
 
         {/* Directiva */}
         <Section id="directiva" title={t.home.people.title} description={t.home.people.intro}>
-          <div className="grid gap-4 md:grid-cols-3">
-            {t.home.people.list.map((person, index) => (
-              <Reveal key={`${person.role}-${index}`} delayMs={index * 80}>
-                <Card className="h-full">
-                  <div className="relative mb-3 aspect-[16/10] overflow-hidden rounded-2xl">
-                    <SafeImage src={person.image.src} alt={person.image.alt} fill sizes="(max-width: 767px) 92vw, (max-width: 1279px) 31vw, 380px" className="object-cover" fallbackLabel={person.role} />
-                  </div>
-                  <p className="font-display text-lg font-semibold tracking-tight text-brand-charcoal sm:text-xl">{person.name}</p>
-                  <p className="mt-1.5 text-sm text-brand-text/84">{person.role}</p>
-                </Card>
-              </Reveal>
+          <div className="space-y-8">
+            {t.home.people.groups.map((group, groupIndex) => (
+              <div key={groupIndex}>
+                {group.title && (
+                  <p className="text-base font-semibold uppercase tracking-[0.12em] text-brand-charcoal mb-4">
+                    {group.title}
+                  </p>
+                )}
+                <div className={`grid gap-4 ${group.title === 'Líderes de ramas' || group.title === 'Branch Leaders' ? 'md:grid-cols-4' : group.list.length === 1 ? 'md:grid-cols-1 max-w-xs mx-auto' : group.title === 'Directiva' || group.title === 'Executive Board' ? 'md:grid-cols-2 max-w-2xl mx-auto' : 'md:grid-cols-3'}`}>
+                  {group.list.map((person, personIndex) => {
+                    const isChris = person.name === 'Christopher Erlandsen Lorca';
+                    const isVioleta = person.name === 'Violeta';
+                    return (
+                      <Reveal key={`${person.role}-${personIndex}`} delayMs={personIndex * 80}>
+                        <Card className="h-full">
+                          <div className={`relative mb-3 max-w-xs aspect-square overflow-hidden rounded-full bg-brand-softGray/20 ${isChris || isVioleta ? '' : ''}`}>
+                            {person.image ? (
+                              <SafeImage 
+                                src={person.image.src} 
+                                alt={person.image.alt} 
+                                fill 
+                                sizes="(max-width: 767px) 92vw, (max-width: 1279px) 31vw, 380px" 
+                                className={`object-cover ${isChris || isVioleta ? 'object-top scale-150' : 'object-center'}`}
+                                fallbackLabel={person.role} 
+                              />
+                            ) : (
+                              <div className="flex items-center justify-center w-full h-full bg-brand-softGray/10">
+                                <div className="text-center">
+                                  <svg className="w-8 h-8 mx-auto text-brand-lavender/40 mb-1" fill="currentColor" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="8" r="3" />
+                                    <path d="M12 14c-4 0-6 2-6 2v4h12v-4s-2-2-6-2z" />
+                                  </svg>
+                                  <p className="text-[10px] text-brand-text/30 font-medium">Por añadir</p>
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                          <p className="font-display text-lg font-semibold tracking-tight text-brand-charcoal sm:text-xl">{person.name}</p>
+                          {person.pronouns && <p className="mt-0.5 text-xs text-brand-text/60 font-medium">{person.pronouns}</p>}
+                          <p className="mt-1.5 text-sm text-brand-text/84">{person.role}</p>
+                        </Card>
+                      </Reveal>
+                    );
+                  })}
+                </div>
+              </div>
             ))}
           </div>
         </Section>

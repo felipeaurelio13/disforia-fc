@@ -7,8 +7,9 @@ type Person = {
   name: string;
   shortName?: string;
   role: string;
+  pronouns?: string;
   quote?: string;
-  image: { src: string; alt: string };
+  image?: { src: string; alt: string };
   featured?: boolean;
 };
 
@@ -54,7 +55,7 @@ type Copy = {
       progressLabel: string;
       remainingLabel: string;
     };
-    people: { title: string; intro: string; list: Person[] };
+    people: { title: string; intro: string; groups: Array<{ title?: string; list: Person[] }> };
     press: {
       title: string;
       eyebrow: string;
@@ -203,7 +204,12 @@ export const copy: Record<Locale, Copy> = {
           {
             year: '2024',
             title: 'Expansión multideporte y consolidación',
-            detail: 'Se fortalecen básquet y vóley, crece la cobertura en TNT Sports y No Es Para Tanto, y en 2025 Disforia Seniors obtiene el Primer Campeonato Trans.',
+            detail: 'Tercera posición en el Campeonato Galdys Marín en Santiago. Se fortalecen básquet y vóley, crece la cobertura en TNT Sports y No Es Para Tanto.',
+          },
+          {
+            year: '2025',
+            title: 'Primer Torneo de Fútbol Trans Regional',
+            detail: 'Disforia Senior gana el Primer Torneo de Fútbol Trans de la Región Metropolitana, celebrado en octubre, consolidando la presencia inclusiva en el deporte nacional.',
           },
         ],
       },
@@ -238,21 +244,71 @@ export const copy: Record<Locale, Copy> = {
       people: {
         title: 'Directiva',
         intro: 'Personas que lideran la gestión del club.',
-        list: [
+        groups: [
           {
-            name: 'Nombre por confirmar',
-            role: 'Presidente/a',
-            image: { src: directivaPortraits.presidente.src, alt: directivaPortraits.presidente.alt.es },
+            list: [
+              {
+                name: 'Christopher Erlandsen Lorca',
+                pronouns: 'él/elle',
+                role: 'Fundador',
+                image: { src: '/images/Equipo de trabajo/Chris.jpeg', alt: 'Christopher Erlandsen Lorca, Fundador de Disforia FC' },
+              },
+            ],
           },
           {
-            name: 'Nombre por confirmar',
-            role: 'Secretario/a',
-            image: { src: directivaPortraits.secretario.src, alt: directivaPortraits.secretario.alt.es },
+            title: 'Directiva',
+            list: [
+              {
+                name: 'Mateo Alonso Godoy',
+                pronouns: 'él',
+                role: 'Presidente',
+              },
+              {
+                name: 'Román Araneda',
+                pronouns: 'él',
+                role: 'Tesorero',
+                image: { src: '/images/Equipo de trabajo/Roman.JPG', alt: 'Román Araneda, Tesorero de Disforia FC' },
+              },
+            ],
           },
           {
-            name: 'Nombre por confirmar',
-            role: 'Tesorero/a',
-            image: { src: directivaPortraits.tesorero.src, alt: directivaPortraits.tesorero.alt.es },
+            title: 'Líderes de ramas',
+            list: [
+              {
+                name: 'Tyro',
+                pronouns: 'elle',
+                role: 'Liderazgo fútbol',
+                image: { src: '/images/Equipo de trabajo/Tyro.JPG', alt: 'Tyro, Liderazgo de fútbol en Disforia FC' },
+              },
+              {
+                name: 'Violeta',
+                pronouns: 'ella',
+                role: 'Liderazgo fútbol',
+                image: { src: '/images/Equipo de trabajo/Violeta.jpeg', alt: 'Violeta, Liderazgo de fútbol en Disforia FC' },
+              },
+              {
+                name: 'Mimí',
+                pronouns: 'elle',
+                role: 'Liderazgo básquetbol',
+              },
+              {
+                name: 'Álvaro',
+                pronouns: 'él',
+                role: 'Liderazgo vóley',
+                image: { src: '/images/Equipo de trabajo/Alvaro.jpeg', alt: 'Álvaro, Liderazgo de vóley en Disforia FC' },
+              },
+            ],
+          },
+          {
+            title: 'Contacto',
+            list: [
+              {
+                name: 'Charo Astorga Pinto',
+                pronouns: 'él/ella',
+                role: 'Relacionador público',
+                image: { src: '/images/Equipo de trabajo/Charo.jpeg', alt: 'Charo Astorga Pinto, Relacionador público de Disforia FC' },
+              },
+            ],
           },
         ],
       },
@@ -453,7 +509,12 @@ export const copy: Record<Locale, Copy> = {
           {
             year: '2024',
             title: 'Multisport expansion and consolidation',
-            detail: 'Basketball and volleyball branches scale up, media exposure grows through TNT Sports and No Es Para Tanto, and in 2025 Disforia Seniors wins the first trans championship.',
+            detail: 'Third place finish at the Galdys Marín Championship in Santiago. Basketball and volleyball branches scale up, media exposure grows through TNT Sports and No Es Para Tanto.',
+          },
+          {
+            year: '2025',
+            title: 'First Regional Trans Football Tournament',
+            detail: 'Disforia Senior wins the First Trans Football Tournament of the Metropolitan Region, held in October, solidifying inclusive presence in national sports.',
           },
         ],
       },
@@ -488,21 +549,69 @@ export const copy: Record<Locale, Copy> = {
       people: {
         title: 'Board',
         intro: 'People leading the club\'s management.',
-        list: [
+        groups: [
           {
-            name: 'Name TBC',
-            role: 'President',
-            image: { src: directivaPortraits.presidente.src, alt: directivaPortraits.presidente.alt.en },
+            list: [
+              {
+                name: 'Christopher Erlandsen Lorca',
+                pronouns: 'he/ey',
+                role: 'Founder',
+                image: { src: '/images/Equipo de trabajo/Chris.jpeg', alt: 'Christopher Erlandsen Lorca, Founder of Disforia FC' },
+              },
+            ],
           },
           {
-            name: 'Name TBC',
-            role: 'Secretary',
-            image: { src: directivaPortraits.secretario.src, alt: directivaPortraits.secretario.alt.en },
+            title: 'Executive Board',
+            list: [
+              {
+                name: 'Mateo Alonso Godoy',
+                pronouns: 'he',
+                role: 'President',
+              },
+              {
+                name: 'Román Araneda',
+                pronouns: 'he',
+                role: 'Treasurer',
+                image: { src: '/images/Equipo de trabajo/Roman.JPG', alt: 'Román Araneda, Treasurer of Disforia FC' },
+              },
+            ],
           },
           {
-            name: 'Name TBC',
-            role: 'Treasurer',
-            image: { src: directivaPortraits.tesorero.src, alt: directivaPortraits.tesorero.alt.en },
+            title: 'Branch Leaders',
+            list: [
+              {
+                name: 'Tyro',
+                pronouns: 'ey',
+                role: 'Football leadership',
+                image: { src: '/images/Equipo de trabajo/Tyro.JPG', alt: 'Tyro, Football leadership at Disforia FC' },
+              },
+              {
+                name: 'Violeta',
+                pronouns: 'she',
+                role: 'Football leadership',
+                image: { src: '/images/Equipo de trabajo/Violeta.jpeg', alt: 'Violeta, Football leadership at Disforia FC' },
+              },
+              {
+                name: 'Mimí',
+                pronouns: 'ey',
+                role: 'Basketball leadership',
+              },
+              {
+                name: 'Álvaro',
+                pronouns: 'he',
+                role: 'Volleyball leadership',
+                image: { src: '/images/Equipo de trabajo/Alvaro.jpeg', alt: 'Álvaro, Volleyball leadership at Disforia FC' },
+              },
+            ],
+          },
+          {            title: 'Contact',            list: [
+              {
+                name: 'Charo Astorga Pinto',
+                pronouns: 'he/she',
+                role: 'Public Relations',
+                image: { src: '/images/Equipo de trabajo/Charo.jpeg', alt: 'Charo Astorga Pinto, Public Relations of Disforia FC' },
+              },
+            ],
           },
         ],
       },
