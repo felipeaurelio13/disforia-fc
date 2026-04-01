@@ -65,7 +65,7 @@ it('includes a five-step achievements roadmap for both locales', () => {
   for (const lang of ['es', 'en'] as const) {
     const roadmap = copy[lang].home.roadmap;
     expect(roadmap.title.length).toBeGreaterThan(10);
-    expect(roadmap.milestones).toHaveLength(5);
+    expect(roadmap.milestones).toHaveLength(6);
     for (const milestone of roadmap.milestones) {
       expect(milestone.year).toMatch(/^\d{4}$/);
       expect(milestone.title.length).toBeGreaterThan(8);
