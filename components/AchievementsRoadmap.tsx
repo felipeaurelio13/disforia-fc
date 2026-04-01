@@ -31,6 +31,7 @@ type MilestoneMeta = RoadmapMilestone & {
 };
 
 const TRANS_FLAG_COLORS = ['#5BCEFA', '#F5A9B8', '#FFFFFF', '#F5A9B8', '#5BCEFA'] as const;
+const NON_BINARY_FLAG_COLORS = ['#FCF433', '#FFFFFF', '#9C4DC4', '#000000'] as const;
 const ROADMAP_ICONS: LucideIcon[] = [Flag, Film, Users, Trophy, Newspaper];
 const YEAR_PILL_MIN_WIDTH = 58;
 const YEAR_PILL_HEIGHT = 24;
@@ -260,11 +261,13 @@ export function AchievementsRoadmap({ lang, milestones }: AchievementsRoadmapPro
               </linearGradient>
             </defs>
 
-            {/* Pista de atletismo - 3 carriles unidos: Amarillo, Blanco, Púrpura (Bandera no binaria) */}
-            {[0, 1, 2].map((laneIndex) => {
-              const LANE_COLORS = ['#FCF433', '#FFFFFF', '#9C4DC4'];
-              const laneColor = LANE_COLORS[laneIndex];
-              const laneOffset = (laneIndex - 1) * 14; // Sin espaciado, pegadas
+            {/* Camino principal - 2 banderas visibles sobre el mismo recorrido */}
+            {[...TRANS_FLAG_COLORS, ...NON_BINARY_FLAG_COLORS].map((laneColor, laneIndex) => {
+              const isTransLane = laneIndex < TRANS_FLAG_COLORS.length;
+              const intraGroupIndex = isTransLane ? laneIndex : laneIndex - TRANS_FLAG_COLORS.length;
+              const groupCenterOffset = isTransLane ? -36 : 42;
+              const groupStripeCount = isTransLane ? TRANS_FLAG_COLORS.length : NON_BINARY_FLAG_COLORS.length;
+              const laneOffset = groupCenterOffset + (intraGroupIndex - (groupStripeCount - 1) / 2) * 12;
 
               const lanePoints = points.map((p) => ({ x: p.x, y: p.y + laneOffset }));
               const lanePath = generateLanePath(lanePoints);
@@ -275,7 +278,7 @@ export function AchievementsRoadmap({ lang, milestones }: AchievementsRoadmapPro
                     d={lanePath}
                     fill="none"
                     stroke={laneColor}
-                    strokeWidth="14"
+                    strokeWidth="12"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     opacity="1"
@@ -286,28 +289,6 @@ export function AchievementsRoadmap({ lang, milestones }: AchievementsRoadmapPro
 
             {/* Línea central para referencia */}
             <path d={backbonePath} fill="none" stroke="rgba(0,0,0,0.05)" strokeWidth="1" strokeLinecap="round" strokeDasharray="4,2" />
-
-            {/* Segmentos con colores activos */}
-            {points.slice(0, -1).map((point, index) => {
-              const next = points[index + 1];
-              const segmentColor = milestonesMeta[index]?.markerColor ?? TRANS_FLAG_COLORS[index % TRANS_FLAG_COLORS.length];
-              const isActiveSegment = activeIndex === index || activeIndex === index + 1;
-              return (
-                <g key={`segment-${point.x}-${next.x}`}>
-                  {isActiveSegment && (
-                    <path
-                      d={buildSegmentPath(point, next, handleDistance)}
-                      fill="none"
-                      stroke={segmentColor}
-                      strokeWidth="4"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      opacity="0.8"
-                    />
-                  )}
-                </g>
-              );
-            })}
 
             {points.map((point, index) => {
               const milestone = milestonesMeta[index];

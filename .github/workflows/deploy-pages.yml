@@ -35,6 +35,8 @@ jobs:
 
       - name: Build static site
         run: npm run build
+        env:
+          CUSTOM_DOMAIN: disforiafc.com
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
