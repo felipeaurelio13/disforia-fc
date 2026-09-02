@@ -72,6 +72,24 @@ export const documentary = {
   },
 } as const;
 
+export const digitalReport = {
+  src: '/videos/nota-disforia-fc-digital.mp4',
+  poster: '/images/prensa/nota-disforia-digital-poster.jpg',
+  duration: '4:03',
+  title: {
+    es: 'Disforia FC: El valor de un espacio seguro en la cancha',
+    en: 'Disforia FC: The power of a safe space on the pitch',
+  },
+  description: {
+    es: 'Reportaje audiovisual sobre los entrenamientos, testimonios de sus integrantes y la construcción de comunidad en la cancha.',
+    en: 'Digital video feature on training sessions, member testimonies, and community building on the pitch.',
+  },
+  format: {
+    es: 'Nota digital · 9:16',
+    en: 'Digital feature · 9:16',
+  },
+} as const;
+
 export type BranchKey = 'football' | 'basketball' | 'volleyball';
 
 /* ── Branch images ──
@@ -155,6 +173,63 @@ export type PressItem = {
 };
 
 export const pressCoverage: PressItem[] = [
+  {
+    source: 'Movilh Chile',
+    title: {
+      es: 'Equipos LGBTIQ+ chilenos ganan oro y bronce en los Gay Games 2026',
+      en: 'Chilean LGBTIQ+ teams win gold and bronze at the 2026 Gay Games',
+    },
+    description: {
+      es: 'Cobertura institucional del podio y medalla de bronce obtenida por Disforia FC en Fútbol 7 en Valencia.',
+      en: 'Institutional coverage of the podium and bronze medal won by Disforia FC in Football 7 in Valencia.',
+    },
+    href: 'https://www.movilh.cl/equipos-lgbtiq-chilenos-ganan-oro-y-bronce-en-los-gay-games-2026/',
+    date: '2026-07-05',
+    category: 'sport',
+  },
+  {
+    source: 'El País',
+    title: {
+      es: 'Valencia vive sus Gay Games: “Es un espacio político donde las personas trans podemos jugar igual que el resto”',
+      en: 'Valencia lives its Gay Games: "It is a political space where trans people can play just like everyone else"',
+    },
+    description: {
+      es: 'Reportaje internacional en Valencia con entrevistas directas a integrantes de Disforia FC sobre inclusión y visibilidad deportiva.',
+      en: 'International feature from Valencia featuring interviews with Disforia FC members on inclusion and sports visibility.',
+    },
+    href: 'https://elpais.com/espana/comunidad-valenciana/2026-07-02/valencia-vive-sus-gay-games-es-un-espacio-politico-donde-las-personas-trans-podemos-jugar-igual-que-el-resto.html',
+    date: '2026-07-02',
+    category: 'press',
+  },
+  {
+    source: 'The Clinic',
+    title: {
+      es: '“Más que un equipo de fútbol, una familia”: Disforia F.C., el primer club trans y no binario de Chile que hará historia representando a nuestro país en los Gay Games 2026',
+      en: '"More than a football team, a family": Disforia F.C., Chile’s first trans and non-binary club making history at the 2026 Gay Games',
+    },
+    description: {
+      es: 'Reportaje en profundidad sobre el viaje y la delegación de Disforia FC para representar a Chile en los Gay Games de Valencia.',
+      en: 'In-depth feature on the journey and squad of Disforia FC representing Chile at the Valencia Gay Games.',
+    },
+    href: 'https://www.theclinic.cl/2026/06/24/mas-que-un-equipo-de-futbol-una-familia-disforia-f-c-el-primer-club-trans-y-no-binario-de-chile-que-hara-historia-representando-a-nuestro-pais-en-los-gay-games-2026/',
+    date: '2026-06-24',
+    category: 'press',
+    thumbnail: '/images/prensa/galio-03.jpg',
+  },
+  {
+    source: 'Festigol',
+    title: {
+      es: 'Disforia FC rumbo a España',
+      en: 'Disforia FC on the road to Spain',
+    },
+    description: {
+      es: 'Nota del festival de cine y fútbol sobre el cortometraje documental y la delegación rumbo a los Gay Games.',
+      en: 'Feature by the football film festival covering the documentary short and the squad’s journey to the Gay Games.',
+    },
+    href: 'https://festigol.cl/disforia-fc-rumbo-a-espana/',
+    date: '2026-06-20',
+    category: 'film',
+  },
   {
     source: 'The Clinic',
     title: {
@@ -486,13 +561,13 @@ export const valenciaFunding: {
   officialFacts: {
     games: { es: 'Gay Games XII València 2026', en: 'Gay Games XII València 2026' },
     dates: { es: '27 de junio al 4 de julio de 2026', en: 'June 27 to July 4, 2026' },
-    footballDeadline: { es: 'Cierre de equipos de fútbol: 1 de abril de 2026', en: 'Football team registrations close on April 1, 2026' },
+    footballDeadline: { es: 'Resultado oficial: Medalla de Bronce en Fútbol 7', en: 'Official result: Bronze Medal in Football 7' },
   },
   narrative: {
-    status: { es: 'Campaña activa', en: 'Active campaign' },
+    status: { es: 'Hito completado · Medalla de Bronce', en: 'Completed milestone · Bronze Medal' },
     categories: {
-      es: ['Apoyo a inscripción', 'Apoyo a viaje', 'Apoyo a operación'],
-      en: ['Registration support', 'Travel support', 'Operations support'],
+      es: ['Medalla de bronce', 'Fútbol 7', 'Delegación chilena'],
+      en: ['Bronze medal', 'Football 7', 'Chilean delegation'],
     },
   },
 };

@@ -3,8 +3,9 @@ import { SafeImage } from '@/components/ui/SafeImage';
 import { PressGallery } from '@/components/PressGallery';
 import { PressCard } from '@/components/PressCard';
 import { VideoEmbed } from '@/components/VideoEmbed';
+import { VerticalVideoPlayer } from '@/components/VerticalVideoPlayer';
 import { copy } from '@/content/copy';
-import { documentary, pressGallery, pressCoverage, Locale } from '@/content/site';
+import { documentary, digitalReport, pressGallery, pressCoverage, Locale } from '@/content/site';
 
 export function PressPageContent({ lang }: { lang: Locale }) {
   const t = copy[lang];
@@ -123,6 +124,44 @@ export function PressPageContent({ lang }: { lang: Locale }) {
             duration={teaser.duration}
             lang={lang}
           />
+        </div>
+      </Section>
+
+      {/* ── Digital Video Report ── */}
+      <Section id="reportaje-digital" title={p.digitalReportTitle}>
+        <p className="mb-5 max-w-3xl text-sm text-brand-text/80">{p.digitalReportText}</p>
+        <div className="grid gap-6 lg:grid-cols-[340px_1fr] lg:items-center">
+          <div className="mx-auto w-full max-w-[340px] lg:mx-0">
+            <VerticalVideoPlayer
+              src={digitalReport.src}
+              poster={digitalReport.poster}
+              title={digitalReport.title[lang]}
+              duration={digitalReport.duration}
+              categoryLabel={p.digitalReportBadge}
+              lang={lang}
+            />
+          </div>
+          <div className="space-y-4">
+            <Card>
+              <div className="flex flex-wrap items-center gap-2">
+                <Badge>{p.digitalReportBadge}</Badge>
+                <span className="text-xs tabular-nums text-brand-text/50">{digitalReport.duration} · {digitalReport.format[lang]}</span>
+              </div>
+              <h3 className="mt-3 font-display text-xl font-semibold text-brand-charcoal sm:text-2xl">
+                {digitalReport.title[lang]}
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-brand-text/80 sm:text-base">
+                {digitalReport.description[lang]}
+              </p>
+              <div className="mt-5 border-t border-brand-softGray/75 pt-4">
+                <p className="text-xs leading-relaxed text-brand-text/65">
+                  {lang === 'es'
+                    ? 'Registro directo y entrevistas en cancha a jugadores, directiva y líderes de ramas durante los entrenamientos del club.'
+                    : 'On-pitch footage and interviews with players, board members, and branch leaders during club training sessions.'}
+                </p>
+              </div>
+            </Card>
+          </div>
         </div>
       </Section>
 

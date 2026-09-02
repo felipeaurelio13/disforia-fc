@@ -3,3 +3,5 @@ node_modules/
 out/
 coverage/
 .DS_Store
+.gstack/
+/*.mp4

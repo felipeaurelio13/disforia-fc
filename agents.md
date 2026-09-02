@@ -46,3 +46,5 @@
 - Para tipografía variable estable en Next 14, usar `next/font` (Archivo + Inter) aplicado por variables CSS evita drift entre hero/body y mantiene performance en static export.
 - Decisión técnica: mantener Tailwind v3.4 en este ciclo reduce riesgo de regresión en Pages; priorizar consolidación de tokens y componentes antes de migrar a v4.
 - Para cambios de branding, alinear primero `app/globals.css` + `tailwind.config.ts` y luego sincronizar assets (`public/images/disforia-logo.svg`, `public/icon.svg`) para evitar inconsistencias entre UI y emblema.
+- Para videos locales self-hosted en GitHub Pages: codificar con H.264 + `+faststart` (moov atom al inicio) y usar fachada de carga diferida (Click-to-play con póster <100KB) asegura streaming progresivo instantáneo y 0ms de impacto en la carga inicial de la página.
+

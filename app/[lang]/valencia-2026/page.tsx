@@ -13,7 +13,14 @@ export default function ValenciaPage({ params }: { params: { lang: string } }) {
 
   return (
     <>
-      <Section title="Valencia 2026" description={lang === 'es' ? 'Estamos en una etapa clave de recaudación. Si puedes donar, hazlo hoy. Si no puedes donar, compartir también cambia el alcance de esta campaña.' : 'We are in a key fundraising stage. If you can donate, do it today. If you cannot donate, sharing still changes this campaign’s reach.'}>
+      <Section
+        title={lang === 'es' ? 'Gay Games XII Valencia 2026' : 'Gay Games XII Valencia 2026'}
+        description={
+          lang === 'es'
+            ? 'Memoria y balance del histórico hito internacional en los Gay Games XII València 2026 y la medalla de bronce en Fútbol 7.'
+            : 'Overview of the historic international milestone at the Gay Games XII València 2026 and the bronze medal in Football 7.'
+        }
+      >
         <p className="max-w-3xl text-base leading-relaxed text-brand-text/85 md:text-lg">{t.hero}</p>
         <div className="mt-4 flex flex-wrap gap-3">
           <ActionLink href={externalLinks.gofundme} external>{t.donate}</ActionLink>
@@ -30,7 +37,7 @@ export default function ValenciaPage({ params }: { params: { lang: string } }) {
         </Card>
       </Section>
 
-      <Section title={lang === 'es' ? 'Por qué importa que vaya Disforia FC' : 'Why it matters that Disforia FC goes'}>
+      <Section title={lang === 'es' ? 'Por qué fue histórico el paso de Disforia FC' : 'Why Disforia FC’s journey made history'}>
         <p className="max-w-3xl text-brand-text/85">{t.why}</p>
         <blockquote className="mt-4 max-w-2xl border-l-2 border-brand-primary/70 pl-4 text-sm italic text-brand-text/90 sm:text-base">“{t.quote}”</blockquote>
       </Section>

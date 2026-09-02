@@ -61,11 +61,11 @@ it('includes valencia transparency and faq blocks for both locales', () => {
   }
 });
 
-it('includes a five-step achievements roadmap for both locales', () => {
+it('includes a seven-step achievements roadmap for both locales', () => {
   for (const lang of ['es', 'en'] as const) {
     const roadmap = copy[lang].home.roadmap;
     expect(roadmap.title.length).toBeGreaterThan(10);
-    expect(roadmap.milestones).toHaveLength(6);
+    expect(roadmap.milestones).toHaveLength(7);
     for (const milestone of roadmap.milestones) {
       expect(milestone.year).toMatch(/^\d{4}$/);
       expect(milestone.title.length).toBeGreaterThan(8);
