@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <!-- Home -->
+  <url>
+    <loc>https://disforia-fc.org/es/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://disforia-fc.org/es/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://disforia-fc.org/en/" />
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://disforia-fc.org/en/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://disforia-fc.org/es/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://disforia-fc.org/en/" />
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Documentales y Prensa -->
+  <url>
+    <loc>https://disforia-fc.org/es/documentales-prensa/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://disforia-fc.org/es/documentales-prensa/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://disforia-fc.org/en/documentaries-press/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://disforia-fc.org/en/documentaries-press/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://disforia-fc.org/es/documentales-prensa/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://disforia-fc.org/en/documentaries-press/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Valencia 2026 -->
+  <url>
+    <loc>https://disforia-fc.org/es/valencia-2026/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://disforia-fc.org/es/valencia-2026/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://disforia-fc.org/en/valencia-2026/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://disforia-fc.org/en/valencia-2026/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://disforia-fc.org/es/valencia-2026/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://disforia-fc.org/en/valencia-2026/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Club -->
+  <url>
+    <loc>https://disforia-fc.org/es/club/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://disforia-fc.org/es/club/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://disforia-fc.org/en/club/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://disforia-fc.org/en/club/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://disforia-fc.org/es/club/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://disforia-fc.org/en/club/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Fútbol -->
+  <url>
+    <loc>https://disforia-fc.org/es/futbol/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://disforia-fc.org/es/futbol/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://disforia-fc.org/en/football/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://disforia-fc.org/en/football/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://disforia-fc.org/es/futbol/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://disforia-fc.org/en/football/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Básquetbol -->
+  <url>
+    <loc>https://disforia-fc.org/es/basquetbol/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://disforia-fc.org/es/basquetbol/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://disforia-fc.org/en/basketball/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://disforia-fc.org/en/basketball/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://disforia-fc.org/es/basquetbol/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://disforia-fc.org/en/basketball/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Apoya -->
+  <url>
+    <loc>https://disforia-fc.org/es/apoya/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://disforia-fc.org/es/apoya/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://disforia-fc.org/en/support/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://disforia-fc.org/en/support/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://disforia-fc.org/es/apoya/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://disforia-fc.org/en/support/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Súmate -->
+  <url>
+    <loc>https://disforia-fc.org/es/sumate/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://disforia-fc.org/es/sumate/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://disforia-fc.org/en/join/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://disforia-fc.org/en/join/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://disforia-fc.org/es/sumate/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://disforia-fc.org/en/join/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Contacto -->
+  <url>
+    <loc>https://disforia-fc.org/es/contacto-redes/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://disforia-fc.org/es/contacto-redes/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://disforia-fc.org/en/contact-social/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://disforia-fc.org/en/contact-social/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://disforia-fc.org/es/contacto-redes/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://disforia-fc.org/en/contact-social/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+</urlset>

@@ -58,8 +58,41 @@ export default function LocaleLayout({ children, params }: { children: React.Rea
   if (!locales.includes(params.lang as Locale)) notFound();
 
   const lang = params.lang as Locale;
+  const isEs = lang === 'es';
+
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'SportsClub',
+    name: 'Disforia FC',
+    alternateName: 'Disforia Fútbol Club',
+    url: `https://disforia-fc.org${localizedPath(lang, 'home')}`,
+    logo: 'https://disforia-fc.org/images/disforia-logo.svg',
+    image: 'https://disforia-fc.org/images/prensa/galio-03.jpg',
+    description: isEs
+      ? 'Primer club deportivo para personas trans y no binarias de Chile. Entrenamos, competimos y construimos comunidad desde 2019. Medalla de bronce en Gay Games XII Valencia 2026.'
+      : "Chile's first sports club for trans and non-binary people. Training, competing, and building community since 2019. Bronze medal at the Gay Games XII Valencia 2026.",
+    foundingDate: '2019',
+    founder: {
+      '@type': 'Person',
+      name: 'Christopher Erlandsen Lorca',
+    },
+    sport: ['Soccer', 'Basketball', 'Volleyball'],
+    award: isEs
+      ? 'Medalla de Bronce en Fútbol 7 · Gay Games XII Valencia 2026'
+      : 'Bronze Medal in Football 7 · Gay Games XII Valencia 2026',
+    sameAs: [
+      'https://www.instagram.com/disforia_fc/',
+      'https://www.instagram.com/disforiabskt/',
+      'https://www.instagram.com/disforiavoley/',
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
       <SiteHeader lang={lang} />
       <main id="main-content">{children}</main>
       <SiteFooter lang={lang} />

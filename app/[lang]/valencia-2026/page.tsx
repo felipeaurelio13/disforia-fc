@@ -1,6 +1,7 @@
 import { ActionLink, Card, Section } from '@/components/ui';
+import { PressCard } from '@/components/PressCard';
 import { copy } from '@/content/copy';
-import { externalLinks, Locale, locales, valenciaFunding } from '@/content/site';
+import { externalLinks, Locale, locales, pressCoverage, valenciaFunding } from '@/content/site';
 import { getValenciaProgress } from '@/lib/valencia';
 import { notFound } from 'next/navigation';
 
@@ -10,6 +11,10 @@ export default function ValenciaPage({ params }: { params: { lang: string } }) {
   const t = copy[lang].valencia;
   const { percentage: progress, remaining } = getValenciaProgress();
   const isTracked = valenciaFunding.campaignMode === 'tracked' && Boolean(valenciaFunding.tracked);
+
+  const valenciaPress = pressCoverage.filter(
+    (item) => item.date.startsWith('2026') && (item.category === 'press' || item.category === 'sport')
+  );
 
   return (
     <>
@@ -62,6 +67,20 @@ export default function ValenciaPage({ params }: { params: { lang: string } }) {
               <blockquote className="text-sm italic text-brand-text/88">“{item.quote}”</blockquote>
               <p className="mt-2 text-sm text-brand-text/70">— {item.author}</p>
             </Card>
+          ))}
+        </div>
+      </Section>
+
+      <Section title={lang === 'es' ? 'Cobertura en prensa' : 'Media coverage'}>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {valenciaPress.map((item) => (
+            <PressCard
+              key={item.href}
+              item={item}
+              lang={lang}
+              categoryLabel={item.category === 'press' ? (lang === 'es' ? 'Prensa' : 'Press') : (lang === 'es' ? 'Deporte' : 'Sport')}
+              readMore={lang === 'es' ? 'Leer reportaje' : 'Read article'}
+            />
           ))}
         </div>
       </Section>

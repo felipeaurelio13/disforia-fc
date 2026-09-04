@@ -1,0 +1,5 @@
+# Robots.txt for Disforia FC
+User-agent: *
+Allow: /
+
+Sitemap: https://disforia-fc.org/sitemap.xml

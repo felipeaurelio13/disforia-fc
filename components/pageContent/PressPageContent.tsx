@@ -1,7 +1,7 @@
 import { Card, Section, Badge } from '@/components/ui';
 import { SafeImage } from '@/components/ui/SafeImage';
 import { PressGallery } from '@/components/PressGallery';
-import { PressCard } from '@/components/PressCard';
+import { PressCoverageSection } from '@/components/PressCoverageSection';
 import { VideoEmbed } from '@/components/VideoEmbed';
 import { VerticalVideoPlayer } from '@/components/VerticalVideoPlayer';
 import { copy } from '@/content/copy';
@@ -13,14 +13,6 @@ export function PressPageContent({ lang }: { lang: Locale }) {
   const short = documentary.shortFilm;
   const feature = documentary.featureFilm;
   const teaser = documentary.teaser;
-
-  const pressItems = pressCoverage
-    .filter((i) => i.category === 'press' || i.category === 'tv' || i.category === 'sport')
-    .sort((a, b) => b.date.localeCompare(a.date));
-
-  const filmItems = pressCoverage
-    .filter((i) => i.category === 'film')
-    .sort((a, b) => b.date.localeCompare(a.date));
 
   return (
     <>
@@ -171,34 +163,14 @@ export function PressPageContent({ lang }: { lang: Locale }) {
         <PressGallery items={pressGallery} lang={lang} />
       </Section>
 
-      {/* ── Press coverage ── */}
+      {/* ── Press & Media Coverage (Interactive Filter) ── */}
       <Section id="coverage" title={p.pressTitle}>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {pressItems.map((item) => (
-            <PressCard
-              key={item.href}
-              item={item}
-              lang={lang}
-              categoryLabel={p.categoryLabels[item.category] ?? item.category}
-              readMore={p.readMore}
-            />
-          ))}
-        </div>
-      </Section>
-
-      {/* ── Film catalogues & festivals ── */}
-      <Section id="catalogues" title={p.filmTitle}>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {filmItems.map((item) => (
-            <PressCard
-              key={item.href}
-              item={item}
-              lang={lang}
-              categoryLabel={p.categoryLabels[item.category] ?? item.category}
-              readMore={p.readMore}
-            />
-          ))}
-        </div>
+        <PressCoverageSection
+          items={pressCoverage}
+          lang={lang}
+          categoryLabels={p.categoryLabels}
+          readMore={p.readMore}
+        />
       </Section>
     </>
   );
